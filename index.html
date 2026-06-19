@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>STĀGE — Get on the list</title>
+<meta name="description" content="The stage is being built. Get on the list." />
+<meta property="og:title" content="STĀGE — Get on the list" />
+<meta property="og:description" content="The infrastructure of the music business, rebuilt to run through you. Doors open soon." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#080810;
+    --surface:#1a1a2a;
+    --surface-2:#202036;
+    --accent:#a78bfa;
+    --green:#4dffb4;
+    --gold:#f5c842;
+    --text:#f4f3ff;
+    --muted:#a3a1c0;
+    --line:rgba(167,139,250,0.18);
+    --display:'Bricolage Grotesque', sans-serif;
+    --body:'Inter', sans-serif;
+    --maxw:760px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--body);font-size:17px;line-height:1.65;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+
+  .stage-lights{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(60% 50% at 20% 0%, rgba(167,139,250,0.20), transparent 60%),
+      radial-gradient(55% 45% at 80% 5%, rgba(77,255,180,0.12), transparent 60%),
+      radial-gradient(50% 60% at 50% 110%, rgba(245,200,66,0.10), transparent 60%);
+    animation:drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(0,-2%,0) scale(1.08)}}
+
+  .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;position:relative;z-index:2}
+  .logo{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:2px;background:linear-gradient(90deg,var(--accent),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-cta{font-family:var(--display);font-weight:700;font-size:14px;color:var(--bg);background:var(--accent);padding:10px 18px;border-radius:999px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(167,139,250,.35)}
+
+  /* ---------------- HERO ---------------- */
+  header{padding:60px 0 34px;text-align:center}
+  .eyebrow{display:inline-block;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--green);border:1px solid var(--line);padding:7px 16px;border-radius:999px;margin-bottom:28px;background:rgba(77,255,180,.06)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,8vw,68px);line-height:1.04;letter-spacing:-1px;margin-bottom:22px}
+  h1 .hl{background:linear-gradient(90deg,var(--accent) 0%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:540px;margin:0 auto 36px}
+
+  .eq{display:flex;align-items:flex-end;justify-content:center;gap:5px;height:48px;margin:0 auto 40px}
+  .eq span{width:6px;border-radius:3px;background:linear-gradient(180deg,var(--green),var(--accent));animation:bounce 1.1s ease-in-out infinite}
+  .eq span:nth-child(1){height:30%;animation-delay:0s}
+  .eq span:nth-child(2){height:70%;animation-delay:.1s}
+  .eq span:nth-child(3){height:45%;animation-delay:.2s}
+  .eq span:nth-child(4){height:90%;animation-delay:.3s}
+  .eq span:nth-child(5){height:55%;animation-delay:.15s}
+  .eq span:nth-child(6){height:80%;animation-delay:.05s}
+  .eq span:nth-child(7){height:35%;animation-delay:.25s}
+  @keyframes bounce{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+
+  .countdown-label{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .countdown{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+  .unit{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 8px;min-width:84px}
+  .unit .num{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,40px);color:var(--gold);line-height:1}
+  .unit .lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .livecount{position:relative;display:inline-flex;align-items:center;gap:11px;font-size:14.5px;color:var(--text);background:linear-gradient(90deg,rgba(77,255,180,.08),rgba(167,139,250,.08));border:1px solid rgba(77,255,180,.32);border-radius:999px;padding:9px 18px;margin-bottom:22px;box-shadow:0 0 26px -8px rgba(77,255,180,.45)}
+  .livecount b{color:var(--green);font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums}
+  .lc-label{color:var(--muted)}
+  .lc-dot{position:relative;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(77,255,180,.8)}
+  .lc-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);animation:radar 1.9s ease-out infinite}
+  @keyframes radar{0%{transform:scale(1);opacity:.65}100%{transform:scale(3.4);opacity:0}}
+
+  .capture{display:flex;gap:10px;max-width:460px;margin:0 auto 10px;flex-wrap:wrap}
+  .capture input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--text);font-size:16px;padding:15px 16px;font-family:var(--body);outline:none;transition:border-color .15s ease, box-shadow .15s ease}
+  .capture input::placeholder{color:var(--muted)}
+  .capture input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(167,139,250,.18)}
+  .capture-btn{border:none;cursor:pointer;font-family:var(--display);font-weight:800;font-size:16px;color:var(--bg);background:linear-gradient(90deg,var(--accent),var(--green));padding:15px 22px;border-radius:12px;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease}
+  .capture-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(167,139,250,.5)}
+  .capture-note{font-size:13px;color:var(--muted);margin-bottom:30px}
+
+  .mid-cta{text-align:center;margin-top:34px}
+  .cta-link{display:inline-block;text-decoration:none;font-family:var(--display);font-weight:800;font-size:17px;color:var(--bg);background:linear-gradient(90deg,var(--accent),var(--green));padding:16px 34px;border-radius:14px;transition:transform .15s ease, box-shadow .15s ease}
+  .cta-link:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(167,139,250,.5)}
+
+  /* ---------------- SECTIONS ---------------- */
+  section{padding:52px 0}
+  .kicker{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--green);text-align:center;margin-bottom:12px}
+  .section-title{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.5px;margin-bottom:14px;text-align:center}
+  .section-sub{color:var(--muted);text-align:center;max-width:520px;margin:0 auto 40px}
+
+  /* ---- Ethos rendered as a native STĀGE post ---- */
+  .ethos.reveal{opacity:1;transform:none}
+  .post-card{position:relative;overflow:hidden;max-width:560px;margin:0 auto;text-align:left;background:#15151f;border:1px solid rgba(167,139,250,.16);border-radius:20px;padding:22px 22px 16px;box-shadow:0 30px 80px -42px rgba(167,139,250,.55);opacity:0;transform:translateY(24px) scale(.98);transition:opacity .6s ease, transform .6s ease}
+  .ethos.in .post-card{opacity:1;transform:none}
+
+  .post-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+  .post-avatar{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:18px;color:var(--bg);background:linear-gradient(135deg,var(--accent),var(--green))}
+  .post-idwrap{flex:1;min-width:0}
+  .post-name{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .check{width:15px;height:15px;flex:none}
+  .hq{display:inline-flex;align-items:center;gap:3px;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--gold);background:rgba(245,200,66,.12);border:1px solid rgba(245,200,66,.35);border-radius:999px;padding:2px 9px}
+  .hq svg{width:10px;height:10px;fill:var(--gold)}
+  .role-tag{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--accent);background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.3);border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .post-meta{font-size:13px;color:var(--muted);margin-top:5px;display:flex;align-items:center;gap:9px}
+  .live{display:inline-flex;align-items:center;gap:5px;color:var(--green);font-weight:600}
+  .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:livePulse 1.6s ease-in-out infinite}
+  @keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(77,255,180,.5)}70%{box-shadow:0 0 0 8px rgba(77,255,180,0)}100%{box-shadow:0 0 0 0 rgba(77,255,180,0)}}
+
+  .post-lead{font-family:var(--display);font-weight:800;font-size:clamp(20px,3.2vw,26px);line-height:1.22;margin:6px 0 12px}
+  .post-card .manifesto{font-size:clamp(15.5px,2.1vw,17px);line-height:1.62;color:var(--text);text-align:left;max-width:none;margin:0 0 12px}
+  .em-mut{color:var(--text);font-weight:700}
+  .em-accent{color:var(--accent);font-weight:700}
+  .em-green{color:var(--green);font-weight:700}
+  .em-gold{color:var(--gold);font-weight:700}
+  .post-card .manifesto-punch{font-family:var(--display);font-weight:800;font-size:clamp(16px,2.3vw,19px);line-height:1.4;text-align:left;max-width:none;margin:0 0 14px;background:linear-gradient(90deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hashtags{color:var(--accent);font-weight:600;font-size:14.5px;margin:0 0 16px}
+
+  .music-card{display:flex;align-items:center;gap:13px;background:#20202e;border:1px solid rgba(167,139,250,.14);border-radius:16px;padding:11px 12px;margin-bottom:16px}
+  .albumart{position:relative;width:60px;height:60px;flex:none;border-radius:12px;background:linear-gradient(135deg,#a78bfa,#f57fb0);display:grid;place-items:center}
+  .newdrop{position:absolute;left:-3px;bottom:-7px;font-family:var(--display);font-weight:800;font-size:7.5px;letter-spacing:.4px;color:#fff;background:linear-gradient(90deg,#ff5e8a,#a78bfa);padding:3px 6px;border-radius:6px;white-space:nowrap}
+  .track{flex:1;min-width:0}
+  .track-title{font-family:var(--display);font-weight:700;font-size:15px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track-meta{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+  .wavebar{display:flex;align-items:flex-end;gap:3px;height:18px}
+  .wb{width:3px;border-radius:2px;background:var(--accent);opacity:.5;transform-origin:bottom}
+  .wavebar.playing .wb{opacity:1;animation:wbplay .85s ease-in-out infinite}
+  .wavebar.playing .wb:nth-child(2n){animation-delay:.15s}
+  .wavebar.playing .wb:nth-child(3n){animation-delay:.3s}
+  .wavebar.playing .wb:nth-child(4n){animation-delay:.08s}
+  @keyframes wbplay{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.25)}}
+  .playbtn{flex:none;width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;background:linear-gradient(135deg,#3be7c8,#23b6e0);box-shadow:0 8px 20px -8px rgba(59,231,200,.6);transition:transform .15s ease}
+  .playbtn:hover{transform:scale(1.06)}
+  .playbtn svg{width:18px;height:18px;fill:#04121a}
+  .playbtn .ic-pause{display:none}
+  .playbtn.playing .ic-play{display:none}
+  .playbtn.playing .ic-pause{display:block}
+
+  .post-actions{display:flex;align-items:center;gap:20px;padding-top:6px}
+  .pa{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:14px;font-weight:600;background:none;border:none;padding:0;font-family:inherit}
+  .pa svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pa-like{cursor:pointer}
+  .pa-like svg{fill:#ff4d6d;stroke:#ff4d6d}
+  .pa-like b{color:#ff4d6d}
+  .pa-like.liked svg{animation:likePop .35s ease}
+  @keyframes likePop{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+  .pa-rep svg{stroke:var(--accent)}
+  .pa-tip{margin-left:auto;color:var(--green);cursor:pointer}
+
+  /* ---- Feature showcase ---- */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .fcard{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease}
+  .fcard:hover{transform:translateY(-5px);border-color:var(--c);box-shadow:0 26px 60px -34px var(--c)}
+  .fmotif{height:60px;margin-bottom:18px;display:flex;align-items:flex-end}
+  .fmotif svg{height:56px;width:auto;overflow:visible}
+  .fcard h3{font-family:var(--display);font-weight:700;font-size:18px;margin-bottom:8px}
+  .fcard p{color:var(--muted);font-size:14.5px;line-height:1.55}
+  .fcard .stroke{stroke:var(--c);fill:none}
+  .fcard .fill{fill:var(--c)}
+  .fcard .track{stroke:rgba(255,255,255,.09)}
+
+  /* motif: collaboration */
+  .nd{transform-box:fill-box;transform-origin:center;transition:transform .3s ease}
+  .ln{opacity:.3;stroke-width:1.5;transition:opacity .3s ease}
+  .fcard:hover .ln{opacity:.9}
+  .fcard:hover .nd{animation:nodePulse 1.3s ease-in-out infinite}
+  .fcard:hover .nd:nth-of-type(2){animation-delay:.2s}
+  .fcard:hover .nd:nth-of-type(3){animation-delay:.4s}
+  @keyframes nodePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+
+  /* motif: dashboard bars */
+  .bar{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.6);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+  .fcard:hover .bar{transform:scaleY(1)}
+  .fcard:hover .bar:nth-of-type(2){transition-delay:.05s}
+  .fcard:hover .bar:nth-of-type(3){transition-delay:.1s}
+  .fcard:hover .bar:nth-of-type(4){transition-delay:.15s}
+
+  /* motif: HQ ring */
+  .ring{transition:stroke-dashoffset .7s ease}
+  .fcard:hover .ring{stroke-dashoffset:24}
+
+  /* motif: fan rings */
+  .rr{transform-box:fill-box;transform-origin:center;transition:transform .45s ease}
+  .fcard:hover .rr1{transform:scale(1.18)}
+  .fcard:hover .rr2{transform:scale(1.14)}
+  .fcard:hover .rr3{transform:scale(1.1)}
+
+  /* motif: ticket */
+  .tk{transform-box:fill-box;transform-origin:center;transition:transform .35s ease}
+  .fcard:hover .tk{transform:rotate(-5deg) scale(1.05)}
+
+  /* motif: waveform */
+  .wv{transform-box:fill-box;transform-origin:center;transition:transform .3s ease}
+  .fcard:hover .wv{animation:wave 1s ease-in-out infinite}
+  .fcard:hover .wv:nth-of-type(2){animation-delay:.1s}
+  .fcard:hover .wv:nth-of-type(3){animation-delay:.2s}
+  .fcard:hover .wv:nth-of-type(4){animation-delay:.05s}
+  .fcard:hover .wv:nth-of-type(5){animation-delay:.25s}
+  .fcard:hover .wv:nth-of-type(6){animation-delay:.15s}
+  .fcard:hover .wv:nth-of-type(7){animation-delay:.3s}
+  @keyframes wave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1.15)}}
+
+  /* ---------------- FORM ---------------- */
+  .form-section{padding-top:20px}
+  .form-wrap{background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,5vw,40px);box-shadow:0 30px 80px -40px rgba(167,139,250,.5)}
+  .form-kicker{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--green);text-align:center;margin-bottom:8px}
+  .form-title{font-family:var(--display);font-weight:800;font-size:clamp(24px,4vw,32px);text-align:center;margin-bottom:8px}
+  .form-intro{color:var(--muted);text-align:center;font-size:15px;margin-bottom:32px}
+  .steps{display:flex;flex-direction:column;gap:14px;margin-bottom:30px;padding:18px;background:var(--bg);border:1px solid var(--line);border-radius:14px}
+  .step{display:flex;gap:13px;align-items:flex-start;text-align:left}
+  .step-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:13px;color:var(--bg);background:linear-gradient(135deg,var(--accent),var(--green))}
+  .step-tx{display:flex;flex-direction:column;line-height:1.45}
+  .step-tx b{font-family:var(--display);font-weight:700;font-size:14.5px}
+  .step-tx span{font-size:13.5px;color:var(--muted)}
+
+  .field{margin-bottom:24px;text-align:left}
+  .field > label{display:block;font-family:var(--display);font-weight:700;font-size:15px;margin-bottom:4px}
+  .field .help{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+  .opt{color:var(--muted);font-weight:400;font-family:var(--body);font-size:13px}
+
+  input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--text);font-family:var(--body);font-size:16px;padding:14px 16px;outline:none;transition:border-color .15s ease, box-shadow .15s ease}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(167,139,250,.18)}
+  textarea{resize:vertical;min-height:80px}
+  select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23a3a1c0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease}
+  .chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .chip.active{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600}
+
+  .submit{width:100%;border:none;cursor:pointer;font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.3px;color:var(--bg);background:linear-gradient(90deg,var(--accent),var(--green));padding:17px;border-radius:14px;margin-top:8px;transition:transform .15s ease, opacity .15s ease}
+  .submit:hover{transform:translateY(-2px)}
+  .submit:disabled{opacity:.55;cursor:wait;transform:none}
+  .form-note{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}
+  .form-msg{margin-top:16px;padding:14px 16px;border-radius:12px;font-size:15px;display:none}
+  .form-msg.show{display:block}
+  .form-msg.ok{background:rgba(77,255,180,.1);border:1px solid rgba(77,255,180,.4);color:var(--green)}
+  .form-msg.err{background:rgba(255,99,132,.1);border:1px solid rgba(255,99,132,.4);color:#ff90a4}
+
+  /* ---------------- CONTACT ---------------- */
+  .contact-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:13px 22px;color:var(--text);font-weight:500;font-size:15px;transition:transform .15s ease, border-color .15s ease}
+  .pill:hover{transform:translateY(-2px);border-color:var(--green)}
+  .socials{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .social{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--text);text-decoration:none;transition:transform .15s ease, background .15s ease, color .15s ease}
+  .social:hover{transform:translateY(-3px);background:var(--accent);color:var(--bg)}
+  .social svg{width:20px;height:20px;fill:currentColor}
+
+  footer{padding:36px 0 56px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:24px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    .stage-lights,.eq span{animation:none}
+    .fcard:hover .nd,.fcard:hover .wv{animation:none}
+    .ethos .post-card{opacity:1;transform:none;transition:none}
+    .live-dot,.lc-dot::after{animation:none}
+    .wavebar.playing .wb,.pa-like.liked svg{animation:none}
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="stage-lights"></div>
+
+<div class="wrap">
+  <nav>
+    <span class="logo">STĀGE</span>
+    <a href="#join" class="nav-cta to-form">Get on the list</a>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <span class="eyebrow">The stage is being built</span>
+    <h1>Your sound deserves<br><span class="hl">a bigger stage.</span></h1>
+    <p class="sub">For the self-made — the artists turning late nights and raw talent into a career nobody handed them. Here, what you build stays yours, and so does everything it earns.</p>
+
+    <div class="livecount" id="liveCount" style="display:none">
+      <span class="lc-dot"></span><b id="crowd-num">0</b> <span class="lc-label">creators joined the waitlist</span>
+    </div>
+
+    <div class="capture">
+      <input type="email" id="heroEmail" placeholder="Enter your email" autocomplete="email" />
+      <button class="capture-btn" id="heroBtn">Get on the list →</button>
+    </div>
+    <p class="capture-note">Free on iOS, Android &amp; web — your invite arrives by email at launch.</p>
+
+    <div class="countdown-label">Doors open in</div>
+    <div class="countdown" id="countdown" aria-live="polite">
+      <div class="unit"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
+      <div class="unit"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
+      <div class="unit"><div class="num" id="cd-mins">--</div><div class="lbl">Mins</div></div>
+      <div class="unit"><div class="num" id="cd-secs">--</div><div class="lbl">Secs</div></div>
+    </div>
+  </header>
+
+  <!-- ETHOS · rendered as a native STĀGE post -->
+  <section class="reveal ethos">
+    <div class="kicker">From the STĀGE feed</div>
+    <div class="post-card" id="postCard">
+      <div class="post-head">
+        <div class="post-avatar">S</div>
+        <div class="post-idwrap">
+          <div class="post-name">STĀGE
+            <svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10" fill="none" stroke="#4dffb4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="hq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>10K</span>
+            <span class="role-tag">Official</span>
+          </div>
+          <div class="post-meta">📍 Worldwide · pinned <span class="live"><span class="live-dot"></span>live</span></div>
+        </div>
+      </div>
+
+      <p class="post-lead">You built it. You should own it.</p>
+      <p class="manifesto">For decades, the infrastructure of this industry belonged to <span class="em-mut">everyone but the artist</span>. STĀGE rebuilds it to run through you — <span class="em-accent">the tools</span>, <span class="em-green">the audience</span>, <span class="em-gold">the money</span> — all of it, at last, in the hands that earned it.</p>
+      <p class="manifesto-punch">You set the terms, you own the room, and everything your work earns stays right where it belongs — with you.</p>
+      <p class="hashtags">#OwnYourSound #NoMiddleman #OnSTĀGE</p>
+
+      <div class="music-card">
+        <div class="albumart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.6" fill="#fff"/><circle cx="16.5" cy="16" r="2.6" fill="#fff"/></svg>
+          <span class="newdrop">NEW DROP</span>
+        </div>
+        <div class="track">
+          <div class="track-title">Own It — The Anthem</div>
+          <div class="track-meta">8.2K plays · Anthem · 2:26</div>
+          <div class="wavebar" id="wavebar">
+            <span class="wb" style="height:7px"></span><span class="wb" style="height:12px"></span><span class="wb" style="height:9px"></span><span class="wb" style="height:15px"></span><span class="wb" style="height:8px"></span><span class="wb" style="height:13px"></span><span class="wb" style="height:6px"></span><span class="wb" style="height:14px"></span><span class="wb" style="height:10px"></span><span class="wb" style="height:16px"></span><span class="wb" style="height:7px"></span><span class="wb" style="height:11px"></span><span class="wb" style="height:9px"></span><span class="wb" style="height:13px"></span><span class="wb" style="height:8px"></span><span class="wb" style="height:12px"></span>
+          </div>
+        </div>
+        <button class="playbtn" id="playbtn" aria-label="Play preview">
+          <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+      </div>
+
+      <div class="post-actions">
+        <button class="pa pa-like" id="likeBtn" aria-label="Like"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg><b data-count="12400">0</b></button>
+        <span class="pa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l.9-5A8 8 0 1 1 21 12z"/></svg><b data-count="843">0</b></span>
+        <span class="pa pa-rep"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg><b data-count="2100">0</b></span>
+        <span class="pa pa-tip">🚀 Tip</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE SHOWCASE -->
+  <section class="reveal">
+    <div class="kicker">Behind the curtain</div>
+    <h2 class="section-title">A glimpse of the stage</h2>
+    <p class="section-sub">A first look at what you'll step into when the doors open.</p>
+
+    <div class="features">
+
+      <!-- Collaboration -->
+      <div class="fcard" style="--c:#a78bfa">
+        <div class="fmotif">
+          <svg viewBox="0 0 120 56" aria-hidden="true">
+            <line class="stroke ln" x1="20" y1="42" x2="60" y2="14"/>
+            <line class="stroke ln" x1="60" y1="14" x2="100" y2="42"/>
+            <line class="stroke ln" x1="20" y1="42" x2="100" y2="42"/>
+            <circle class="fill nd" cx="20" cy="42" r="6"/>
+            <circle class="fill nd" cx="60" cy="14" r="6"/>
+            <circle class="fill nd" cx="100" cy="42" r="6"/>
+          </svg>
+        </div>
+        <h3>Find your people</h3>
+        <p>Somewhere out there is the collaborator your next record needs. STĀGE turns the search into something that feels like fate — and keeps whatever you build together yours.</p>
+      </div>
+
+      <!-- Dashboard -->
+      <div class="fcard" style="--c:#4dffb4">
+        <div class="fmotif">
+          <svg viewBox="0 0 120 56" aria-hidden="true">
+            <rect class="fill bar" x="14" y="6" width="16" height="50" rx="4"/>
+            <rect class="fill bar" x="40" y="6" width="16" height="50" rx="4"/>
+            <rect class="fill bar" x="66" y="6" width="16" height="50" rx="4"/>
+            <rect class="fill bar" x="92" y="6" width="16" height="50" rx="4"/>
+          </svg>
+        </div>
+        <h3>See everything</h3>
+        <p>Every fan, stream, sale, and dollar surfaced in one living view — your whole career readable at a glance, like a command center built around you.</p>
+      </div>
+
+      <!-- HQ Score -->
+      <div class="fcard" style="--c:#f5c842">
+        <div class="fmotif">
+          <svg viewBox="0 0 60 56" aria-hidden="true">
+            <circle class="track" cx="30" cy="28" r="22" fill="none" stroke-width="5"/>
+            <circle class="stroke ring" cx="30" cy="28" r="22" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="60" transform="rotate(-90 30 28)"/>
+          </svg>
+        </div>
+        <h3>Earn your number</h3>
+        <p>Your score is proof you're the real thing — reputation you can actually measure. Show up, deliver, and watch it climb, opening doors hype alone never could.</p>
+      </div>
+
+      <!-- Fan clubs -->
+      <div class="fcard" style="--c:#a78bfa">
+        <div class="fmotif">
+          <svg viewBox="0 0 60 56" aria-hidden="true">
+            <circle class="stroke rr rr3" cx="30" cy="28" r="25" fill="none" stroke-width="2" opacity=".25"/>
+            <circle class="stroke rr rr2" cx="30" cy="28" r="17" fill="none" stroke-width="2" opacity=".5"/>
+            <circle class="stroke rr rr1" cx="30" cy="28" r="9"  fill="none" stroke-width="2" opacity=".85"/>
+            <circle class="fill" cx="30" cy="28" r="4"/>
+          </svg>
+        </div>
+        <h3>Build your circle</h3>
+        <p>Turn the people who love what you do into a community that shows up — and backs you — directly, with no one skimming in between.</p>
+      </div>
+
+      <!-- Events -->
+      <div class="fcard" style="--c:#4dffb4">
+        <div class="fmotif">
+          <svg viewBox="0 0 120 56" aria-hidden="true">
+            <path class="fill tk" d="M16 14h66a6 6 0 0 1 6 6v3a5 5 0 0 0 0 10v3a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6v-3a5 5 0 0 0 0-10v-3a6 6 0 0 1 6-6z" opacity=".92"/>
+            <line x1="88" y1="16" x2="88" y2="50" stroke="#080810" stroke-width="2" stroke-dasharray="3 4"/>
+          </svg>
+        </div>
+        <h3>Run the night</h3>
+        <p>From the first flyer to the last ticket scanned at the door — host the whole event yourself, and keep every cent it earns.</p>
+      </div>
+
+      <!-- Catalogue -->
+      <div class="fcard" style="--c:#f5c842">
+        <div class="fmotif">
+          <svg viewBox="0 0 120 56" aria-hidden="true">
+            <rect class="fill wv" x="8"   y="20" width="8" height="16" rx="4"/>
+            <rect class="fill wv" x="24"  y="10" width="8" height="36" rx="4"/>
+            <rect class="fill wv" x="40"  y="16" width="8" height="24" rx="4"/>
+            <rect class="fill wv" x="56"  y="6"  width="8" height="44" rx="4"/>
+            <rect class="fill wv" x="72"  y="18" width="8" height="20" rx="4"/>
+            <rect class="fill wv" x="88"  y="12" width="8" height="32" rx="4"/>
+            <rect class="fill wv" x="104" y="20" width="8" height="16" rx="4"/>
+          </svg>
+        </div>
+        <h3>Your catalog, alive</h3>
+        <p>Every release in a home that shows it off the way it deserves — front and center, never buried in someone else's feed.</p>
+      </div>
+
+    </div>
+
+    <div class="mid-cta">
+      <a href="#join" class="cta-link to-form">Get on the list →</a>
+    </div>
+  </section>
+
+  <!-- JOIN / FORM -->
+  <section id="join" class="form-section reveal">
+    <div class="form-wrap">
+      <div class="form-kicker">Be first when the doors open</div>
+      <div class="form-title">Get on the list</div>
+      <p class="form-intro">A few quick questions — your answers shape what we build first. Here's how early access works:</p>
+
+      <div class="steps">
+        <div class="step"><span class="step-n">1</span><div class="step-tx"><b>Reserve your spot</b><span>Your email locks in your STĀGE account.</span></div></div>
+        <div class="step"><span class="step-n">2</span><div class="step-tx"><b>Get your invite</b><span>At launch we send your private link and download for iOS, Android, or web.</span></div></div>
+        <div class="step"><span class="step-n">3</span><div class="step-tx"><b>Step on STĀGE</b><span>Tap the link, finish your profile, and your early access goes live.</span></div></div>
+      </div>
+
+      <div class="field">
+        <label for="role">What fits you best?</label>
+        <div class="help">No wrong answer — just helps us picture who's showing up.</div>
+        <select id="role">
+          <option value="" disabled selected>Pick one</option>
+          <option value="artist">Artist / Musician</option>
+          <option value="producer">Producer / Beatmaker</option>
+          <option value="dj">DJ</option>
+          <option value="engineer">Engineer / Mixer</option>
+          <option value="creator">Creator / Content</option>
+          <option value="fan">Fan / Supporter</option>
+          <option value="industry">Other in the industry</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>What do you want to make happen?</label>
+        <div class="help">Tap whatever fits your world — it shapes what we build first.</div>
+        <div class="chips" id="goalChips">
+          <button type="button" class="chip" data-val="release">Release &amp; catalog music</button>
+          <button type="button" class="chip" data-val="events">Create &amp; host events</button>
+          <button type="button" class="chip" data-val="content">Make content</button>
+          <button type="button" class="chip" data-val="collab">Collaborate with others</button>
+          <button type="button" class="chip" data-val="monetize">Sell &amp; monetize my work</button>
+          <button type="button" class="chip" data-val="opportunities">Find work &amp; opportunities</button>
+          <button type="button" class="chip" data-val="discover">Discover new talent</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="feature">Anything you'd want it to have? <span class="opt">— optional</span></label>
+        <div class="help">A feature, a frustration, or just a note to us.</div>
+        <textarea id="feature" placeholder="What would make this a must-have for you?"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="name">Artist / display name <span class="opt">— optional</span></label>
+        <input type="text" id="name" placeholder="What should we call you?" autocomplete="name" />
+      </div>
+
+      <div class="field">
+        <label for="location">Where you're based <span class="opt">— optional</span></label>
+        <div class="help">Region or country is plenty — no need to get specific.</div>
+        <input type="text" id="location" placeholder="e.g. Atlanta, or just the US" />
+      </div>
+
+      <div class="field">
+        <label for="heard">How'd you hear about us? <span class="opt">— optional</span></label>
+        <select id="heard">
+          <option value="" disabled selected>Pick one</option>
+          <option value="instagram">Instagram</option>
+          <option value="tiktok">TikTok</option>
+          <option value="x">X / Twitter</option>
+          <option value="youtube">YouTube</option>
+          <option value="reddit">Reddit</option>
+          <option value="friend">A friend / word of mouth</option>
+          <option value="other">Somewhere else</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number <span class="opt">— optional</span></label>
+        <div class="help">Only if you'd like launch-day updates by text too.</div>
+        <input type="tel" id="phone" placeholder="(555) 123-4567" autocomplete="tel" />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="help">The only one we actually need. We'll only use it for STĀGE.</div>
+        <input type="email" id="email" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+
+      <button class="submit" id="submitBtn" type="button">Save my spot →</button>
+      <p class="form-note">Early access, locked in — plus a real say in what we build.</p>
+      <div class="form-msg" id="formMsg" role="status"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="reveal">
+    <h2 class="section-title">Get in touch</h2>
+    <p class="section-sub">Questions, press, partnerships — reach out directly.</p>
+    <div class="contact-row">
+      <a class="pill" href="mailto:hello@stage-app.com">✉️ hello@stage-app.com</a>
+    </div>
+    <div class="socials">
+      <a class="social" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-.97.04-1.5.21-1.85.34-.46.18-.8.4-1.15.74-.34.35-.56.69-.74 1.15-.13.35-.3.88-.34 1.85-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.97.21 1.5.34 1.85.18.46.4.8.74 1.15.35.34.69.56 1.15.74.35.13.88.3 1.85.34 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.97-.04 1.5-.21 1.85-.34.46-.18.8-.4 1.15-.74.34-.35.56-.69.74-1.15.13-.35.3-.88.34-1.85.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.97-.21-1.5-.34-1.85a3.1 3.1 0 00-.74-1.15 3.1 3.1 0 00-1.15-.74c-.35-.13-.88-.3-1.85-.34-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.3 5.3 0 110 10.6 5.3 5.3 0 010-10.6zm0 8.74a3.44 3.44 0 100-6.88 3.44 3.44 0 000 6.88zm5.5-8.95a1.24 1.24 0 11-2.48 0 1.24 1.24 0 012.48 0z"/></svg>
+      </a>
+      <a class="social" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.82a4.28 4.28 0 01-1.05-2.8h-3.1v12.4a2.6 2.6 0 11-2.6-2.6c.27 0 .53.04.78.12v-3.16a5.74 5.74 0 00-.78-.05A5.76 5.76 0 1015.6 15.5V9.01a7.36 7.36 0 004.4 1.45V7.3a4.28 4.28 0 01-3.4-1.48z"/></svg>
+      </a>
+      <a class="social" href="#" aria-label="X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-7-6.2 7H1.3l8.1-9.3L1 2h7.1l4.9 6.5L18.9 2zm-1.2 18h1.9L7.3 4H5.3l12.4 16z"/></svg>
+      </a>
+      <a class="social" href="#" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 001 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0023 16.5c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="logo" style="font-size:18px">STĀGE</span>
+    <p style="margin-top:10px">© <span id="year"></span> STĀGE. The stage is being built.</p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =========================================================
+   CONFIG — edit these, then you're done
+   ========================================================= */
+const TARGET_DATE = '2026-09-18T19:00:00';
+const SUPABASE_URL = 'https://ktpyltvdxhnfquorrdsi.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0cHlsdHZkeGhuZnF1b3JyZHNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMjIwMTUsImV4cCI6MjA5MDY5ODAxNX0.EYaEYST7pJjowcQUn4IBqwXyv7gnEQJWquTvMKxjQNs';
+const BASE_COUNT = 2400;      // seed so the counter shows momentum from day one (set to 0 for true count only)
+const SIMULATE_LIVE = true;   // occasionally tick the counter up to build live FOMO
+/* ========================================================= */
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function tickCountdown(){
+  const target = new Date(TARGET_DATE).getTime();
+  let diff = Math.max(0, target - Date.now());
+  const d = Math.floor(diff/86400000); diff -= d*86400000;
+  const h = Math.floor(diff/3600000);  diff -= h*3600000;
+  const m = Math.floor(diff/60000);    diff -= m*60000;
+  const s = Math.floor(diff/1000);
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('cd-days').textContent  = d;
+  document.getElementById('cd-hours').textContent = pad(h);
+  document.getElementById('cd-mins').textContent  = pad(m);
+  document.getElementById('cd-secs').textContent  = pad(s);
+}
+tickCountdown(); setInterval(tickCountdown, 1000);
+
+/* ---- Live waitlist counter: reflects real signups + organic momentum ---- */
+let displayedCount = 0;   // number currently on screen
+let realCount = 0;        // last known true count from Supabase
+let simOffset = 0;        // organic joins layered on top while we wait for real ones
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function targetCount(){ return BASE_COUNT + realCount + simOffset; }
+
+function renderCount(target){
+  const el = document.getElementById('crowd-num');
+  const wrap = document.getElementById('liveCount');
+  if(!el || !wrap) return;
+  wrap.style.display = 'inline-flex';
+  if(target <= displayedCount){ el.textContent = displayedCount.toLocaleString(); return; } // never count down
+  if(reduceMotion){ displayedCount = target; el.textContent = target.toLocaleString(); return; }
+  const start = displayedCount, t0 = performance.now(), dur = 900;
+  function step(t){
+    const p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
+    const val = Math.round(start + (target-start)*e);
+    el.textContent = val.toLocaleString(); displayedCount = val;
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+async function fetchReal(){
+  try{ const { data, error } = await sb.rpc('waitlist_count'); if(!error) realCount = Number(data)||0; }catch(e){}
+}
+
+/* Re-check the real database count every 30–60s so genuine signups
+   (from anyone, on any device) show up live. */
+function pollReal(){
+  setTimeout(async ()=>{ await fetchReal(); renderCount(targetCount()); pollReal(); }, 30000 + Math.random()*30000);
+}
+
+/* Organic momentum between real joins: irregular gaps, occasional bursts. */
+function simJoins(){
+  setTimeout(()=>{
+    const r = Math.random();
+    if(r < 0.65) simOffset += 1;        // usually one joins
+    else if(r < 0.85) simOffset += 2;   // sometimes a couple at once
+    // else: a quiet stretch — no join this round
+    renderCount(targetCount());
+    simJoins();
+  }, 20000 + Math.random()*55000);       // irregular 20–75s gaps
+}
+
+(async function initCounter(){
+  await fetchReal();
+  const t = targetCount();
+  displayedCount = Math.max(0, t - 12);   // gentle first rise, not a spin from zero
+  renderCount(t);
+  pollReal();
+  if(SIMULATE_LIVE) simJoins();
+})();
+
+/* ---- Hero capture: carry the email down to the full form ---- */
+function scrollToForm(){ const j = document.getElementById('join'); if(j) j.scrollIntoView({behavior:'smooth'}); }
+const heroBtn = document.getElementById('heroBtn');
+const heroEmail = document.getElementById('heroEmail');
+if(heroBtn && heroEmail){
+  heroBtn.addEventListener('click', ()=>{
+    const v = (heroEmail.value || '').trim();
+    if(v) document.getElementById('email').value = v;
+    scrollToForm();
+    setTimeout(()=>{ const t = document.getElementById(v ? 'role' : 'email'); if(t) t.focus({preventScroll:true}); }, 650);
+  });
+  heroEmail.addEventListener('keydown', e=>{ if(e.key === 'Enter'){ e.preventDefault(); heroBtn.click(); } });
+}
+document.querySelectorAll('.to-form').forEach(el=>{
+  el.addEventListener('click', (e)=>{
+    e.preventDefault();
+    scrollToForm();
+    setTimeout(()=>{ const m = document.getElementById('email'); if(m) m.focus({preventScroll:true}); }, 650);
+  });
+});
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* Animate the in-app post's engagement counts when it scrolls into view */
+(function(){
+  const card = document.getElementById('postCard');
+  if(!card) return;
+  const nums = card.querySelectorAll('.pa b[data-count]');
+  const fmt = n => n >= 1000 ? (n/1000).toFixed(1).replace(/\.0$/,'') + 'K' : String(n);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ nums.forEach(el=>el.textContent = fmt(parseInt(el.dataset.count,10))); return; }
+  function run(){
+    nums.forEach(el=>{
+      const target = parseInt(el.dataset.count,10), dur = 1200, start = performance.now();
+      function step(t){
+        const p = Math.min(1,(t-start)/dur), eased = 1-Math.pow(1-p,3);
+        el.textContent = fmt(Math.round(target*eased));
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  const obs = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting){ run(); obs.disconnect(); } });
+  },{threshold:.4});
+  obs.observe(card);
+})();
+
+/* Post interactions: play toggles the waveform, heart toggles the like */
+(function(){
+  const play = document.getElementById('playbtn');
+  const wave = document.getElementById('wavebar');
+  if(play && wave){
+    play.addEventListener('click', ()=>{
+      const on = play.classList.toggle('playing');
+      wave.classList.toggle('playing', on);
+    });
+  }
+  const like = document.getElementById('likeBtn');
+  if(like){
+    like.addEventListener('click', ()=>{
+      like.classList.remove('liked'); void like.offsetWidth; like.classList.add('liked');
+    });
+  }
+})();
+
+const selectedGoals = new Set();
+document.getElementById('goalChips').addEventListener('click', (ev)=>{
+  const chip = ev.target.closest('.chip');
+  if(!chip) return;
+  const v = chip.dataset.val;
+  if(selectedGoals.has(v)){ selectedGoals.delete(v); chip.classList.remove('active'); }
+  else { selectedGoals.add(v); chip.classList.add('active'); }
+});
+
+const btn = document.getElementById('submitBtn');
+const msg = document.getElementById('formMsg');
+function showMsg(t, type){ msg.textContent = t; msg.className = 'form-msg show ' + type; }
+
+btn.addEventListener('click', async ()=>{
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    showMsg("That email doesn't look right — mind checking it?", 'err');
+    document.getElementById('email').focus();
+    return;
+  }
+  const ref = new URLSearchParams(window.location.search).get('ref') || 'direct';
+
+  btn.disabled = true; const original = btn.textContent; btn.textContent = 'Saving…';
+
+  const { error } = await sb.from('waitlist').insert({
+    email,
+    phone: document.getElementById('phone').value.trim() || null,
+    artist_name: document.getElementById('name').value.trim() || null,
+    role: document.getElementById('role').value || null,
+    goals: selectedGoals.size ? Array.from(selectedGoals) : null,
+    feature_suggestion: document.getElementById('feature').value.trim() || null,
+    heard_from: document.getElementById('heard').value || null,
+    location: document.getElementById('location').value.trim() || null,
+    referral_source: ref
+  });
+
+  btn.disabled = false; btn.textContent = original;
+
+  if(error){
+    if(error.code === '23505'){ showMsg("You're already on the list — see you at the doors. 🎶", 'ok'); }
+    else { showMsg("Something went wrong saving your spot. Try again in a sec?", 'err'); console.error(error); }
+    return;
+  }
+  showMsg("You're in. 🎉 Keep an eye on your inbox — doors open soon.", 'ok');
+  ['email','name','location','feature','phone','heroEmail'].forEach(id=>{ const n=document.getElementById(id); if(n) n.value=''; });
+  document.getElementById('role').selectedIndex = 0;
+  document.getElementById('heard').selectedIndex = 0;
+  selectedGoals.clear();
+  document.querySelectorAll('.chip.active').forEach(c=>c.classList.remove('active'));
+  realCount += 1; renderCount(targetCount());
+});
+</script>
+</body>
+</html>
