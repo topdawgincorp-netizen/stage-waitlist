@@ -614,12 +614,13 @@ let displayedCount = 0;
 let serverTarget = 0;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function renderCount(target, instant){
+function renderCount(target, opts){
+  const instant = opts === true || (opts && opts.instant);
   const el = document.getElementById('crowd-num');
   const wrap = document.getElementById('liveCount');
   if(!el || !wrap) return;
   wrap.style.display = 'inline-flex';
-  target = Math.max(target, displayedCount); // never count down
+  target = Math.max(target, displayedCount);
   serverTarget = target;
   if(instant || target <= displayedCount){
     displayedCount = target;
@@ -627,31 +628,49 @@ function renderCount(target, instant){
     return;
   }
   if(reduceMotion){ displayedCount = target; el.textContent = target.toLocaleString(); return; }
-  const start = displayedCount, t0 = performance.now(), dur = 900;
+  const start = displayedCount;
+  const delta = target - start;
+  const dur = Math.min(2400, Math.max(1100, 700 + delta * 45));
+  const t0 = performance.now();
   function step(t){
     const p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
-    const val = Math.round(start + (target-start)*e);
-    el.textContent = val.toLocaleString(); displayedCount = val;
+    const val = Math.round(start + delta * e);
+    el.textContent = val.toLocaleString();
+    displayedCount = val;
     if(p<1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-async function fetchDisplay(animate){
+async function fetchDisplay(opts){
+  const animate = !opts || opts.animate !== false;
+  const rollOnLoad = opts && opts.rollOnLoad;
   try{
     const { data, error } = await sb.rpc('waitlist_display_count');
     if(error || !data) return;
     const target = Number(data.display) || 0;
+    const added = Number(data.added) || 0;
+    if(rollOnLoad && !reduceMotion){
+      const rollSpan = added > 0
+        ? Math.min(added + 4, 22)
+        : 8 + Math.min(14, Math.floor(target * 0.005));
+      displayedCount = Math.max(0, target - rollSpan);
+      document.getElementById('crowd-num').textContent = displayedCount.toLocaleString();
+      document.getElementById('liveCount').style.display = 'inline-flex';
+      renderCount(target);
+      return;
+    }
     renderCount(target, !animate);
   }catch(e){}
 }
 
 function pollDisplay(){
-  setTimeout(async ()=>{ await fetchDisplay(true); pollDisplay(); }, 45000 + Math.random()*45000);
+  const wait = 18000 + Math.random() * 20000; // 18–38s — catches users mid-session
+  setTimeout(async ()=>{ await fetchDisplay({ animate: true }); pollDisplay(); }, wait);
 }
 
 (async function initCounter(){
-  await fetchDisplay(false);
+  await fetchDisplay({ rollOnLoad: true });
   pollDisplay();
 })();
 
@@ -773,7 +792,7 @@ btn.addEventListener('click', async ()=>{
   document.getElementById('heard').selectedIndex = 0;
   selectedGoals.clear();
   document.querySelectorAll('.chip.active').forEach(c=>c.classList.remove('active'));
-  await fetchDisplay(true);
+  await fetchDisplay({ animate: true });
 });
 </script>
 </body>

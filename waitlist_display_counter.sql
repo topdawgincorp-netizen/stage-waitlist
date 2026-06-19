@@ -1,22 +1,10 @@
 -- Persistent display counter: seed + synthetic (fake ticker) + real signups
--- Synthetic advances 25–100/day (irregular), stored server-side so refresh never resets.
+-- Synthetic: 25–100/day, ~1–2/hour, irregular 15–30 min gaps, +1–3 per poll when catching up.
 
-create table if not exists public.waitlist_display_state (
-  id smallint primary key default 1 check (id = 1),
-  seed_base bigint not null default 2400,
-  synthetic_total bigint not null default 0,
-  state_date date,
-  day_target int not null default 0,
-  day_applied int not null default 0,
-  updated_at timestamptz not null default now()
-);
-
-insert into public.waitlist_display_state (id, seed_base)
-values (1, 2400)
-on conflict (id) do nothing;
-
-alter table public.waitlist_display_state enable row level security;
--- No public policies: only security definer functions touch this table.
+alter table public.waitlist_display_state
+  add column if not exists last_tick_at timestamptz,
+  add column if not exists tick_hour smallint,
+  add column if not exists hour_applied int not null default 0;
 
 create or replace function public._waitlist_day_target(p_day date)
 returns int
@@ -24,6 +12,20 @@ language sql
 immutable
 as $$
   select 25 + (abs(hashtext(p_day::text)) % 76);
+$$;
+
+create or replace function public._waitlist_tick_gap_minutes(p_day date, p_now timestamptz)
+returns int
+language sql
+immutable
+as $$
+  select 15 + (
+    abs(hashtext(
+      p_day::text || ':' ||
+      extract(hour from p_now at time zone 'utc')::text || ':' ||
+      (floor(extract(minute from p_now at time zone 'utc') / 15))::text
+    )) % 16
+  );
 $$;
 
 create or replace function public._waitlist_day_progress(p_day date, p_now timestamptz)
@@ -42,8 +44,8 @@ begin
   if secs >= 86400 then return 1; end if;
   base := secs / 86400.0;
   h := extract(hour from p_now at time zone 'utc')::int;
-  bump := (abs(hashtext(p_day::text || ':' || h::text)) % 17)::numeric / 100.0;
-  return least(1.0, base * 0.82 + bump + 0.04);
+  bump := (abs(hashtext(p_day::text || ':' || h::text)) % 13)::numeric / 100.0;
+  return least(1.0, base * 0.78 + bump + 0.06);
 end;
 $$;
 
@@ -57,9 +59,15 @@ declare
   st public.waitlist_display_state%rowtype;
   today date := (now() at time zone 'utc')::date;
   real_count bigint;
-  should_applied int;
-  delta int;
   progress numeric;
+  target_applied int;
+  batch int;
+  mins_since numeric;
+  gap int;
+  to_add int;
+  added int := 0;
+  curr_hour int;
+  hour_quota int;
 begin
   select * into st from public.waitlist_display_state where id = 1 for update;
   if not found then
@@ -72,6 +80,8 @@ begin
     set state_date = today,
         day_target = public._waitlist_day_target(today),
         day_applied = 0,
+        hour_applied = 0,
+        tick_hour = null,
         updated_at = now()
     where id = 1
     returning * into st;
@@ -84,17 +94,42 @@ begin
     returning * into st;
   end if;
 
-  progress := public._waitlist_day_progress(today, now());
-  should_applied := floor(st.day_target * progress)::int;
-  delta := greatest(0, should_applied - st.day_applied);
+  curr_hour := extract(hour from now() at time zone 'utc')::int;
+  hour_quota := 1 + (abs(hashtext(today::text || ':' || curr_hour::text)) % 2);
 
-  if delta > 0 then
+  if st.tick_hour is distinct from curr_hour then
     update public.waitlist_display_state
-    set synthetic_total = synthetic_total + delta,
-        day_applied = day_applied + delta,
-        updated_at = now()
+    set tick_hour = curr_hour, hour_applied = 0, updated_at = now()
     where id = 1
     returning * into st;
+  end if;
+
+  progress := public._waitlist_day_progress(today, now());
+  target_applied := floor(st.day_target * progress)::int;
+  batch := greatest(0, target_applied - st.day_applied);
+
+  if batch > 0 and st.hour_applied < hour_quota then
+    gap := public._waitlist_tick_gap_minutes(today, now());
+    mins_since := extract(epoch from (now() - coalesce(st.last_tick_at, now() - interval '2 days'))) / 60.0;
+
+    if mins_since >= gap then
+      if mins_since >= 28 then
+        to_add := least(batch, hour_quota - st.hour_applied, 3);
+      else
+        to_add := 1;
+      end if;
+
+      update public.waitlist_display_state
+      set synthetic_total = synthetic_total + to_add,
+          day_applied = day_applied + to_add,
+          hour_applied = hour_applied + to_add,
+          last_tick_at = now(),
+          updated_at = now()
+      where id = 1
+      returning * into st;
+
+      added := to_add;
+    end if;
   end if;
 
   select count(*)::bigint into real_count from public.waitlist;
@@ -103,23 +138,11 @@ begin
     'display', st.seed_base + st.synthetic_total + real_count,
     'real', real_count,
     'synthetic', st.synthetic_total,
-    'seed', st.seed_base
+    'seed', st.seed_base,
+    'added', added
   );
 end;
 $$;
 
 revoke all on function public.waitlist_display_count() from public;
 grant execute on function public.waitlist_display_count() to anon;
-
--- Legacy helper: real signups only (admin / internal)
-create or replace function public.waitlist_count()
-returns bigint
-language sql
-security definer
-set search_path = public
-as $$
-  select count(*)::bigint from public.waitlist;
-$$;
-
-revoke all on function public.waitlist_count() from public;
-grant execute on function public.waitlist_count() to anon;
