@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>STĀGE — Get on the list</title>
+<title>On STĀGE — Get on the list</title>
 <meta name="description" content="The stage is being built. Get on the list." />
-<meta property="og:title" content="STĀGE — Get on the list" />
+<meta name="application-name" content="On STĀGE" />
+<meta property="og:site_name" content="On STĀGE" />
+<meta property="og:title" content="On STĀGE — Get on the list" />
 <meta property="og:description" content="The infrastructure of the music business, rebuilt to run through you. Doors open soon." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://topdawgincorp-netizen.github.io/stage-waitlist/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,7 +53,7 @@
   .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
   nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;position:relative;z-index:2}
-  .logo{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:2px;background:linear-gradient(90deg,var(--accent),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .logo{font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,24px);letter-spacing:1px;background:linear-gradient(90deg,var(--accent),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
   .nav-cta{font-family:var(--display);font-weight:700;font-size:14px;color:var(--bg);background:var(--accent);padding:10px 18px;border-radius:999px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease}
   .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(167,139,250,.35)}
 
@@ -281,7 +284,7 @@
 
 <div class="wrap">
   <nav>
-    <span class="logo">STĀGE</span>
+    <span class="logo">On STĀGE</span>
     <a href="#join" class="nav-cta to-form">Get on the list</a>
   </nav>
 
@@ -573,8 +576,8 @@
   </section>
 
   <footer>
-    <span class="logo" style="font-size:18px">STĀGE</span>
-    <p style="margin-top:10px">© <span id="year"></span> STĀGE. The stage is being built.</p>
+    <span class="logo" style="font-size:18px">On STĀGE</span>
+    <p style="margin-top:10px">© <span id="year"></span> On STĀGE. The stage is being built.</p>
   </footer>
 </div>
 
@@ -586,8 +589,6 @@
 const TARGET_DATE = '2026-09-18T19:00:00';
 const SUPABASE_URL = 'https://ktpyltvdxhnfquorrdsi.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0cHlsdHZkeGhuZnF1b3JyZHNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMjIwMTUsImV4cCI6MjA5MDY5ODAxNX0.EYaEYST7pJjowcQUn4IBqwXyv7gnEQJWquTvMKxjQNs';
-const BASE_COUNT = 2400;      // seed so the counter shows momentum from day one (set to 0 for true count only)
-const SIMULATE_LIVE = true;   // occasionally tick the counter up to build live FOMO
 /* ========================================================= */
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -608,20 +609,23 @@ function tickCountdown(){
 }
 tickCountdown(); setInterval(tickCountdown, 1000);
 
-/* ---- Live waitlist counter: reflects real signups + organic momentum ---- */
-let displayedCount = 0;   // number currently on screen
-let realCount = 0;        // last known true count from Supabase
-let simOffset = 0;        // organic joins layered on top while we wait for real ones
+/* ---- Live waitlist counter (server-persisted: seed + synthetic + real) ---- */
+let displayedCount = 0;
+let serverTarget = 0;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function targetCount(){ return BASE_COUNT + realCount + simOffset; }
-
-function renderCount(target){
+function renderCount(target, instant){
   const el = document.getElementById('crowd-num');
   const wrap = document.getElementById('liveCount');
   if(!el || !wrap) return;
   wrap.style.display = 'inline-flex';
-  if(target <= displayedCount){ el.textContent = displayedCount.toLocaleString(); return; } // never count down
+  target = Math.max(target, displayedCount); // never count down
+  serverTarget = target;
+  if(instant || target <= displayedCount){
+    displayedCount = target;
+    el.textContent = target.toLocaleString();
+    return;
+  }
   if(reduceMotion){ displayedCount = target; el.textContent = target.toLocaleString(); return; }
   const start = displayedCount, t0 = performance.now(), dur = 900;
   function step(t){
@@ -633,35 +637,22 @@ function renderCount(target){
   requestAnimationFrame(step);
 }
 
-async function fetchReal(){
-  try{ const { data, error } = await sb.rpc('waitlist_count'); if(!error) realCount = Number(data)||0; }catch(e){}
+async function fetchDisplay(animate){
+  try{
+    const { data, error } = await sb.rpc('waitlist_display_count');
+    if(error || !data) return;
+    const target = Number(data.display) || 0;
+    renderCount(target, !animate);
+  }catch(e){}
 }
 
-/* Re-check the real database count every 30–60s so genuine signups
-   (from anyone, on any device) show up live. */
-function pollReal(){
-  setTimeout(async ()=>{ await fetchReal(); renderCount(targetCount()); pollReal(); }, 30000 + Math.random()*30000);
-}
-
-/* Organic momentum between real joins: irregular gaps, occasional bursts. */
-function simJoins(){
-  setTimeout(()=>{
-    const r = Math.random();
-    if(r < 0.65) simOffset += 1;        // usually one joins
-    else if(r < 0.85) simOffset += 2;   // sometimes a couple at once
-    // else: a quiet stretch — no join this round
-    renderCount(targetCount());
-    simJoins();
-  }, 20000 + Math.random()*55000);       // irregular 20–75s gaps
+function pollDisplay(){
+  setTimeout(async ()=>{ await fetchDisplay(true); pollDisplay(); }, 45000 + Math.random()*45000);
 }
 
 (async function initCounter(){
-  await fetchReal();
-  const t = targetCount();
-  displayedCount = Math.max(0, t - 12);   // gentle first rise, not a spin from zero
-  renderCount(t);
-  pollReal();
-  if(SIMULATE_LIVE) simJoins();
+  await fetchDisplay(false);
+  pollDisplay();
 })();
 
 /* ---- Hero capture: carry the email down to the full form ---- */
@@ -782,7 +773,7 @@ btn.addEventListener('click', async ()=>{
   document.getElementById('heard').selectedIndex = 0;
   selectedGoals.clear();
   document.querySelectorAll('.chip.active').forEach(c=>c.classList.remove('active'));
-  realCount += 1; renderCount(targetCount());
+  await fetchDisplay(true);
 });
 </script>
 </body>
