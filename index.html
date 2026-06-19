@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>On STĀGE — Get on the list</title>
+<title>STĀGE — Get on the list</title>
 <meta name="description" content="The stage is being built. Get on the list." />
-<meta name="application-name" content="On STĀGE" />
-<meta property="og:site_name" content="On STĀGE" />
-<meta property="og:title" content="On STĀGE — Get on the list" />
+<meta name="application-name" content="STĀGE" />
+<meta property="og:site_name" content="STĀGE" />
+<meta property="og:title" content="STĀGE — Get on the list" />
 <meta property="og:description" content="The infrastructure of the music business, rebuilt to run through you. Doors open soon." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://topdawgincorp-netizen.github.io/stage-waitlist/" />
@@ -88,14 +88,18 @@
   .lc-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);animation:radar 1.9s ease-out infinite}
   @keyframes radar{0%{transform:scale(1);opacity:.65}100%{transform:scale(3.4);opacity:0}}
 
-  .early-access{display:flex;flex-direction:column;align-items:center;text-decoration:none;margin:10px 0 12px;cursor:pointer;transition:transform .2s ease}
-  .early-access:hover{transform:translateY(-2px)}
-  .early-access:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:16px}
-  .ea-pill{font-family:var(--display);font-weight:800;font-size:clamp(15px,3.5vw,18px);letter-spacing:.5px;color:var(--bg);background:linear-gradient(90deg,var(--gold),var(--green),var(--accent));background-size:200% 100%;animation:eaShine 4s ease-in-out infinite;padding:12px 28px;border-radius:999px;box-shadow:0 0 40px -6px rgba(245,200,66,.55),0 8px 28px -8px rgba(77,255,180,.45);position:relative}
-  .ea-pill::after{content:"";position:absolute;inset:-3px;border-radius:999px;border:1px solid rgba(245,200,66,.35);animation:eaRing 2.8s ease-out infinite}
-  .ea-sub{font-size:12px;color:var(--muted);margin-top:7px;letter-spacing:.2px}
+  .early-access{display:block;text-decoration:none;margin:14px 0 10px;cursor:pointer;text-align:center;position:relative;padding:8px 0}
+  .early-access:hover .ea-word{filter:brightness(1.08)}
+  .early-access:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:8px}
+  .ea-burst{position:relative;display:inline-block;line-height:.92;perspective:800px}
+  .ea-word{display:inline-block;font-family:var(--display);font-weight:800;font-size:clamp(42px,12vw,78px);letter-spacing:-1px;background:linear-gradient(105deg,var(--gold) 0%,#fff 35%,var(--green) 70%,var(--accent) 100%);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:eaFloat 2.8s ease-in-out infinite, eaShine 5s ease-in-out infinite;text-shadow:0 0 40px rgba(167,139,250,.25)}
+  .ea-word:nth-child(2){animation-delay:.35s,.6s}
+  .ea-crack{position:absolute;inset:-20% -8%;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(245,200,66,.12),transparent 55%);animation:eaPulse 3s ease-in-out infinite}
+  .ea-sub{font-size:13px;color:var(--muted);margin-top:10px;letter-spacing:.3px;max-width:340px;margin-left:auto;margin-right:auto;line-height:1.5}
+  .ea-sub em{font-style:normal;color:var(--green);font-weight:600}
+  @keyframes eaFloat{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-6px) rotate(-.6deg) scale(1.02)}}
   @keyframes eaShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  @keyframes eaRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.14);opacity:0}}
+  @keyframes eaPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 
   .countdown-label{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
 
@@ -125,6 +129,10 @@
 
   .post-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:12px}
   .post-avatar{width:46px;height:46px;border-radius:50%;flex:none;object-fit:cover;border:2px solid rgba(167,139,250,.35);background:var(--surface)}
+  .post-avatar-icon{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#2d1f4e,#1a3a4a);border:2px solid rgba(77,255,180,.35);box-shadow:0 0 16px -4px rgba(167,139,250,.5)}
+  .post-avatar-icon svg{width:28px;height:28px}
+  .verify-badge{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,#4dffb4,#23b6e0);flex:none;box-shadow:0 0 10px rgba(77,255,180,.45)}
+  .verify-badge svg{width:10px;height:10px;fill:none;stroke:#04121a;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
   .post-idwrap{flex:1;min-width:0}
   .post-name{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .check{width:15px;height:15px;flex:none}
@@ -242,6 +250,56 @@
   .fcard:hover .wv:nth-of-type(7){animation-delay:.3s}
   @keyframes wave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1.15)}}
 
+  /* ---- STĀGE HQ live demo ---- */
+  .hq-demo{max-width:560px;margin:0 auto;background:#12121c;border:1px solid rgba(167,139,250,.2);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px -40px rgba(167,139,250,.45)}
+  .hq-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(167,139,250,.12);background:#0f0f18}
+  .hq-logo{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:1px;background:linear-gradient(90deg,var(--green),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hq-mini{display:flex;align-items:center;gap:8px;background:#1a1a28;border:1px solid rgba(167,139,250,.15);border-radius:999px;padding:5px 10px 5px 5px;max-width:180px}
+  .hq-mini-art{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#a78bfa,#f57fb0);flex:none}
+  .hq-mini-txt{min-width:0}
+  .hq-mini-txt b{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hq-mini-txt span{font-size:10px;color:var(--muted)}
+  .hq-icons{display:flex;gap:8px;align-items:center}
+  .hq-bell{position:relative;font-size:16px}
+  .hq-bell i{position:absolute;top:-4px;right:-6px;background:#ff4d6d;color:#fff;font-size:9px;font-weight:700;font-style:normal;border-radius:999px;min-width:14px;height:14px;display:grid;place-items:center;padding:0 3px}
+  .hq-body{padding:14px}
+  .hq-meeting-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:10px 12px;background:#1a1a28;border-radius:12px;border:1px solid rgba(167,139,250,.12)}
+  .hq-meeting-row span{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .hq-switch{position:relative;width:48px;height:28px;border:none;border-radius:999px;background:#2a2a3a;cursor:pointer;transition:background .2s ease}
+  .hq-switch.on{background:linear-gradient(90deg,var(--green),#23b6e0)}
+  .hq-switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s ease;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+  .hq-switch.on::after{transform:translateX(20px)}
+  .hq-panel{display:none;animation:fadeSlide .3s ease}
+  .hq-panel.active{display:block}
+  .hq-h{font-family:var(--display);font-weight:800;font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .hq-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .hq-pill{padding:6px 12px;border-radius:999px;border:1px solid rgba(167,139,250,.2);background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+  .hq-pill.on{border-color:var(--accent);color:var(--accent);background:rgba(167,139,250,.1)}
+  .hq-chart{height:120px;background:linear-gradient(180deg,rgba(167,139,250,.08),transparent);border-radius:12px;border:1px solid rgba(167,139,250,.12);margin-bottom:12px;padding:8px}
+  .hq-chart svg{width:100%;height:100%}
+  .hq-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .hq-stat{text-align:center;padding:8px 4px;background:#1a1a28;border-radius:10px}
+  .hq-stat b{display:block;font-family:var(--display);font-weight:800;font-size:15px;color:var(--text)}
+  .hq-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .hq-stat .up{color:var(--green);font-size:11px;font-weight:600}
+  .hq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .hq-tile{background:#1a1a28;border:1px solid rgba(167,139,250,.1);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;transition:border-color .15s ease, transform .12s ease}
+  .hq-tile:hover{border-color:rgba(167,139,250,.35);transform:translateY(-2px)}
+  .hq-tile .em{font-size:18px;display:block;margin-bottom:4px}
+  .hq-tile .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .hq-tile .val{font-family:var(--display);font-weight:800;font-size:16px;margin:4px 0 2px}
+  .hq-tile .del{font-size:11px;font-weight:600;color:var(--green)}
+  .hq-tile .del.neu{color:var(--muted)}
+  .hq-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .hq-tab{padding:7px 14px;border-radius:999px;border:1px solid rgba(167,139,250,.15);background:transparent;color:var(--muted);font-size:12px;font-weight:600;font-family:inherit;cursor:pointer}
+  .hq-tab.on{border-color:var(--green);color:var(--green);background:rgba(77,255,180,.08)}
+  .hq-hint{font-size:12px;color:var(--muted);line-height:1.5;padding:10px 12px;background:#1a1a28;border-radius:10px;border:1px solid rgba(167,139,250,.1);margin-top:10px}
+  @media(max-width:520px){
+    .hq-mini{display:none}
+    .hq-grid{grid-template-columns:repeat(2,1fr)}
+    .hq-stats{grid-template-columns:1fr}
+  }
+
   /* ---------------- FORM ---------------- */
   .form-section{padding-top:8px}
   .form-wrap{background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid var(--line);border-radius:20px;padding:clamp(18px,4vw,28px);box-shadow:0 30px 80px -40px rgba(167,139,250,.5)}
@@ -304,7 +362,7 @@
     .ethos .post-card{opacity:1;transform:none;transition:none}
     .live-dot,.lc-dot::after{animation:none}
     .wavebar.playing .wb,.pa-like.liked{animation:none}
-    .ea-pill,.ea-pill::after{animation:none}
+    .ea-pill,.ea-pill::after,.ea-word,.ea-crack{animation:none}
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
   }
@@ -316,7 +374,7 @@
 
 <div class="wrap">
   <nav>
-    <span class="logo">On STĀGE</span>
+    <span class="logo">STĀGE</span>
     <a href="#join" class="nav-cta to-form">Get on the list</a>
   </nav>
 
@@ -330,9 +388,12 @@
       <span class="lc-dot"></span><b id="crowd-num">0</b> <span class="lc-label">creators joined the waitlist</span>
     </div>
 
-    <a href="#join" class="early-access to-form" aria-label="Get early access — pre-register your STĀGE account">
-      <span class="ea-pill">Early Access</span>
-      <span class="ea-sub">Pre-register now · your account is reserved at launch</span>
+    <a href="#join" class="early-access to-form" aria-label="Claim early access to STĀGE">
+      <div class="ea-burst">
+        <span class="ea-crack" aria-hidden="true"></span>
+        <span class="ea-word">Early</span> <span class="ea-word">Access</span>
+      </div>
+      <p class="ea-sub">Something exclusive is waiting behind the curtain — <em>claim your spot</em> before the doors open.</p>
     </a>
 
     <div class="countdown-label">Doors open in</div>
@@ -356,15 +417,17 @@
     <div class="post-card" id="postCard">
       <div class="post-toast" id="postToast" role="status" aria-live="polite"></div>
       <div class="post-head">
-        <img class="post-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=92&h=92&fit=crop&crop=face" width="46" height="46" alt="STĀGE profile" loading="lazy" />
+        <div class="post-avatar-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" fill="#12121a" stroke="url(#avG)" stroke-width="1.5"/><circle cx="16" cy="16" r="10" stroke="rgba(77,255,180,.35)" stroke-width=".75" stroke-dasharray="2 2"/><circle cx="16" cy="16" r="5" fill="url(#avG)"/><path d="M16 11v10M11 16h10" stroke="#080810" stroke-width="1.2" stroke-linecap="round" opacity=".6"/><defs><linearGradient id="avG" x1="6" y1="6" x2="26" y2="26"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#4dffb4"/></linearGradient></defs></svg>
+        </div>
         <div class="post-idwrap">
           <div class="post-name">STĀGE
-            <svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4 10-10" fill="none" stroke="#4dffb4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="verify-badge" aria-label="Verified"><svg viewBox="0 0 12 12"><path d="M2.5 6l2.5 2.5 4.5-5"/></svg></span>
             <span class="hq">⚡10K</span>
             <span class="role-tag">Official</span>
             <button type="button" class="post-more" id="postMore" aria-label="More options">•••</button>
           </div>
-          <div class="post-meta">📍 Worldwide · pinned · 2 yrs on STĀGE <span class="live"><span class="live-dot"></span>live</span></div>
+          <div class="post-meta">📍 North Carolina · pinned · 2 yrs on STĀGE <span class="live"><span class="live-dot"></span>live</span></div>
         </div>
       </div>
 
@@ -399,9 +462,85 @@
         <button type="button" class="pa pa-save" id="saveBtn" aria-label="Save" aria-pressed="false">🔖</button>
       </div>
       <div class="post-comments" id="postComments" aria-hidden="true">
-        <div class="pc-row"><b>Juno K.</b><span>This is exactly what the industry needed 🔥</span></div>
-        <div class="pc-row"><b>Real Vibe</b><span>Been waiting for a platform that actually puts artists first.</span></div>
-        <div class="pc-row"><b>Maya R.</b><span>Pre-registered — see you at launch 🎶</span></div>
+        <div class="pc-row"><b>dj_franklinton</b><span>Been waiting for ONE place to drop content, get paid, run my ticketed events, AND find real industry work. If STĀGE delivers this I'm not going back.</span></div>
+        <div class="pc-row"><b>samples_and_cry</b><span>host + payout + opportunities in one app?? the dream tbh. pre-registered immediately</span></div>
+        <div class="pc-row"><b>A&amp;R_Mom</b><span>Finally something that sounds like it gets music AND entertainment careers — not just another posting app 🎯</span></div>
+        <div class="pc-row"><b>uncle_beatz420</b><span>if the event system is real i might actually retire from 6 different apps lmao</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STĀGE HQ LIVE DEMO -->
+  <section class="reveal">
+    <div class="kicker">Stage HQ</div>
+    <h2 class="section-title">Your command center, live</h2>
+    <p class="section-sub">Toggle Meeting mode — analytics when you're presenting, Master Stats when you're running the room.</p>
+
+    <div class="hq-demo" id="hqDemo">
+      <div class="hq-bar">
+        <span class="hq-logo">STĀGE</span>
+        <div class="hq-mini" aria-hidden="true">
+          <div class="hq-mini-art"></div>
+          <div class="hq-mini-txt"><b>Neon Dreams</b><span>Marcus Cole</span></div>
+        </div>
+        <div class="hq-icons">
+          <span class="hq-bell" aria-hidden="true">🔔<i>5</i></span>
+          <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--accent));display:grid;place-items:center;font-size:16px;font-weight:700;color:#04121a" aria-hidden="true">+</span>
+        </div>
+      </div>
+      <div class="hq-body">
+        <div class="hq-meeting-row">
+          <span>Meeting mode</span>
+          <button type="button" class="hq-switch on" id="hqMeetingToggle" role="switch" aria-checked="true" aria-label="Toggle meeting mode"></button>
+        </div>
+
+        <div class="hq-panel active" id="hqAnalyticsPanel">
+          <div class="hq-h">📈 Your Analytics</div>
+          <div class="hq-tabs" id="hqMetricTabs">
+            <button type="button" class="hq-tab on" data-metric="plays">Plays</button>
+            <button type="button" class="hq-tab" data-metric="revenue">Revenue</button>
+            <button type="button" class="hq-tab" data-metric="followers">Followers</button>
+            <button type="button" class="hq-tab" data-metric="engage">Engage</button>
+          </div>
+          <div class="hq-pills" id="hqPeriodPills">
+            <button type="button" class="hq-pill on" data-period="7d">7d</button>
+            <button type="button" class="hq-pill" data-period="30d">30d</button>
+            <button type="button" class="hq-pill" data-period="90d">90d</button>
+            <button type="button" class="hq-pill" data-period="all">All</button>
+          </div>
+          <div class="hq-chart" aria-hidden="true">
+            <svg id="hqChart" viewBox="0 0 400 100" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="hq-stats">
+            <div class="hq-stat"><b id="hqStatTotal">48.2K</b><span>Total</span></div>
+            <div class="hq-stat"><b id="hqStatPeak">8.4K</b><span>Peak</span></div>
+            <div class="hq-stat"><span class="up" id="hqStatDelta">▲ 22%</span><span>vs last week</span></div>
+          </div>
+          <p class="hq-hint">Meeting mode keeps HQ focused on analytics — flip it off to unlock tabs, fan systems, and the full command center.</p>
+        </div>
+
+        <div class="hq-panel" id="hqMasterPanel">
+          <div class="hq-tabs">
+            <button type="button" class="hq-tab on">Overview</button>
+            <button type="button" class="hq-tab">Trends</button>
+            <button type="button" class="hq-tab">Revenue</button>
+            <button type="button" class="hq-tab">Ops</button>
+            <button type="button" class="hq-tab">Connect</button>
+          </div>
+          <div class="hq-h" style="font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-top:4px">Master Stats</div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Tap a domain — full detail lives in tabs below.</p>
+          <div class="hq-grid">
+            <div class="hq-tile"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+8%</span></div>
+            <div class="hq-tile"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">48.2K</div><span class="del">+22%</span></div>
+            <div class="hq-tile"><span class="em">💬</span><span class="lbl">Engage</span><div class="val">4.7%</div><span class="del">+0.3%</span></div>
+            <div class="hq-tile"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$821</div><span class="del">+31%</span></div>
+            <div class="hq-tile"><span class="em">🛒</span><span class="lbl">Listings</span><div class="val">6</div><span class="del">+2</span></div>
+            <div class="hq-tile"><span class="em">🤝</span><span class="lbl">Open</span><div class="val">3</div><span class="del neu">0</span></div>
+            <div class="hq-tile"><span class="em">🎟</span><span class="lbl">Soon</span><div class="val">4</div><span class="del">+1</span></div>
+            <div class="hq-tile"><span class="em">⚡</span><span class="lbl">HQ</span><div class="val">782</div><span class="del">+24</span></div>
+            <div class="hq-tile"><span class="em">🔗</span><span class="lbl">Links</span><div class="val">0</div><span class="del neu">—</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -621,8 +760,8 @@
   </section>
 
   <footer>
-    <span class="logo" style="font-size:18px">On STĀGE</span>
-    <p style="margin-top:10px">© <span id="year"></span> On STĀGE. The stage is being built.</p>
+    <span class="logo" style="font-size:18px">STĀGE</span>
+    <p style="margin-top:10px">© <span id="year"></span> STĀGE. The stage is being built.</p>
   </footer>
 </div>
 
@@ -715,22 +854,23 @@ async function fetchDisplay(opts){
     }
 
     if(rollOnLoad && !reduceMotion){
-      const rollSpan = added > 0
-        ? Math.min(added + 4, 22)
-        : 8 + Math.min(14, Math.floor(target * 0.005));
-      displayedCount = Math.max(0, target - rollSpan);
-      document.getElementById('crowd-num').textContent = displayedCount.toLocaleString();
-      document.getElementById('liveCount').style.display = 'inline-flex';
-      renderCount(target);
-      persistDisplay(target);
-      return;
+      const rollSpan = added > 0 ? Math.min(added, 3) : 0;
+      if(rollSpan > 0){
+        displayedCount = Math.max(0, target - rollSpan);
+        document.getElementById('crowd-num').textContent = displayedCount.toLocaleString();
+        document.getElementById('liveCount').style.display = 'inline-flex';
+        renderCount(target);
+        persistDisplay(target);
+        return;
+      }
     }
     renderCount(target, !opts || opts.animate === false);
   }catch(e){}
 }
 
 function pollDisplay(){
-  const wait = document.hidden ? 55000 : (12000 + Math.random() * 16000);
+  if(document.hidden) return setTimeout(pollDisplay, 55000);
+  const wait = 45000 + Math.random() * 75000;
   setTimeout(async ()=>{ await fetchDisplay({ animate: true }); pollDisplay(); }, wait);
 }
 
@@ -875,6 +1015,100 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
   play?.addEventListener('click', (e)=>{ e.stopPropagation(); setPlaying(!playing); });
   musicCard?.addEventListener('click', ()=> setPlaying(!playing));
+})();
+
+/* ---- STĀGE HQ live demo ---- */
+(function(){
+  const toggle = document.getElementById('hqMeetingToggle');
+  const analytics = document.getElementById('hqAnalyticsPanel');
+  const master = document.getElementById('hqMasterPanel');
+  if(!toggle || !analytics || !master) return;
+
+  const series = {
+    plays: {
+      '7d': [4200,5100,4800,6200,7100,8400,7600],
+      '30d': [3200,3800,4100,4500,5200,5800,6400,6800,7200,7600],
+      '90d': [2100,2400,2800,3100,3500,3900,4200,4600,5000,5400,5800,6200],
+      all: [800,1200,1600,2100,2800,3400,4100,4800,5600,6400,7200,8000]
+    },
+    revenue: {
+      '7d': [42,55,48,62,71,88,82],
+      '30d': [28,32,38,44,52,58,64,70,76,82],
+      '90d': [12,18,22,28,34,40,48,55,62,70,76,82],
+      all: [4,8,12,18,24,32,42,52,62,72,78,82]
+    },
+    followers: {
+      '7d': [11800,11950,12020,12100,12200,12350,12400],
+      '30d': [10200,10600,10900,11200,11500,11800,12000,12150,12300,12400],
+      '90d': [8200,8800,9400,9800,10200,10600,11000,11400,11800,12100,12300,12400],
+      all: [2400,3200,4100,5200,6400,7800,9200,10400,11200,11800,12200,12400]
+    },
+    engage: {
+      '7d': [4.1,4.2,4.3,4.4,4.5,4.6,4.7],
+      '30d': [3.8,3.9,4.0,4.1,4.2,4.3,4.4,4.5,4.6,4.7],
+      '90d': [3.2,3.4,3.5,3.6,3.8,3.9,4.0,4.1,4.2,4.3,4.5,4.7],
+      all: [2.1,2.4,2.8,3.1,3.4,3.7,4.0,4.2,4.4,4.5,4.6,4.7]
+    }
+  };
+  const meta = {
+    plays: { fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v), delta: '▲ 22%', peakLabel: 'Sat' },
+    revenue: { fmt: v => '$'+v, delta: '▲ 31%', peakLabel: 'Fri' },
+    followers: { fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v), delta: '▲ 8%', peakLabel: 'Sun' },
+    engage: { fmt: v => v.toFixed(1)+'%', delta: '▲ 0.3%', peakLabel: 'Sun' }
+  };
+
+  let metric = 'plays', period = '7d';
+
+  function drawChart(values){
+    const svg = document.getElementById('hqChart');
+    if(!svg || !values.length) return;
+    const w = 400, h = 100, pad = 8;
+    const min = Math.min(...values), max = Math.max(...values);
+    const span = max - min || 1;
+    const pts = values.map((v,i)=>{
+      const x = pad + (i/(values.length-1))*(w-pad*2);
+      const y = h - pad - ((v-min)/span)*(h-pad*2);
+      return `${x},${y}`;
+    }).join(' ');
+    const area = `M${pad},${h-pad} L${pts.split(' ').join(' L')} L${w-pad},${h-pad} Z`;
+    svg.innerHTML = `<defs><linearGradient id="hqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".45"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#hqG)"/><polyline points="${pts}" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+
+  function refreshAnalytics(){
+    const vals = series[metric][period];
+    const m = meta[metric];
+    const total = vals[vals.length-1];
+    const peak = Math.max(...vals);
+    document.getElementById('hqStatTotal').textContent = m.fmt(total);
+    document.getElementById('hqStatPeak').textContent = m.fmt(peak) + (period === '7d' ? ' ('+m.peakLabel+')' : '');
+    document.getElementById('hqStatDelta').textContent = m.delta;
+    drawChart(vals);
+  }
+
+  function setMeeting(on){
+    toggle.classList.toggle('on', on);
+    toggle.setAttribute('aria-checked', on);
+    analytics.classList.toggle('active', on);
+    master.classList.toggle('active', !on);
+  }
+  toggle.addEventListener('click', ()=> setMeeting(!toggle.classList.contains('on')));
+
+  document.getElementById('hqMetricTabs')?.addEventListener('click', e=>{
+    const btn = e.target.closest('[data-metric]');
+    if(!btn) return;
+    metric = btn.dataset.metric;
+    document.querySelectorAll('#hqMetricTabs .hq-tab').forEach(t=> t.classList.toggle('on', t === btn));
+    refreshAnalytics();
+  });
+  document.getElementById('hqPeriodPills')?.addEventListener('click', e=>{
+    const btn = e.target.closest('[data-period]');
+    if(!btn) return;
+    period = btn.dataset.period;
+    document.querySelectorAll('#hqPeriodPills .hq-pill').forEach(t=> t.classList.toggle('on', t === btn));
+    refreshAnalytics();
+  });
+
+  refreshAnalytics();
 })();
 
 const selectedGoals = new Set();
