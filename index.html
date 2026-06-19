@@ -86,8 +86,9 @@
   .early-access:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:8px}
   .ea-stage{position:relative;display:inline-block;perspective:900px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
   .ea-splash{position:absolute;inset:-30% -15%;pointer-events:none;background:conic-gradient(from 120deg at 50% 50%,#ff4d9d,#a78bfa,#4dffb4,#f5c842,#ff4d9d);filter:blur(28px);opacity:.3;transform:rotate(-6deg) scale(1.1);animation:eaSplash 6s ease-in-out infinite}
-  .ea-3d{position:relative;display:flex;flex-direction:column;align-items:center;gap:.08em;line-height:.88;transform-style:preserve-3d}
-  .ea-line{display:flex;gap:.06em}
+  .ea-3d{position:relative;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:center;gap:.2em;line-height:.88;transform-style:preserve-3d}
+  .ea-line{display:flex;gap:.05em}
+  .ea-gap{display:inline-block;width:.28em}
   .ea-letter{font-family:'Bebas Neue',var(--display);font-size:clamp(34px,9.5vw,58px);font-weight:400;letter-spacing:.04em;color:#fff;display:inline-block;transform:rotateX(8deg) rotateY(-4deg);text-shadow:1px 1px 0 #d4d4dc,2px 2px 0 #b8b8c4,3px 3px 0 #9a9aaa,4px 4px 0 #7c7c90,5px 5px 0 #5e5e76,6px 7px 12px rgba(0,0,0,.55),0 0 32px rgba(167,139,250,.35);animation:eaJolt 3.6s ease-in-out infinite;animation-delay:calc(var(--n) * .07s)}
   .ea-letter:nth-child(odd){transform:rotateX(10deg) rotateY(5deg) rotateZ(-1.5deg)}
   .ea-letter:nth-child(even){transform:rotateX(8deg) rotateY(-6deg) rotateZ(1deg)}
@@ -284,9 +285,12 @@
   .hq-switch.on::after{transform:translateX(20px)}
   .hq-brief{background:rgba(20,20,32,.9);border:1px solid rgba(167,139,250,.14);border-radius:16px;padding:12px;margin-bottom:12px}
   .hq-brief-top{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
-  .hq-score-block{cursor:pointer;flex:none}
-  .hq-score-num{font-family:var(--display);font-weight:800;font-size:42px;line-height:1;letter-spacing:-1px}
-  .hq-score-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;font-weight:700}
+  .hq-score-block{cursor:pointer;flex:none;width:78px;height:78px;position:relative}
+  .hq-score-ring{width:78px;height:78px;display:block}
+  .hq-score-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+  .hq-score-num{font-family:var(--display);font-weight:800;font-size:21px;line-height:1;letter-spacing:-.5px}
+  .hq-score-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1.8px;font-weight:700;margin-top:2px}
+  .hq-ring-progress{transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
   .hq-id{flex:1;min-width:0}
   .hq-id-name{font-family:var(--display);font-weight:800;font-size:15px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
   .hq-tier{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7dd3fc;margin:3px 0}
@@ -297,6 +301,8 @@
   .hq-kpi b{display:block;font-family:var(--display);font-weight:800;font-size:13px}
   .hq-kpi span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:2px 0}
   .hq-kpi em{font-style:normal;font-size:10px;font-weight:700;color:var(--green)}
+  .hq-kpi em.down,.hq-tile .del.down{color:#ff7a96}
+  .hq-spark i.down{background:#ff7a96;opacity:.85}
   .hq-spark-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
   .hq-spark-row span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
   .hq-spark{display:flex;align-items:flex-end;gap:3px;height:28px}
@@ -344,6 +350,7 @@
   .hq-stat b{display:block;font-family:var(--display);font-weight:800;font-size:14px;color:var(--text)}
   .hq-stat span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
   .hq-stat .up{color:var(--green);font-size:11px;font-weight:600}
+  .hq-stat .down{color:#ff7a96;font-size:11px;font-weight:600}
   .hq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
   .hq-tile{background:rgba(26,26,40,.85);border:1px solid rgba(167,139,250,.1);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:border-color .15s ease, transform .12s ease;position:relative}
   .hq-tile:hover:not(.locked){border-color:rgba(77,255,180,.35);transform:translateY(-2px)}
@@ -368,7 +375,7 @@
     .hq-p-txt span{display:none}
     .hq-kpis{grid-template-columns:repeat(2,1fr)}
     .hq-grid{grid-template-columns:repeat(2,1fr)}
-    .hq-score-num{font-size:36px}
+    .hq-score-num{font-size:19px}
   }
 
   /* ---------------- FORM ---------------- */
@@ -465,6 +472,7 @@
             <div class="ea-line">
               <span class="ea-letter" style="--n:0">E</span><span class="ea-letter" style="--n:1">A</span><span class="ea-letter" style="--n:2">R</span><span class="ea-letter" style="--n:3">L</span><span class="ea-letter" style="--n:4">Y</span>
             </div>
+            <span class="ea-gap"></span>
             <div class="ea-line">
               <span class="ea-letter" style="--n:5">A</span><span class="ea-letter" style="--n:6">C</span><span class="ea-letter" style="--n:7">C</span><span class="ea-letter" style="--n:8">E</span><span class="ea-letter" style="--n:9">S</span><span class="ea-letter" style="--n:10">S</span>
             </div>
@@ -591,8 +599,20 @@
         <div class="hq-brief" id="hqBrief">
           <div class="hq-brief-top">
             <div class="hq-score-block" id="hqScoreBtn" role="button" tabindex="0" aria-label="HQ score 10K">
-              <div class="hq-score-num">10K</div>
-              <div class="hq-score-lbl">HQ</div>
+              <svg class="hq-score-ring" viewBox="0 0 78 78" aria-hidden="true">
+                <defs>
+                  <linearGradient id="hqRingGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#b8a9ff"/>
+                    <stop offset="100%" stop-color="#4de8c2"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="39" cy="39" r="33" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="6"/>
+                <circle class="hq-ring-progress" cx="39" cy="39" r="33" fill="none" stroke="url(#hqRingGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="207.35" stroke-dashoffset="24.9" transform="rotate(-90 39 39)"/>
+              </svg>
+              <div class="hq-score-inner">
+                <div class="hq-score-num">10K</div>
+                <div class="hq-score-lbl">HQ</div>
+              </div>
             </div>
             <div class="hq-id">
               <div class="hq-id-name">STĀGE <span class="verify-badge" aria-label="Verified"><svg viewBox="0 0 12 12"><path d="M2.5 6l2.5 2.5 4.5-5"/></svg></span></div>
@@ -601,10 +621,10 @@
             </div>
           </div>
           <div class="hq-kpis">
-            <div class="hq-kpi" data-metric="plays"><b>48.2K</b><span>Plays</span><em>+22%</em></div>
-            <div class="hq-kpi" data-metric="revenue"><b>$821</b><span>Rev</span><em>+31%</em></div>
-            <div class="hq-kpi" data-metric="followers"><b>12.4K</b><span>Fans</span><em>+8%</em></div>
-            <div class="hq-kpi" data-metric="engage"><b>4.7%</b><span>Engage</span><em>+0.3%</em></div>
+            <div class="hq-kpi" data-metric="plays"><b>54.6K</b><span>Plays</span><em>+18%</em></div>
+            <div class="hq-kpi" data-metric="revenue"><b>$943</b><span>Rev</span><em>+14%</em></div>
+            <div class="hq-kpi" data-metric="followers"><b>12.4K</b><span>Fans</span><em>+5%</em></div>
+            <div class="hq-kpi" data-metric="engage"><b>4.7%</b><span>Engage</span><em class="down">−0.2%</em></div>
           </div>
           <div class="hq-spark-row">
             <span>7d HQ pulse</span>
@@ -613,10 +633,10 @@
           <div class="hq-action-row" id="hqActionRow">
             <div class="hq-moves" id="hqMovesBlock">
               <div class="hq-moves-h">⚡ Next moves <span class="tagline">Quick updates</span></div>
-              <div class="hq-move" data-move="waitlist">
-                <div class="hq-move-ic">📋</div>
-                <div class="hq-move-txt"><b>47 new waitlist signups today</b><span>Review and approve creator profiles in your queue</span></div>
-                <div class="hq-move-meta"><div class="tag">New</div></div>
+              <div class="hq-move" data-move="collab">
+                <div class="hq-move-ic">🤝</div>
+                <div class="hq-move-txt"><b>2 collab proposals in your queue</b><span>Accept Yari's request — each completed collab earns +30 HQ</span></div>
+                <div class="hq-move-meta"><div class="tag">Today</div><div class="pts">+30 HQ</div></div>
               </div>
               <div class="hq-move" data-move="track">
                 <div class="hq-move-ic">🎵</div>
@@ -624,8 +644,8 @@
                 <div class="hq-move-meta"><div class="pts">+20 HQ</div></div>
               </div>
               <div class="hq-move" data-move="event">
-                <div class="hq-move-ic">🎟</div>
-                <div class="hq-move-txt"><b>Launch Night RSVP count updated</b><span>82 confirmed — send a reminder to boost turnout</span></div>
+                <div class="hq-move-ic">🎪</div>
+                <div class="hq-move-txt"><b>Launch Night · 82 RSVPs</b><span>Send a reminder — your audience peaks tonight between 8–10pm</span></div>
                 <div class="hq-move-meta"><div class="pts">+10 HQ</div></div>
               </div>
             </div>
@@ -672,9 +692,9 @@
             <svg id="hqChart" viewBox="0 0 400 100" preserveAspectRatio="none"></svg>
           </div>
           <div class="hq-stats">
-            <div class="hq-stat"><b id="hqStatTotal">48.2K</b><span>Total</span></div>
-            <div class="hq-stat"><b id="hqStatPeak">8.4K</b><span>Peak</span></div>
-            <div class="hq-stat"><span class="up" id="hqStatDelta">▲ 22%</span><span>vs last week</span></div>
+            <div class="hq-stat"><b id="hqStatTotal">54.6K</b><span>Total</span></div>
+            <div class="hq-stat"><b id="hqStatPeak">10.2K</b><span>Peak</span></div>
+            <div class="hq-stat"><span class="up" id="hqStatDelta">▲ 18%</span><span>vs last week</span></div>
           </div>
           <p class="hq-hint">Meeting Mode keeps HQ focused on analytics — turn it off to unlock tabs, fan systems, and the full command center.</p>
         </div>
@@ -690,13 +710,13 @@
           <div class="hq-h" style="font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-top:2px">Master Stats</div>
           <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px">Tap a domain — full detail lives in tabs below.</p>
           <div class="hq-grid" id="hqGrid">
-            <div class="hq-tile" data-domain="fans"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+8%</span></div>
-            <div class="hq-tile" data-domain="plays"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">48.2K</div><span class="del">+22%</span></div>
-            <div class="hq-tile" data-domain="engage"><span class="em">💬</span><span class="lbl">Engage</span><div class="val">4.7%</div><span class="del">+0.3%</span></div>
-            <div class="hq-tile" data-domain="rev"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$821</div><span class="del">+31%</span></div>
-            <div class="hq-tile" data-domain="listings"><span class="em">🛒</span><span class="lbl">Listings</span><div class="val">6</div><span class="del">+2</span></div>
-            <div class="hq-tile" data-domain="open"><span class="em">🤝</span><span class="lbl">Open</span><div class="val">3</div><span class="del neu">0</span></div>
-            <div class="hq-tile" data-domain="soon"><span class="em">🎟</span><span class="lbl">Soon</span><div class="val">4</div><span class="del">+1</span></div>
+            <div class="hq-tile" data-domain="fans"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+5%</span></div>
+            <div class="hq-tile" data-domain="plays"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">51.8K</div><span class="del">+18%</span></div>
+            <div class="hq-tile" data-domain="engage"><span class="em">💬</span><span class="lbl">Engage</span><div class="val">4.7%</div><span class="del down">−0.2%</span></div>
+            <div class="hq-tile" data-domain="rev"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$943</div><span class="del">+14%</span></div>
+            <div class="hq-tile" data-domain="listings"><span class="em">🛒</span><span class="lbl">Listings</span><div class="val">8</div><span class="del">+1</span></div>
+            <div class="hq-tile" data-domain="collab"><span class="em">🤝</span><span class="lbl">Collabs</span><div class="val">3</div><span class="del">+1</span></div>
+            <div class="hq-tile" data-domain="events"><span class="em">🎪</span><span class="lbl">Events</span><div class="val">4</div><span class="del">+1</span></div>
             <div class="hq-tile" data-domain="hq"><span class="em">⚡</span><span class="lbl">HQ</span><div class="val">10K</div><span class="del">+124</span></div>
             <div class="hq-tile" data-domain="links"><span class="em">🔗</span><span class="lbl">Links</span><div class="val">9</div><span class="del">+2</span></div>
           </div>
@@ -904,7 +924,7 @@
       <a class="pill" href="mailto:hello@stage-app.com">✉️ hello@stage-app.com</a>
     </div>
     <div class="socials">
-      <a class="social" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+      <a class="social" href="https://www.instagram.com/stage_nc?utm_source=qr" aria-label="Instagram @stage_nc" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-.97.04-1.5.21-1.85.34-.46.18-.8.4-1.15.74-.34.35-.56.69-.74 1.15-.13.35-.3.88-.34 1.85-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.97.21 1.5.34 1.85.18.46.4.8.74 1.15.35.34.69.56 1.15.74.35.13.88.3 1.85.34 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.97-.04 1.5-.21 1.85-.34.46-.18.8-.4 1.15-.74.34-.35.56-.69.74-1.15.13-.35.3-.88.34-1.85.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.97-.21-1.5-.34-1.85a3.1 3.1 0 00-.74-1.15 3.1 3.1 0 00-1.15-.74c-.35-.13-.88-.3-1.85-.34-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.3 5.3 0 110 10.6 5.3 5.3 0 010-10.6zm0 8.74a3.44 3.44 0 100-6.88 3.44 3.44 0 000 6.88zm5.5-8.95a1.24 1.24 0 11-2.48 0 1.24 1.24 0 012.48 0z"/></svg>
       </a>
       <a class="social" href="#" aria-label="TikTok" target="_blank" rel="noopener">
@@ -1199,12 +1219,98 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   const spark = document.getElementById('hqSpark');
   if(spark){
-    [3,5,8,6,9,7,10].forEach((h,i)=>{
+    [3,-2,5,4,6,2,5].forEach(v=>{
       const bar = document.createElement('i');
-      bar.style.height = (h*2.2)+'px';
-      bar.style.opacity = h < 6 ? '.55' : '1';
+      const h = Math.abs(v);
+      bar.style.height = (h*2.8+4)+'px';
+      if(v < 0) bar.classList.add('down');
+      else bar.style.opacity = h > 4 ? '1' : '.7';
       spark.appendChild(bar);
     });
+  }
+
+  const series = {
+    plays: {
+      '7d': [6200,7100,5800,8400,9100,7800,10200],
+      '30d': [38200,40100,41800,43600,45200,47100,48900,50200,51800]
+    },
+    revenue: {
+      '7d': [120,95,140,88,160,110,175],
+      '30d': [620,580,710,640,780,690,820,760,943]
+    },
+    followers: {
+      '7d': [11800,11920,12080,12150,12240,12320,12400],
+      '30d': [11200,11450,11680,11820,11960,12100,12250,12380,12400]
+    },
+    engage: {
+      '7d': [4.1,4.2,4.0,4.5,4.6,4.4,4.7],
+      '30d': [4.2,4.3,4.1,4.4,4.5,4.3,4.6,4.5,4.7]
+    }
+  };
+  const meta = {
+    plays: {
+      fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v),
+      peakLabel: 'Wed',
+      sum7: true
+    },
+    revenue: {
+      fmt: v => '$'+Math.round(v),
+      peakLabel: 'Wed',
+      sum7: true
+    },
+    followers: {
+      fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v),
+      peakLabel: 'Sun',
+      sum7: false
+    },
+    engage: {
+      fmt: v => v.toFixed(1)+'%',
+      peakLabel: 'Sun',
+      sum7: false
+    }
+  };
+
+  let metric = 'plays', period = '7d';
+
+  function weekDelta(vals){
+    if(vals.length < 2) return { text: '—', up: true };
+    const first = vals.slice(0,3).reduce((a,b)=>a+b,0)/3;
+    const last = vals.slice(-3).reduce((a,b)=>a+b,0)/3;
+    const pct = first ? Math.round(((last-first)/first)*100) : 0;
+    if(pct === 0) return { text: '—', up: true };
+    return { text: (pct > 0 ? '▲ ' : '▼ ')+Math.abs(pct)+'%', up: pct > 0 };
+  }
+
+  function drawChart(values){
+    const svg = document.getElementById('hqChart');
+    if(!svg || !values.length) return;
+    const w = 400, h = 100, pad = 10;
+    const min = Math.min(...values), max = Math.max(...values);
+    const span = max - min || 1;
+    const coords = values.map((v,i)=>{
+      const x = pad + (i/(values.length-1))*(w-pad*2);
+      const y = h - pad - ((v-min)/span)*(h-pad*2);
+      return { x, y, v };
+    });
+    const pts = coords.map(c=>`${c.x},${c.y}`).join(' ');
+    const area = `M${pad},${h-pad} L${coords.map(c=>`${c.x},${c.y}`).join(' L')} L${w-pad},${h-pad} Z`;
+    const dots = coords.map(c=>`<circle cx="${c.x}" cy="${c.y}" r="2.5" fill="#c4b5fd" opacity=".85"/>`).join('');
+    svg.innerHTML = `<defs><linearGradient id="hqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b8a9ff" stop-opacity=".45"/><stop offset="100%" stop-color="#b8a9ff" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#hqG)"/><polyline points="${pts}" fill="none" stroke="#c4b5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>${dots}`;
+  }
+
+  function refreshAnalytics(){
+    const vals = series[metric][period];
+    if(!vals) return;
+    const m = meta[metric];
+    const total = m.sum7 ? vals.reduce((a,b)=>a+b,0) : vals[vals.length-1];
+    const peak = Math.max(...vals);
+    const delta = weekDelta(vals);
+    document.getElementById('hqStatTotal').textContent = m.fmt(total);
+    document.getElementById('hqStatPeak').textContent = m.fmt(peak) + (period === '7d' ? ' ('+m.peakLabel+')' : '');
+    const deltaEl = document.getElementById('hqStatDelta');
+    deltaEl.textContent = delta.text;
+    deltaEl.className = delta.up ? 'up' : 'down';
+    drawChart(vals);
   }
 
   const player = document.getElementById('hqPlayer');
@@ -1223,45 +1329,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   document.getElementById('hqScoreBtn')?.addEventListener('click', ()=> showHqToast('💎 Diamond · 2000+ HQ · verified + exclusive marketplace'));
   document.getElementById('hqProPill')?.addEventListener('click', ()=> showHqToast('Insights Manager · Pro subscription unlocks full AI-style nudges'));
   document.getElementById('hqProPill')?.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); showHqToast('Insights Manager · Pro subscription unlocks full AI-style nudges'); }});
-
-  const series = {
-    plays: { '7d': [4200,5100,4800,6200,7100,8400,7600], '30d': [3200,4500,5200,6400,7200,7600] },
-    revenue: { '7d': [42,55,48,62,71,88,82], '30d': [28,38,52,64,76,82] },
-    followers: { '7d': [11800,11950,12020,12100,12200,12350,12400], '30d': [10200,10900,11500,12000,12400] },
-    engage: { '7d': [4.1,4.2,4.3,4.4,4.5,4.6,4.7], '30d': [3.8,4.0,4.2,4.4,4.6,4.7] }
-  };
-  const meta = {
-    plays: { fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v), delta: '▲ 22%', peakLabel: 'Sat' },
-    revenue: { fmt: v => '$'+v, delta: '▲ 31%', peakLabel: 'Fri' },
-    followers: { fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v), delta: '▲ 8%', peakLabel: 'Sun' },
-    engage: { fmt: v => v.toFixed(1)+'%', delta: '▲ 0.3%', peakLabel: 'Sun' }
-  };
-  let metric = 'plays', period = '7d';
-
-  function drawChart(values){
-    const svg = document.getElementById('hqChart');
-    if(!svg || !values.length) return;
-    const w = 400, h = 100, pad = 8;
-    const min = Math.min(...values), max = Math.max(...values);
-    const span = max - min || 1;
-    const pts = values.map((v,i)=>{
-      const x = pad + (i/(values.length-1))*(w-pad*2);
-      const y = h - pad - ((v-min)/span)*(h-pad*2);
-      return `${x},${y}`;
-    }).join(' ');
-    const area = `M${pad},${h-pad} L${pts.split(' ').join(' L')} L${w-pad},${h-pad} Z`;
-    svg.innerHTML = `<defs><linearGradient id="hqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".5"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#hqG)"/><polyline points="${pts}" fill="none" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
-  }
-
-  function refreshAnalytics(){
-    const vals = series[metric][period];
-    if(!vals) return;
-    const m = meta[metric];
-    document.getElementById('hqStatTotal').textContent = m.fmt(vals[vals.length-1]);
-    document.getElementById('hqStatPeak').textContent = m.fmt(Math.max(...vals)) + (period === '7d' ? ' ('+m.peakLabel+')' : '');
-    document.getElementById('hqStatDelta').textContent = m.delta;
-    drawChart(vals);
-  }
 
   function setMeeting(on){
     toggle.classList.toggle('on', on);
@@ -1319,7 +1386,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       const d = tile.dataset.domain;
       if(d === 'hq') showHqToast('Hype Qualifications · Diamond tier active');
       else if(d === 'links') showHqToast('9 active links · bio, merch, tickets & more');
-      else if(d === 'soon') showHqToast('4 events on deck · ticket system live at launch');
+      else if(d === 'events') showHqToast('4 upcoming events · Launch Night leads with 82 RSVPs');
+      else if(d === 'collab') showHqToast('3 open collabs · 2 proposals waiting in your queue');
       else showHqToast(d.charAt(0).toUpperCase() + d.slice(1) + ' · drill-down in STĀGE HQ');
     });
   });
@@ -1334,9 +1402,9 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   document.querySelectorAll('.hq-move[data-move]').forEach(m=>{
     m.addEventListener('click', ()=>{
       const k = m.dataset.move;
-      if(k === 'waitlist') showHqToast('Waitlist queue · review signups in STĀGE HQ');
+      if(k === 'collab') showHqToast('Collab queue · review Yari\'s proposal (+30 HQ)');
       else if(k === 'track') showHqToast('Pin track · keep Own It trending on your feed');
-      else showHqToast('Event reminder · notify 82 RSVPs before Launch Night');
+      else showHqToast('Launch Night · notify 82 RSVPs before doors');
     });
   });
 
