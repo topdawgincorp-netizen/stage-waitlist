@@ -14,18 +14,29 @@ as $$
   select 25 + (abs(hashtext(p_day::text)) % 76);
 $$;
 
+-- Synthetic: 25–100/day, 1–3/hour, asymmetric 15–30 min gaps.
+
 create or replace function public._waitlist_tick_gap_minutes(p_day date, p_now timestamptz)
 returns int
-language sql
+language plpgsql
 immutable
 as $$
-  select 15 + (
-    abs(hashtext(
-      p_day::text || ':' ||
-      extract(hour from p_now at time zone 'utc')::text || ':' ||
-      (floor(extract(minute from p_now at time zone 'utc') / 15))::text
-    )) % 16
-  );
+declare
+  h int := extract(hour from p_now at time zone 'utc')::int;
+  m int := extract(minute from p_now at time zone 'utc')::int;
+  bucket int;
+  raw int;
+begin
+  bucket := (h * 5 + floor(m / 11)::int + (abs(hashtext(p_day::text)) % 7)) % 12;
+  raw := abs(hashtext(p_day::text || ':g:' || bucket::text || ':' || h::text));
+  if bucket in (2, 5, 9) then
+    return 16 + (raw % 15);
+  elsif bucket in (0, 7, 11) then
+    return 15 + (raw % 9);
+  else
+    return 22 + (raw % 9);
+  end if;
+end;
 $$;
 
 create or replace function public._waitlist_day_progress(p_day date, p_now timestamptz)
@@ -95,7 +106,7 @@ begin
   end if;
 
   curr_hour := extract(hour from now() at time zone 'utc')::int;
-  hour_quota := 1 + (abs(hashtext(today::text || ':' || curr_hour::text)) % 2);
+  hour_quota := 1 + (abs(hashtext(today::text || ':' || curr_hour::text)) % 3);
 
   if st.tick_hour is distinct from curr_hour then
     update public.waitlist_display_state
