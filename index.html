@@ -58,17 +58,20 @@
   .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(167,139,250,.35)}
 
   /* ---------------- HERO ---------------- */
-  header{padding:2px 0 14px;text-align:center}
-  .eyebrow{display:inline-block;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--green);border:1px solid var(--line);padding:4px 12px;border-radius:999px;margin-bottom:8px;background:rgba(77,255,180,.06)}
-  h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,6.2vw,46px);line-height:1.04;letter-spacing:-1px;margin-bottom:8px}
+  header{padding:6px 0 20px;text-align:center}
+  .hero-intro{margin-bottom:20px}
+  .hero-cta-block{margin:24px 0 28px;padding:20px 0;border-top:1px solid rgba(167,139,250,.08);border-bottom:1px solid rgba(167,139,250,.08)}
+  .hero-signup-block{max-width:440px;margin:0 auto;padding-top:4px}
+  .eyebrow{display:inline-block;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--green);border:1px solid var(--line);padding:4px 12px;border-radius:999px;margin-bottom:10px;background:rgba(77,255,180,.06)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,6.2vw,46px);line-height:1.06;letter-spacing:-1px;margin-bottom:10px}
   h1 .hl{background:linear-gradient(90deg,var(--accent) 0%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{font-size:clamp(13px,1.9vw,15.5px);color:var(--muted);max-width:460px;margin:0 auto 10px;line-height:1.45}
+  .sub{font-size:clamp(13px,1.9vw,15.5px);color:var(--muted);max-width:420px;margin:0 auto;line-height:1.5}
 
-  .countdown{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
-  .unit{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 5px;min-width:62px}
+  .countdown{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .unit{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 6px;min-width:64px}
   .unit .num{font-family:var(--display);font-weight:800;font-size:clamp(20px,4vw,28px);color:var(--gold);line-height:1}
-  .unit .lbl{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin-top:4px}
-  .livecount{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text);background:linear-gradient(90deg,rgba(77,255,180,.08),rgba(167,139,250,.08));border:1px solid rgba(77,255,180,.32);border-radius:999px;padding:6px 14px;margin:0 auto 10px;box-shadow:0 0 26px -8px rgba(77,255,180,.45)}
+  .unit .lbl{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin-top:5px}
+  .livecount{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text);background:linear-gradient(90deg,rgba(77,255,180,.08),rgba(167,139,250,.08));border:1px solid rgba(77,255,180,.32);border-radius:999px;padding:7px 15px;margin:0 auto 14px;box-shadow:0 0 26px -8px rgba(77,255,180,.45)}
   .livecount b{color:var(--green);font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;transition:color .3s ease}
   .livecount b.counter-pop{animation:countPop .45s ease}
   @keyframes countPop{0%{transform:scale(1)}35%{transform:scale(1.12);color:var(--gold)}100%{transform:scale(1)}}
@@ -77,25 +80,25 @@
   .lc-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);animation:radar 1.9s ease-out infinite}
   @keyframes radar{0%{transform:scale(1);opacity:.65}100%{transform:scale(3.4);opacity:0}}
 
-  .early-access{display:block;text-decoration:none;margin:6px 0 8px;cursor:pointer;text-align:center;position:relative;padding:4px 0 2px}
+  .early-access{display:block;text-decoration:none;margin:0;cursor:pointer;text-align:center;position:relative;padding:6px 0 4px}
   .early-access:hover .ea-letter{filter:brightness(1.12)}
   .early-access:hover .ea-stage{transform:scale(1.02)}
   .early-access:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:8px}
   .ea-stage{position:relative;display:inline-block;perspective:900px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
-  .ea-splash{position:absolute;inset:-30% -15%;pointer-events:none;background:conic-gradient(from 120deg at 50% 50%,#ff4d9d,#a78bfa,#4dffb4,#f5c842,#ff4d9d);filter:blur(28px);opacity:.35;transform:rotate(-6deg) scale(1.1);animation:eaSplash 6s ease-in-out infinite}
-  .ea-3d{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.12em;line-height:.88;transform-style:preserve-3d}
+  .ea-splash{position:absolute;inset:-30% -15%;pointer-events:none;background:conic-gradient(from 120deg at 50% 50%,#ff4d9d,#a78bfa,#4dffb4,#f5c842,#ff4d9d);filter:blur(28px);opacity:.3;transform:rotate(-6deg) scale(1.1);animation:eaSplash 6s ease-in-out infinite}
+  .ea-3d{position:relative;display:flex;flex-direction:column;align-items:center;gap:.08em;line-height:.88;transform-style:preserve-3d}
   .ea-line{display:flex;gap:.06em}
-  .ea-letter{font-family:'Bebas Neue',var(--display);font-size:clamp(38px,11vw,68px);font-weight:400;letter-spacing:.04em;color:#fff;display:inline-block;transform:rotateX(8deg) rotateY(-4deg);text-shadow:1px 1px 0 #d4d4dc,2px 2px 0 #b8b8c4,3px 3px 0 #9a9aaa,4px 4px 0 #7c7c90,5px 5px 0 #5e5e76,6px 7px 12px rgba(0,0,0,.55),0 0 32px rgba(167,139,250,.35);animation:eaJolt 3.6s ease-in-out infinite;animation-delay:calc(var(--n) * .07s)}
+  .ea-letter{font-family:'Bebas Neue',var(--display);font-size:clamp(34px,9.5vw,58px);font-weight:400;letter-spacing:.04em;color:#fff;display:inline-block;transform:rotateX(8deg) rotateY(-4deg);text-shadow:1px 1px 0 #d4d4dc,2px 2px 0 #b8b8c4,3px 3px 0 #9a9aaa,4px 4px 0 #7c7c90,5px 5px 0 #5e5e76,6px 7px 12px rgba(0,0,0,.55),0 0 32px rgba(167,139,250,.35);animation:eaJolt 3.6s ease-in-out infinite;animation-delay:calc(var(--n) * .07s)}
   .ea-letter:nth-child(odd){transform:rotateX(10deg) rotateY(5deg) rotateZ(-1.5deg)}
   .ea-letter:nth-child(even){transform:rotateX(8deg) rotateY(-6deg) rotateZ(1deg)}
-  .ea-sub{font-size:12.5px;color:var(--muted);margin-top:8px;letter-spacing:.2px;max-width:320px;margin-left:auto;margin-right:auto;line-height:1.45}
+  .ea-sub{font-size:12.5px;color:var(--muted);margin-top:12px;letter-spacing:.2px;max-width:300px;margin-left:auto;margin-right:auto;line-height:1.5}
   .ea-sub em{font-style:normal;color:var(--green);font-weight:600}
   @keyframes eaJolt{0%,100%{transform:rotateX(8deg) rotateY(-4deg) translateZ(0)}50%{transform:rotateX(12deg) rotateY(2deg) translateZ(14px) scale(1.04)}}
-  @keyframes eaSplash{0%,100%{opacity:.28;transform:rotate(-6deg) scale(1.05)}50%{opacity:.42;transform:rotate(4deg) scale(1.15)}}
+  @keyframes eaSplash{0%,100%{opacity:.22;transform:rotate(-6deg) scale(1.05)}50%{opacity:.36;transform:rotate(4deg) scale(1.15)}}
 
-  .countdown-label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .countdown-label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
 
-  .capture{display:flex;gap:7px;max-width:440px;margin:0 auto 4px;flex-wrap:wrap}
+  .capture{display:flex;gap:8px;max-width:440px;margin:0 auto 6px;flex-wrap:wrap}
   .capture input{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--line);border-radius:11px;color:var(--text);font-size:14px;padding:11px 13px;font-family:var(--body);outline:none;transition:border-color .15s ease, box-shadow .15s ease}
   .capture input::placeholder{color:var(--muted)}
   .capture input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(167,139,250,.18)}
@@ -269,7 +272,7 @@
   .hq-bell{position:relative;font-size:15px;cursor:pointer;padding:4px}
   .hq-bell i{position:absolute;top:0;right:-4px;background:#ff4d6d;color:#fff;font-size:8px;font-weight:700;font-style:normal;border-radius:999px;min-width:13px;height:13px;display:grid;place-items:center;padding:0 3px}
   .hq-plus{width:30px;height:30px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),var(--accent));display:grid;place-items:center;font-size:17px;font-weight:700;color:#04121a;cursor:pointer;box-shadow:0 4px 16px -4px rgba(77,255,180,.5)}
-  .hq-body{padding:12px 14px 14px}
+  .hq-body{padding:14px 14px 16px}
   .hq-mm-intro{margin-bottom:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(77,255,180,.08));border:1px solid rgba(167,139,250,.2)}
   .hq-mm-intro b{display:block;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.5px;margin-bottom:4px;background:linear-gradient(90deg,#fff,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hq-mm-intro p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
@@ -298,9 +301,25 @@
   .hq-spark-row span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
   .hq-spark{display:flex;align-items:flex-end;gap:3px;height:28px}
   .hq-spark i{display:block;width:5px;border-radius:2px;background:var(--green);min-height:4px}
-  .hq-moves{margin-bottom:8px}
+  .hq-moves{margin-bottom:12px}
   .hq-moves-h{font-family:var(--display);font-weight:700;font-size:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
   .hq-moves-h a{font-size:11px;color:var(--accent);text-decoration:none;font-weight:600}
+  .hq-moves-h .tagline{font-size:10px;color:var(--muted);font-weight:500;font-family:var(--body)}
+  .hq-action-row{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+  @media(min-width:520px){.hq-action-row{grid-template-columns:1fr 1fr;gap:10px}}
+  .hq-insights{background:rgba(14,14,22,.85);border:1px solid rgba(167,139,250,.14);border-radius:14px;padding:11px 12px}
+  .hq-insights-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .hq-insights-head b{font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent)}
+  .hq-pro-pill{font-size:10px;font-weight:700;color:var(--gold);border:1px solid rgba(245,200,66,.45);background:rgba(245,200,66,.12);border-radius:999px;padding:3px 9px;cursor:pointer}
+  .hq-insights-sub{font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+  .hq-insight{background:rgba(20,20,32,.9);border:1px solid rgba(167,139,250,.1);border-radius:10px;padding:8px 9px;margin-bottom:6px;cursor:pointer;transition:border-color .12s ease}
+  .hq-insight:last-child{margin-bottom:0}
+  .hq-insight:hover{border-color:rgba(167,139,250,.3)}
+  .hq-insight.locked .ins-body{opacity:.35}
+  .hq-insight b{display:block;font-size:11px;font-weight:600;margin-bottom:3px}
+  .hq-insight .ins-body{font-size:10.5px;color:var(--muted);line-height:1.4}
+  .hq-insight .ins-lock{font-size:10px;color:var(--gold);margin-top:5px;font-weight:600}
+  .hq-tab.locked::before{content:"🔒 ";font-size:9px}
   .hq-move{display:flex;gap:10px;align-items:center;padding:10px;background:rgba(14,14,22,.7);border:1px solid rgba(167,139,250,.1);border-radius:12px;margin-bottom:6px;cursor:pointer;transition:border-color .12s ease}
   .hq-move:hover{border-color:rgba(167,139,250,.35)}
   .hq-move-ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none;background:rgba(77,255,180,.12);border:1px solid rgba(77,255,180,.25)}
@@ -432,42 +451,48 @@
 
   <!-- HERO -->
   <header>
-    <span class="eyebrow">The stage is being built</span>
-    <h1>Your sound deserves<br><span class="hl">a bigger stage.</span></h1>
-    <p class="sub">For the self-made — the artists turning late nights and raw talent into a career nobody handed them. Here, what you build stays yours, and so does everything it earns.</p>
+    <div class="hero-intro">
+      <span class="eyebrow">The stage is being built</span>
+      <h1>Your sound deserves<br><span class="hl">a bigger stage.</span></h1>
+      <p class="sub">For the self-made — the artists turning late nights and raw talent into a career nobody handed them. Here, what you build stays yours, and so does everything it earns.</p>
+    </div>
 
-    <a href="#join" class="early-access to-form" aria-label="Claim early access to STĀGE">
-      <div class="ea-stage">
-        <div class="ea-splash" aria-hidden="true"></div>
-        <div class="ea-3d" aria-hidden="true">
-          <div class="ea-line">
-            <span class="ea-letter" style="--n:0">E</span><span class="ea-letter" style="--n:1">A</span><span class="ea-letter" style="--n:2">R</span><span class="ea-letter" style="--n:3">L</span><span class="ea-letter" style="--n:4">Y</span>
-          </div>
-          <div class="ea-line">
-            <span class="ea-letter" style="--n:5">A</span><span class="ea-letter" style="--n:6">C</span><span class="ea-letter" style="--n:7">C</span><span class="ea-letter" style="--n:8">E</span><span class="ea-letter" style="--n:9">S</span><span class="ea-letter" style="--n:10">S</span>
+    <div class="hero-cta-block">
+      <a href="#join" class="early-access to-form" aria-label="Claim early access to STĀGE">
+        <div class="ea-stage">
+          <div class="ea-splash" aria-hidden="true"></div>
+          <div class="ea-3d" aria-hidden="true">
+            <div class="ea-line">
+              <span class="ea-letter" style="--n:0">E</span><span class="ea-letter" style="--n:1">A</span><span class="ea-letter" style="--n:2">R</span><span class="ea-letter" style="--n:3">L</span><span class="ea-letter" style="--n:4">Y</span>
+            </div>
+            <div class="ea-line">
+              <span class="ea-letter" style="--n:5">A</span><span class="ea-letter" style="--n:6">C</span><span class="ea-letter" style="--n:7">C</span><span class="ea-letter" style="--n:8">E</span><span class="ea-letter" style="--n:9">S</span><span class="ea-letter" style="--n:10">S</span>
+            </div>
           </div>
         </div>
+        <p class="ea-sub">Exclusive early access — <em>claim your spot</em> on the waitlist before the doors open.</p>
+      </a>
+    </div>
+
+    <div class="hero-signup-block">
+      <div class="countdown-label">Doors open in</div>
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="unit"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
+        <div class="unit"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
+        <div class="unit"><div class="num" id="cd-mins">--</div><div class="lbl">Mins</div></div>
+        <div class="unit"><div class="num" id="cd-secs">--</div><div class="lbl">Secs</div></div>
       </div>
-      <p class="ea-sub">Exclusive early access — <em>claim your spot</em> on the waitlist before the doors open.</p>
-    </a>
 
-    <div class="countdown-label">Doors open in</div>
-    <div class="countdown" id="countdown" aria-live="polite">
-      <div class="unit"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
-      <div class="unit"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
-      <div class="unit"><div class="num" id="cd-mins">--</div><div class="lbl">Mins</div></div>
-      <div class="unit"><div class="num" id="cd-secs">--</div><div class="lbl">Secs</div></div>
-    </div>
+      <div class="livecount" id="liveCount" style="display:none">
+        <span class="lc-dot"></span><b id="crowd-num">0</b> <span class="lc-label">creators joined the waitlist</span>
+      </div>
 
-    <div class="livecount" id="liveCount" style="display:none">
-      <span class="lc-dot"></span><b id="crowd-num">0</b> <span class="lc-label">creators joined the waitlist</span>
+      <div class="capture">
+        <input type="email" id="heroEmail" placeholder="Enter your email" autocomplete="email" />
+        <button class="capture-btn" id="heroBtn">Get on the list →</button>
+      </div>
+      <p class="capture-note">Free on iOS, Android &amp; web — your invite arrives by email at launch.</p>
     </div>
-
-    <div class="capture">
-      <input type="email" id="heroEmail" placeholder="Enter your email" autocomplete="email" />
-      <button class="capture-btn" id="heroBtn">Get on the list →</button>
-    </div>
-    <p class="capture-note">Free on iOS, Android &amp; web — your invite arrives by email at launch.</p>
   </header>
 
   <!-- ETHOS · rendered as a native STĀGE post -->
@@ -523,7 +548,7 @@
       <div class="post-comments" id="postComments" aria-hidden="true">
         <div class="pc-row"><b>dj_franklinton</b><span>Tired of juggling five apps just to get paid and stay visible — finally feels like someone's building the room we actually need.</span></div>
         <div class="pc-row"><b>samples_and_cry</b><span>host + payout + opportunities in one app?? the dream tbh. pre-registered immediately</span></div>
-        <div class="pc-row"><b>ar.vinyl.rae</b><span>Been scouting on broken platforms for years — this is the first one that sounds like it understands how careers actually get built 🎯</span></div>
+        <div class="pc-row"><b>ar.vinyl.rae</b><span>Years in A&amp;R scouting — this is the first one that sounds like it understands how careers actually get built 🎯</span></div>
         <div class="pc-row"><b>uncle_beatz420</b><span>if the event system is real i might actually retire from 6 different apps lmao</span></div>
       </div>
     </div>
@@ -585,17 +610,45 @@
             <span>7d HQ pulse</span>
             <div class="hq-spark" id="hqSpark" aria-hidden="true"></div>
           </div>
-          <div class="hq-moves" id="hqMovesBlock">
-            <div class="hq-moves-h">⚡ Next moves <a href="#" id="hqMovesAll">See all</a></div>
-            <div class="hq-move" data-move="collab">
-              <div class="hq-move-ic">🤝</div>
-              <div class="hq-move-txt"><b>Review creator onboarding queue</b><span>12 artists waiting — each verified signup earns +30 HQ</span></div>
-              <div class="hq-move-meta"><div class="tag">Today</div><div class="pts">+30 HQ</div></div>
+          <div class="hq-action-row" id="hqActionRow">
+            <div class="hq-moves" id="hqMovesBlock">
+              <div class="hq-moves-h">⚡ Next moves <span class="tagline">Quick updates</span></div>
+              <div class="hq-move" data-move="waitlist">
+                <div class="hq-move-ic">📋</div>
+                <div class="hq-move-txt"><b>47 new waitlist signups today</b><span>Review and approve creator profiles in your queue</span></div>
+                <div class="hq-move-meta"><div class="tag">New</div></div>
+              </div>
+              <div class="hq-move" data-move="track">
+                <div class="hq-move-ic">🎵</div>
+                <div class="hq-move-txt"><b>Own It hit 8.2K plays</b><span>Your anthem is trending — pin it to keep momentum on the feed</span></div>
+                <div class="hq-move-meta"><div class="pts">+20 HQ</div></div>
+              </div>
+              <div class="hq-move" data-move="event">
+                <div class="hq-move-ic">🎟</div>
+                <div class="hq-move-txt"><b>Launch Night RSVP count updated</b><span>82 confirmed — send a reminder to boost turnout</span></div>
+                <div class="hq-move-meta"><div class="pts">+10 HQ</div></div>
+              </div>
             </div>
-            <div class="hq-move" data-move="track">
-              <div class="hq-move-ic">🎵</div>
-              <div class="hq-move-txt"><b>Pin the platform anthem</b><span>Your audience is most active tonight — keep momentum on the feed</span></div>
-              <div class="hq-move-meta"><div class="pts">+20 HQ</div></div>
+            <div class="hq-insights" id="hqInsights">
+              <div class="hq-insights-head">
+                <b>Insights Manager</b>
+                <span class="hq-pro-pill" id="hqProPill" role="button" tabindex="0">Pro</span>
+              </div>
+              <p class="hq-insights-sub">Reads your HQ data and surfaces smarter moves — deeper than basic notifications.</p>
+              <div class="hq-insight locked" data-insight="consistency">
+                <b>Consistency gap</b>
+                <p class="ins-body">Your Consistency pillar is lowest — post 3× this week to unlock +15 HQ.</p>
+                <p class="ins-lock">Upgrade to Pro for this insight</p>
+              </div>
+              <div class="hq-insight locked" data-insight="marketplace">
+                <b>Marketplace window</b>
+                <p class="ins-body">Beat listings get 2× views Tue–Thu · list before 6pm local.</p>
+                <p class="ins-lock">Upgrade to Pro for this insight</p>
+              </div>
+              <div class="hq-insight" data-insight="discovery">
+                <b>Discovery tip</b>
+                <p class="ins-body">Add a 15s teaser — profiles with teasers convert 22% more.</p>
+              </div>
             </div>
           </div>
           <div class="hq-health">All systems green · 14-day streak</div>
@@ -629,8 +682,8 @@
         <div class="hq-panel active" id="hqCommandPanel">
           <div class="hq-tabs" id="hqNavTabs">
             <button type="button" class="hq-tab on" data-tab="overview">Overview</button>
-            <button type="button" class="hq-tab" data-tab="trends">Trends</button>
-            <button type="button" class="hq-tab" data-tab="revenue">Revenue</button>
+            <button type="button" class="hq-tab locked" data-tab="trends" title="Unlocks at launch">Trends</button>
+            <button type="button" class="hq-tab locked" data-tab="revenue" title="Unlocks at launch">Revenue</button>
             <button type="button" class="hq-tab locked" data-tab="ops" title="Unlocks at launch">Ops</button>
             <button type="button" class="hq-tab locked" data-tab="connect" title="Pro subscription">Connect</button>
           </div>
@@ -645,7 +698,7 @@
             <div class="hq-tile" data-domain="open"><span class="em">🤝</span><span class="lbl">Open</span><div class="val">3</div><span class="del neu">0</span></div>
             <div class="hq-tile" data-domain="soon"><span class="em">🎟</span><span class="lbl">Soon</span><div class="val">4</div><span class="del">+1</span></div>
             <div class="hq-tile" data-domain="hq"><span class="em">⚡</span><span class="lbl">HQ</span><div class="val">10K</div><span class="del">+124</span></div>
-            <div class="hq-tile locked" data-domain="links"><span class="em">🔗</span><span class="lbl">Links</span><div class="val">—</div><span class="del neu">Launch</span></div>
+            <div class="hq-tile" data-domain="links"><span class="em">🔗</span><span class="lbl">Links</span><div class="val">9</div><span class="del">+2</span></div>
           </div>
         </div>
       </div>
@@ -1131,7 +1184,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const analytics = document.getElementById('hqAnalyticsPanel');
   const command = document.getElementById('hqCommandPanel');
   const brief = document.getElementById('hqBrief');
-  const movesBlock = document.getElementById('hqMovesBlock');
+  const actionRow = document.getElementById('hqActionRow');
   const toast = document.getElementById('hqToast');
   if(!demo || !toggle) return;
 
@@ -1168,7 +1221,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   document.getElementById('hqBell')?.addEventListener('click', ()=> showHqToast('5 notifications · unlocks at launch'));
   document.getElementById('hqPlus')?.addEventListener('click', ()=> showHqToast('Create menu · coming with early access'));
   document.getElementById('hqScoreBtn')?.addEventListener('click', ()=> showHqToast('💎 Diamond · 2000+ HQ · verified + exclusive marketplace'));
-  document.getElementById('hqMovesAll')?.addEventListener('click', e=>{ e.preventDefault(); showHqToast('Full next moves · in the app at launch'); });
+  document.getElementById('hqProPill')?.addEventListener('click', ()=> showHqToast('Insights Manager · Pro subscription unlocks full AI-style nudges'));
+  document.getElementById('hqProPill')?.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); showHqToast('Insights Manager · Pro subscription unlocks full AI-style nudges'); }});
 
   const series = {
     plays: { '7d': [4200,5100,4800,6200,7100,8400,7600], '30d': [3200,4500,5200,6400,7200,7600] },
@@ -1214,7 +1268,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     toggle.setAttribute('aria-checked', on);
     analytics.classList.toggle('active', on);
     command.classList.toggle('active', !on);
-    if(movesBlock) movesBlock.style.display = on ? 'none' : '';
+    if(actionRow) actionRow.style.display = on ? 'none' : '';
     if(on) refreshAnalytics();
   }
   toggle.addEventListener('click', ()=> setMeeting(!toggle.classList.contains('on')));
@@ -1264,13 +1318,26 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       if(tile.classList.contains('locked')){ showHqToast('Links hub · unlocks at launch'); return; }
       const d = tile.dataset.domain;
       if(d === 'hq') showHqToast('Hype Qualifications · Diamond tier active');
+      else if(d === 'links') showHqToast('9 active links · bio, merch, tickets & more');
       else if(d === 'soon') showHqToast('4 events on deck · ticket system live at launch');
       else showHqToast(d.charAt(0).toUpperCase() + d.slice(1) + ' · drill-down in STĀGE HQ');
     });
   });
 
+  document.querySelectorAll('.hq-insight[data-insight]').forEach(ins=>{
+    ins.addEventListener('click', ()=>{
+      if(ins.classList.contains('locked')) showHqToast('Pro insight · upgrade to unlock personalized HQ nudges');
+      else showHqToast('Discovery tip · free insight from your HQ profile');
+    });
+  });
+
   document.querySelectorAll('.hq-move[data-move]').forEach(m=>{
-    m.addEventListener('click', ()=> showHqToast('Next move · complete in app at launch (+HQ)'));
+    m.addEventListener('click', ()=>{
+      const k = m.dataset.move;
+      if(k === 'waitlist') showHqToast('Waitlist queue · review signups in STĀGE HQ');
+      else if(k === 'track') showHqToast('Pin track · keep Own It trending on your feed');
+      else showHqToast('Event reminder · notify 82 RSVPs before Launch Night');
+    });
   });
 
   refreshAnalytics();
