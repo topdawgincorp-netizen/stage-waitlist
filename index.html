@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
   :root{
@@ -52,34 +52,23 @@
 
   .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
-  nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;position:relative;z-index:2}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0 4px;position:relative;z-index:2}
   .logo{font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,24px);letter-spacing:1px;background:linear-gradient(90deg,var(--accent),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
   .nav-cta{font-family:var(--display);font-weight:700;font-size:14px;color:var(--bg);background:var(--accent);padding:10px 18px;border-radius:999px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease}
   .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(167,139,250,.35)}
 
   /* ---------------- HERO ---------------- */
-  header{padding:8px 0 20px;text-align:center}
-  .eyebrow{display:inline-block;font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);border:1px solid var(--line);padding:5px 14px;border-radius:999px;margin-bottom:14px;background:rgba(77,255,180,.06)}
-  h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7.5vw,58px);line-height:1.05;letter-spacing:-1px;margin-bottom:12px}
+  header{padding:2px 0 14px;text-align:center}
+  .eyebrow{display:inline-block;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--green);border:1px solid var(--line);padding:4px 12px;border-radius:999px;margin-bottom:8px;background:rgba(77,255,180,.06)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,6.2vw,46px);line-height:1.04;letter-spacing:-1px;margin-bottom:8px}
   h1 .hl{background:linear-gradient(90deg,var(--accent) 0%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{font-size:clamp(15px,2.2vw,18px);color:var(--muted);max-width:500px;margin:0 auto 16px;line-height:1.55}
+  .sub{font-size:clamp(13px,1.9vw,15.5px);color:var(--muted);max-width:460px;margin:0 auto 10px;line-height:1.45}
 
-  .eq{display:flex;align-items:flex-end;justify-content:center;gap:5px;height:48px;margin:0 auto 40px}
-  .eq span{width:6px;border-radius:3px;background:linear-gradient(180deg,var(--green),var(--accent));animation:bounce 1.1s ease-in-out infinite}
-  .eq span:nth-child(1){height:30%;animation-delay:0s}
-  .eq span:nth-child(2){height:70%;animation-delay:.1s}
-  .eq span:nth-child(3){height:45%;animation-delay:.2s}
-  .eq span:nth-child(4){height:90%;animation-delay:.3s}
-  .eq span:nth-child(5){height:55%;animation-delay:.15s}
-  .eq span:nth-child(6){height:80%;animation-delay:.05s}
-  .eq span:nth-child(7){height:35%;animation-delay:.25s}
-  @keyframes bounce{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
-
-  .countdown{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-  .unit{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 6px;min-width:72px}
-  .unit .num{font-family:var(--display);font-weight:800;font-size:clamp(24px,4.5vw,34px);color:var(--gold);line-height:1}
-  .unit .lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:6px}
-  .livecount{position:relative;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--text);background:linear-gradient(90deg,rgba(77,255,180,.08),rgba(167,139,250,.08));border:1px solid rgba(77,255,180,.32);border-radius:999px;padding:7px 15px;margin-bottom:12px;box-shadow:0 0 26px -8px rgba(77,255,180,.45)}
+  .countdown{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+  .unit{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 5px;min-width:62px}
+  .unit .num{font-family:var(--display);font-weight:800;font-size:clamp(20px,4vw,28px);color:var(--gold);line-height:1}
+  .unit .lbl{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .livecount{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text);background:linear-gradient(90deg,rgba(77,255,180,.08),rgba(167,139,250,.08));border:1px solid rgba(77,255,180,.32);border-radius:999px;padding:6px 14px;margin:0 auto 10px;box-shadow:0 0 26px -8px rgba(77,255,180,.45)}
   .livecount b{color:var(--green);font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;transition:color .3s ease}
   .livecount b.counter-pop{animation:countPop .45s ease}
   @keyframes countPop{0%{transform:scale(1)}35%{transform:scale(1.12);color:var(--gold)}100%{transform:scale(1)}}
@@ -88,26 +77,29 @@
   .lc-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);animation:radar 1.9s ease-out infinite}
   @keyframes radar{0%{transform:scale(1);opacity:.65}100%{transform:scale(3.4);opacity:0}}
 
-  .early-access{display:block;text-decoration:none;margin:14px 0 10px;cursor:pointer;text-align:center;position:relative;padding:8px 0}
-  .early-access:hover .ea-word{filter:brightness(1.08)}
+  .early-access{display:block;text-decoration:none;margin:6px 0 8px;cursor:pointer;text-align:center;position:relative;padding:4px 0 2px}
+  .early-access:hover .ea-letter{filter:brightness(1.12)}
+  .early-access:hover .ea-stage{transform:scale(1.02)}
   .early-access:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:8px}
-  .ea-burst{position:relative;display:inline-block;line-height:.92;perspective:800px}
-  .ea-word{display:inline-block;font-family:var(--display);font-weight:800;font-size:clamp(42px,12vw,78px);letter-spacing:-1px;background:linear-gradient(105deg,var(--gold) 0%,#fff 35%,var(--green) 70%,var(--accent) 100%);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:eaFloat 2.8s ease-in-out infinite, eaShine 5s ease-in-out infinite;text-shadow:0 0 40px rgba(167,139,250,.25)}
-  .ea-word:nth-child(2){animation-delay:.35s,.6s}
-  .ea-crack{position:absolute;inset:-20% -8%;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(245,200,66,.12),transparent 55%);animation:eaPulse 3s ease-in-out infinite}
-  .ea-sub{font-size:13px;color:var(--muted);margin-top:10px;letter-spacing:.3px;max-width:340px;margin-left:auto;margin-right:auto;line-height:1.5}
+  .ea-stage{position:relative;display:inline-block;perspective:900px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+  .ea-splash{position:absolute;inset:-30% -15%;pointer-events:none;background:conic-gradient(from 120deg at 50% 50%,#ff4d9d,#a78bfa,#4dffb4,#f5c842,#ff4d9d);filter:blur(28px);opacity:.35;transform:rotate(-6deg) scale(1.1);animation:eaSplash 6s ease-in-out infinite}
+  .ea-3d{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.12em;line-height:.88;transform-style:preserve-3d}
+  .ea-line{display:flex;gap:.06em}
+  .ea-letter{font-family:'Bebas Neue',var(--display);font-size:clamp(38px,11vw,68px);font-weight:400;letter-spacing:.04em;color:#fff;display:inline-block;transform:rotateX(8deg) rotateY(-4deg);text-shadow:1px 1px 0 #d4d4dc,2px 2px 0 #b8b8c4,3px 3px 0 #9a9aaa,4px 4px 0 #7c7c90,5px 5px 0 #5e5e76,6px 7px 12px rgba(0,0,0,.55),0 0 32px rgba(167,139,250,.35);animation:eaJolt 3.6s ease-in-out infinite;animation-delay:calc(var(--n) * .07s)}
+  .ea-letter:nth-child(odd){transform:rotateX(10deg) rotateY(5deg) rotateZ(-1.5deg)}
+  .ea-letter:nth-child(even){transform:rotateX(8deg) rotateY(-6deg) rotateZ(1deg)}
+  .ea-sub{font-size:12.5px;color:var(--muted);margin-top:8px;letter-spacing:.2px;max-width:320px;margin-left:auto;margin-right:auto;line-height:1.45}
   .ea-sub em{font-style:normal;color:var(--green);font-weight:600}
-  @keyframes eaFloat{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-6px) rotate(-.6deg) scale(1.02)}}
-  @keyframes eaShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  @keyframes eaPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+  @keyframes eaJolt{0%,100%{transform:rotateX(8deg) rotateY(-4deg) translateZ(0)}50%{transform:rotateX(12deg) rotateY(2deg) translateZ(14px) scale(1.04)}}
+  @keyframes eaSplash{0%,100%{opacity:.28;transform:rotate(-6deg) scale(1.05)}50%{opacity:.42;transform:rotate(4deg) scale(1.15)}}
 
-  .countdown-label{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+  .countdown-label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
 
-  .capture{display:flex;gap:8px;max-width:460px;margin:0 auto 6px;flex-wrap:wrap}
-  .capture input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--text);font-size:15px;padding:13px 14px;font-family:var(--body);outline:none;transition:border-color .15s ease, box-shadow .15s ease}
+  .capture{display:flex;gap:7px;max-width:440px;margin:0 auto 4px;flex-wrap:wrap}
+  .capture input{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--line);border-radius:11px;color:var(--text);font-size:14px;padding:11px 13px;font-family:var(--body);outline:none;transition:border-color .15s ease, box-shadow .15s ease}
   .capture input::placeholder{color:var(--muted)}
   .capture input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(167,139,250,.18)}
-  .capture-btn{border:none;cursor:pointer;font-family:var(--display);font-weight:800;font-size:15px;color:var(--bg);background:linear-gradient(90deg,var(--accent),var(--green));padding:13px 20px;border-radius:12px;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease}
+  .capture-btn{border:none;cursor:pointer;font-family:var(--display);font-weight:800;font-size:14px;color:var(--bg);background:linear-gradient(90deg,var(--accent),var(--green));padding:11px 18px;border-radius:11px;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease}
   .capture-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(167,139,250,.5)}
   .capture-note{font-size:12px;color:var(--muted);margin-bottom:0}
 
@@ -251,53 +243,113 @@
   @keyframes wave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1.15)}}
 
   /* ---- STĀGE HQ live demo ---- */
-  .hq-demo{max-width:560px;margin:0 auto;background:#12121c;border:1px solid rgba(167,139,250,.2);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px -40px rgba(167,139,250,.45)}
-  .hq-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(167,139,250,.12);background:#0f0f18}
-  .hq-logo{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:1px;background:linear-gradient(90deg,var(--green),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hq-mini{display:flex;align-items:center;gap:8px;background:#1a1a28;border:1px solid rgba(167,139,250,.15);border-radius:999px;padding:5px 10px 5px 5px;max-width:180px}
-  .hq-mini-art{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#a78bfa,#f57fb0);flex:none}
-  .hq-mini-txt{min-width:0}
-  .hq-mini-txt b{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .hq-mini-txt span{font-size:10px;color:var(--muted)}
-  .hq-icons{display:flex;gap:8px;align-items:center}
-  .hq-bell{position:relative;font-size:16px}
-  .hq-bell i{position:absolute;top:-4px;right:-6px;background:#ff4d6d;color:#fff;font-size:9px;font-weight:700;font-style:normal;border-radius:999px;min-width:14px;height:14px;display:grid;place-items:center;padding:0 3px}
-  .hq-body{padding:14px}
-  .hq-meeting-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:10px 12px;background:#1a1a28;border-radius:12px;border:1px solid rgba(167,139,250,.12)}
-  .hq-meeting-row span{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-  .hq-switch{position:relative;width:48px;height:28px;border:none;border-radius:999px;background:#2a2a3a;cursor:pointer;transition:background .2s ease}
+  .hq-demo{max-width:580px;margin:0 auto;background:linear-gradient(180deg,#14141f,#0e0e16);border:1px solid rgba(167,139,250,.22);border-radius:22px;overflow:hidden;box-shadow:0 40px 100px -50px rgba(77,255,180,.25),0 0 0 1px rgba(255,255,255,.04) inset;font-family:var(--body)}
+  .hq-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(167,139,250,.1);background:rgba(10,10,18,.92);backdrop-filter:blur(12px)}
+  .hq-logo{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.5px;background:linear-gradient(90deg,var(--green),#6ee7ff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
+  .hq-player{flex:1;display:flex;align-items:center;gap:8px;background:rgba(26,26,40,.95);border:1px solid rgba(167,139,250,.18);border-radius:999px;padding:4px 10px 4px 4px;max-width:220px;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
+  .hq-player:hover{border-color:rgba(77,255,180,.4);box-shadow:0 0 20px -6px rgba(77,255,180,.35)}
+  .hq-player.playing{border-color:rgba(77,255,180,.5)}
+  .hq-p-art{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#a78bfa,#f57fb0);flex:none;display:grid;place-items:center;font-size:14px}
+  .hq-p-txt{min-width:0;flex:1}
+  .hq-p-txt b{display:block;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hq-p-txt span{font-size:10px;color:var(--muted)}
+  .hq-p-waves{display:flex;align-items:flex-end;gap:2px;height:14px;margin-right:2px}
+  .hq-p-waves i{display:block;width:2px;border-radius:1px;background:var(--accent);height:4px}
+  .hq-player.playing .hq-p-waves i{animation:hqWave .7s ease-in-out infinite}
+  .hq-player.playing .hq-p-waves i:nth-child(2){animation-delay:.12s}
+  .hq-player.playing .hq-p-waves i:nth-child(3){animation-delay:.24s}
+  .hq-player.playing .hq-p-waves i:nth-child(4){animation-delay:.08s}
+  @keyframes hqWave{0%,100%{height:4px}50%{height:13px}}
+  .hq-p-play{width:26px;height:26px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),#23b6e0);cursor:pointer;display:grid;place-items:center;flex:none;box-shadow:0 4px 14px -4px rgba(77,255,180,.6)}
+  .hq-p-play svg{width:11px;height:11px;fill:#04121a}
+  .hq-p-play .ic-pause{display:none}
+  .hq-player.playing .hq-p-play .ic-play{display:none}
+  .hq-player.playing .hq-p-play .ic-pause{display:block}
+  .hq-icons{display:flex;gap:8px;align-items:center;flex:none}
+  .hq-bell{position:relative;font-size:15px;cursor:pointer;padding:4px}
+  .hq-bell i{position:absolute;top:0;right:-4px;background:#ff4d6d;color:#fff;font-size:8px;font-weight:700;font-style:normal;border-radius:999px;min-width:13px;height:13px;display:grid;place-items:center;padding:0 3px}
+  .hq-plus{width:30px;height:30px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),var(--accent));display:grid;place-items:center;font-size:17px;font-weight:700;color:#04121a;cursor:pointer;box-shadow:0 4px 16px -4px rgba(77,255,180,.5)}
+  .hq-body{padding:12px 14px 14px}
+  .hq-mm-intro{margin-bottom:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(77,255,180,.08));border:1px solid rgba(167,139,250,.2)}
+  .hq-mm-intro b{display:block;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.5px;margin-bottom:4px;background:linear-gradient(90deg,#fff,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hq-mm-intro p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+  .hq-meeting-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:9px 12px;background:rgba(26,26,40,.8);border-radius:12px;border:1px solid rgba(167,139,250,.12)}
+  .hq-meeting-row span{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted)}
+  .hq-switch{position:relative;width:46px;height:26px;border:none;border-radius:999px;background:#2a2a3a;cursor:pointer;transition:background .2s ease;flex:none}
   .hq-switch.on{background:linear-gradient(90deg,var(--green),#23b6e0)}
-  .hq-switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s ease;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+  .hq-switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s ease;box-shadow:0 2px 6px rgba(0,0,0,.3)}
   .hq-switch.on::after{transform:translateX(20px)}
-  .hq-panel{display:none;animation:fadeSlide .3s ease}
+  .hq-brief{background:rgba(20,20,32,.9);border:1px solid rgba(167,139,250,.14);border-radius:16px;padding:12px;margin-bottom:12px}
+  .hq-brief-top{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+  .hq-score-block{cursor:pointer;flex:none}
+  .hq-score-num{font-family:var(--display);font-weight:800;font-size:42px;line-height:1;letter-spacing:-1px}
+  .hq-score-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;font-weight:700}
+  .hq-id{flex:1;min-width:0}
+  .hq-id-name{font-family:var(--display);font-weight:800;font-size:15px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  .hq-tier{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7dd3fc;margin:3px 0}
+  .hq-streak{font-size:11px;color:var(--muted)}
+  .hq-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+  .hq-kpi{background:rgba(14,14,22,.8);border:1px solid rgba(167,139,250,.1);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;transition:border-color .12s ease, transform .1s ease}
+  .hq-kpi:hover{border-color:rgba(77,255,180,.35);transform:translateY(-1px)}
+  .hq-kpi b{display:block;font-family:var(--display);font-weight:800;font-size:13px}
+  .hq-kpi span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:2px 0}
+  .hq-kpi em{font-style:normal;font-size:10px;font-weight:700;color:var(--green)}
+  .hq-spark-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .hq-spark-row span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+  .hq-spark{display:flex;align-items:flex-end;gap:3px;height:28px}
+  .hq-spark i{display:block;width:5px;border-radius:2px;background:var(--green);min-height:4px}
+  .hq-moves{margin-bottom:8px}
+  .hq-moves-h{font-family:var(--display);font-weight:700;font-size:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .hq-moves-h a{font-size:11px;color:var(--accent);text-decoration:none;font-weight:600}
+  .hq-move{display:flex;gap:10px;align-items:center;padding:10px;background:rgba(14,14,22,.7);border:1px solid rgba(167,139,250,.1);border-radius:12px;margin-bottom:6px;cursor:pointer;transition:border-color .12s ease}
+  .hq-move:hover{border-color:rgba(167,139,250,.35)}
+  .hq-move-ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none;background:rgba(77,255,180,.12);border:1px solid rgba(77,255,180,.25)}
+  .hq-move-txt{flex:1;min-width:0}
+  .hq-move-txt b{display:block;font-size:12px;font-weight:600;margin-bottom:2px}
+  .hq-move-txt span{font-size:11px;color:var(--muted);line-height:1.35}
+  .hq-move-meta{text-align:right;flex:none}
+  .hq-move-meta .pts{font-size:11px;font-weight:700;color:var(--green)}
+  .hq-move-meta .tag{font-size:9px;color:#ff6b8a;font-weight:700;text-transform:uppercase}
+  .hq-health{font-size:11px;color:var(--muted);text-align:center;padding-top:4px}
+  .hq-panel{display:none;animation:fadeSlide .28s ease}
   .hq-panel.active{display:block}
   .hq-h{font-family:var(--display);font-weight:800;font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
   .hq-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
   .hq-pill{padding:6px 12px;border-radius:999px;border:1px solid rgba(167,139,250,.2);background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
   .hq-pill.on{border-color:var(--accent);color:var(--accent);background:rgba(167,139,250,.1)}
-  .hq-chart{height:120px;background:linear-gradient(180deg,rgba(167,139,250,.08),transparent);border-radius:12px;border:1px solid rgba(167,139,250,.12);margin-bottom:12px;padding:8px}
+  .hq-pill.locked{opacity:.45;cursor:not-allowed;position:relative}
+  .hq-chart{height:110px;background:linear-gradient(180deg,rgba(167,139,250,.1),transparent);border-radius:12px;border:1px solid rgba(167,139,250,.12);margin-bottom:10px;padding:8px}
   .hq-chart svg{width:100%;height:100%}
-  .hq-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-  .hq-stat{text-align:center;padding:8px 4px;background:#1a1a28;border-radius:10px}
-  .hq-stat b{display:block;font-family:var(--display);font-weight:800;font-size:15px;color:var(--text)}
-  .hq-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .hq-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+  .hq-stat{text-align:center;padding:8px 4px;background:rgba(26,26,40,.8);border-radius:10px;border:1px solid rgba(167,139,250,.08)}
+  .hq-stat b{display:block;font-family:var(--display);font-weight:800;font-size:14px;color:var(--text)}
+  .hq-stat span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
   .hq-stat .up{color:var(--green);font-size:11px;font-weight:600}
-  .hq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .hq-tile{background:#1a1a28;border:1px solid rgba(167,139,250,.1);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;transition:border-color .15s ease, transform .12s ease}
-  .hq-tile:hover{border-color:rgba(167,139,250,.35);transform:translateY(-2px)}
-  .hq-tile .em{font-size:18px;display:block;margin-bottom:4px}
-  .hq-tile .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
-  .hq-tile .val{font-family:var(--display);font-weight:800;font-size:16px;margin:4px 0 2px}
-  .hq-tile .del{font-size:11px;font-weight:600;color:var(--green)}
+  .hq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .hq-tile{background:rgba(26,26,40,.85);border:1px solid rgba(167,139,250,.1);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:border-color .15s ease, transform .12s ease;position:relative}
+  .hq-tile:hover:not(.locked){border-color:rgba(77,255,180,.35);transform:translateY(-2px)}
+  .hq-tile.locked{opacity:.5;cursor:not-allowed}
+  .hq-tile.locked::after{content:"🔒";position:absolute;top:6px;right:6px;font-size:10px}
+  .hq-tile .em{font-size:17px;display:block;margin-bottom:3px}
+  .hq-tile .lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+  .hq-tile .val{font-family:var(--display);font-weight:800;font-size:15px;margin:3px 0 2px}
+  .hq-tile .del{font-size:10px;font-weight:600;color:var(--green)}
   .hq-tile .del.neu{color:var(--muted)}
-  .hq-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-  .hq-tab{padding:7px 14px;border-radius:999px;border:1px solid rgba(167,139,250,.15);background:transparent;color:var(--muted);font-size:12px;font-weight:600;font-family:inherit;cursor:pointer}
+  .hq-tabs{display:flex;gap:5px;flex-wrap:nowrap;overflow-x:auto;margin-bottom:10px;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .hq-tabs::-webkit-scrollbar{display:none}
+  .hq-tab{padding:7px 13px;border-radius:999px;border:1px solid rgba(167,139,250,.15);background:transparent;color:var(--muted);font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;flex:none}
   .hq-tab.on{border-color:var(--green);color:var(--green);background:rgba(77,255,180,.08)}
-  .hq-hint{font-size:12px;color:var(--muted);line-height:1.5;padding:10px 12px;background:#1a1a28;border-radius:10px;border:1px solid rgba(167,139,250,.1);margin-top:10px}
+  .hq-tab.locked{opacity:.45;cursor:not-allowed}
+  .hq-hint{font-size:11.5px;color:var(--muted);line-height:1.5;padding:10px 12px;background:rgba(26,26,40,.8);border-radius:10px;border:1px solid rgba(167,139,250,.1);margin-top:10px}
+  .hq-toast{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(12px);background:rgba(20,20,32,.96);border:1px solid rgba(77,255,180,.35);color:var(--text);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:5;white-space:nowrap}
+  .hq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .hq-demo{position:relative}
   @media(max-width:520px){
-    .hq-mini{display:none}
+    .hq-player{max-width:160px}
+    .hq-p-txt span{display:none}
+    .hq-kpis{grid-template-columns:repeat(2,1fr)}
     .hq-grid{grid-template-columns:repeat(2,1fr)}
-    .hq-stats{grid-template-columns:1fr}
+    .hq-score-num{font-size:36px}
   }
 
   /* ---------------- FORM ---------------- */
@@ -362,7 +414,7 @@
     .ethos .post-card{opacity:1;transform:none;transition:none}
     .live-dot,.lc-dot::after{animation:none}
     .wavebar.playing .wb,.pa-like.liked{animation:none}
-    .ea-pill,.ea-pill::after,.ea-word,.ea-crack{animation:none}
+    .ea-letter,.ea-splash,.hq-player.playing .hq-p-waves i{animation:none}
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
   }
@@ -384,16 +436,19 @@
     <h1>Your sound deserves<br><span class="hl">a bigger stage.</span></h1>
     <p class="sub">For the self-made — the artists turning late nights and raw talent into a career nobody handed them. Here, what you build stays yours, and so does everything it earns.</p>
 
-    <div class="livecount" id="liveCount" style="display:none">
-      <span class="lc-dot"></span><b id="crowd-num">0</b> <span class="lc-label">creators joined the waitlist</span>
-    </div>
-
     <a href="#join" class="early-access to-form" aria-label="Claim early access to STĀGE">
-      <div class="ea-burst">
-        <span class="ea-crack" aria-hidden="true"></span>
-        <span class="ea-word">Early</span> <span class="ea-word">Access</span>
+      <div class="ea-stage">
+        <div class="ea-splash" aria-hidden="true"></div>
+        <div class="ea-3d" aria-hidden="true">
+          <div class="ea-line">
+            <span class="ea-letter" style="--n:0">E</span><span class="ea-letter" style="--n:1">A</span><span class="ea-letter" style="--n:2">R</span><span class="ea-letter" style="--n:3">L</span><span class="ea-letter" style="--n:4">Y</span>
+          </div>
+          <div class="ea-line">
+            <span class="ea-letter" style="--n:5">A</span><span class="ea-letter" style="--n:6">C</span><span class="ea-letter" style="--n:7">C</span><span class="ea-letter" style="--n:8">E</span><span class="ea-letter" style="--n:9">S</span><span class="ea-letter" style="--n:10">S</span>
+          </div>
+        </div>
       </div>
-      <p class="ea-sub">Something exclusive is waiting behind the curtain — <em>claim your spot</em> before the doors open.</p>
+      <p class="ea-sub">Exclusive early access — <em>claim your spot</em> on the waitlist before the doors open.</p>
     </a>
 
     <div class="countdown-label">Doors open in</div>
@@ -402,6 +457,10 @@
       <div class="unit"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
       <div class="unit"><div class="num" id="cd-mins">--</div><div class="lbl">Mins</div></div>
       <div class="unit"><div class="num" id="cd-secs">--</div><div class="lbl">Secs</div></div>
+    </div>
+
+    <div class="livecount" id="liveCount" style="display:none">
+      <span class="lc-dot"></span><b id="crowd-num">0</b> <span class="lc-label">creators joined the waitlist</span>
     </div>
 
     <div class="capture">
@@ -462,9 +521,9 @@
         <button type="button" class="pa pa-save" id="saveBtn" aria-label="Save" aria-pressed="false">🔖</button>
       </div>
       <div class="post-comments" id="postComments" aria-hidden="true">
-        <div class="pc-row"><b>dj_franklinton</b><span>Been waiting for ONE place to drop content, get paid, run my ticketed events, AND find real industry work. If STĀGE delivers this I'm not going back.</span></div>
+        <div class="pc-row"><b>dj_franklinton</b><span>Tired of juggling five apps just to get paid and stay visible — finally feels like someone's building the room we actually need.</span></div>
         <div class="pc-row"><b>samples_and_cry</b><span>host + payout + opportunities in one app?? the dream tbh. pre-registered immediately</span></div>
-        <div class="pc-row"><b>A&amp;R_Mom</b><span>Finally something that sounds like it gets music AND entertainment careers — not just another posting app 🎯</span></div>
+        <div class="pc-row"><b>ar.vinyl.rae</b><span>Been scouting on broken platforms for years — this is the first one that sounds like it understands how careers actually get built 🎯</span></div>
         <div class="pc-row"><b>uncle_beatz420</b><span>if the event system is real i might actually retire from 6 different apps lmao</span></div>
       </div>
     </div>
@@ -474,27 +533,75 @@
   <section class="reveal">
     <div class="kicker">Stage HQ</div>
     <h2 class="section-title">Your command center, live</h2>
-    <p class="section-sub">Toggle Meeting mode — analytics when you're presenting, Master Stats when you're running the room.</p>
+    <p class="section-sub">A real slice of STĀGE HQ — play the track, flip Meeting Mode, explore the board. Some tools unlock at launch or with subscription.</p>
 
     <div class="hq-demo" id="hqDemo">
+      <div class="hq-toast" id="hqToast" role="status" aria-live="polite"></div>
       <div class="hq-bar">
         <span class="hq-logo">STĀGE</span>
-        <div class="hq-mini" aria-hidden="true">
-          <div class="hq-mini-art"></div>
-          <div class="hq-mini-txt"><b>Neon Dreams</b><span>Marcus Cole</span></div>
+        <div class="hq-player" id="hqPlayer" role="button" tabindex="0" aria-label="Play Own It — The Anthem">
+          <div class="hq-p-art">🎵</div>
+          <div class="hq-p-txt"><b>Own It — The Anthem</b><span>STĀGE</span></div>
+          <div class="hq-p-waves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <button type="button" class="hq-p-play" id="hqPlayBtn" aria-label="Play">
+            <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="ic-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+          </button>
         </div>
         <div class="hq-icons">
-          <span class="hq-bell" aria-hidden="true">🔔<i>5</i></span>
-          <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--accent));display:grid;place-items:center;font-size:16px;font-weight:700;color:#04121a" aria-hidden="true">+</span>
+          <span class="hq-bell" id="hqBell" role="button" tabindex="0" aria-label="5 notifications">🔔<i>5</i></span>
+          <button type="button" class="hq-plus" id="hqPlus" aria-label="Create">+</button>
         </div>
       </div>
       <div class="hq-body">
+        <div class="hq-mm-intro">
+          <b>Meeting Mode</b>
+          <p>STĀGE's presentation layer — strip the noise and lead with your numbers when labels, partners, or investors are in the room. Flip it off to run the full command center.</p>
+        </div>
         <div class="hq-meeting-row">
           <span>Meeting mode</span>
-          <button type="button" class="hq-switch on" id="hqMeetingToggle" role="switch" aria-checked="true" aria-label="Toggle meeting mode"></button>
+          <button type="button" class="hq-switch" id="hqMeetingToggle" role="switch" aria-checked="false" aria-label="Toggle meeting mode"></button>
         </div>
 
-        <div class="hq-panel active" id="hqAnalyticsPanel">
+        <div class="hq-brief" id="hqBrief">
+          <div class="hq-brief-top">
+            <div class="hq-score-block" id="hqScoreBtn" role="button" tabindex="0" aria-label="HQ score 10K">
+              <div class="hq-score-num">10K</div>
+              <div class="hq-score-lbl">HQ</div>
+            </div>
+            <div class="hq-id">
+              <div class="hq-id-name">STĀGE <span class="verify-badge" aria-label="Verified"><svg viewBox="0 0 12 12"><path d="M2.5 6l2.5 2.5 4.5-5"/></svg></span></div>
+              <div class="hq-tier">💎 Diamond Creator</div>
+              <div class="hq-streak">🔥 14d streak · +124 this week</div>
+            </div>
+          </div>
+          <div class="hq-kpis">
+            <div class="hq-kpi" data-metric="plays"><b>48.2K</b><span>Plays</span><em>+22%</em></div>
+            <div class="hq-kpi" data-metric="revenue"><b>$821</b><span>Rev</span><em>+31%</em></div>
+            <div class="hq-kpi" data-metric="followers"><b>12.4K</b><span>Fans</span><em>+8%</em></div>
+            <div class="hq-kpi" data-metric="engage"><b>4.7%</b><span>Engage</span><em>+0.3%</em></div>
+          </div>
+          <div class="hq-spark-row">
+            <span>7d HQ pulse</span>
+            <div class="hq-spark" id="hqSpark" aria-hidden="true"></div>
+          </div>
+          <div class="hq-moves" id="hqMovesBlock">
+            <div class="hq-moves-h">⚡ Next moves <a href="#" id="hqMovesAll">See all</a></div>
+            <div class="hq-move" data-move="collab">
+              <div class="hq-move-ic">🤝</div>
+              <div class="hq-move-txt"><b>Review creator onboarding queue</b><span>12 artists waiting — each verified signup earns +30 HQ</span></div>
+              <div class="hq-move-meta"><div class="tag">Today</div><div class="pts">+30 HQ</div></div>
+            </div>
+            <div class="hq-move" data-move="track">
+              <div class="hq-move-ic">🎵</div>
+              <div class="hq-move-txt"><b>Pin the platform anthem</b><span>Your audience is most active tonight — keep momentum on the feed</span></div>
+              <div class="hq-move-meta"><div class="pts">+20 HQ</div></div>
+            </div>
+          </div>
+          <div class="hq-health">All systems green · 14-day streak</div>
+        </div>
+
+        <div class="hq-panel" id="hqAnalyticsPanel">
           <div class="hq-h">📈 Your Analytics</div>
           <div class="hq-tabs" id="hqMetricTabs">
             <button type="button" class="hq-tab on" data-metric="plays">Plays</button>
@@ -505,8 +612,8 @@
           <div class="hq-pills" id="hqPeriodPills">
             <button type="button" class="hq-pill on" data-period="7d">7d</button>
             <button type="button" class="hq-pill" data-period="30d">30d</button>
-            <button type="button" class="hq-pill" data-period="90d">90d</button>
-            <button type="button" class="hq-pill" data-period="all">All</button>
+            <button type="button" class="hq-pill locked" data-period="90d" title="Unlocks at launch">90d</button>
+            <button type="button" class="hq-pill locked" data-period="all" title="Pro subscription">All</button>
           </div>
           <div class="hq-chart" aria-hidden="true">
             <svg id="hqChart" viewBox="0 0 400 100" preserveAspectRatio="none"></svg>
@@ -516,29 +623,29 @@
             <div class="hq-stat"><b id="hqStatPeak">8.4K</b><span>Peak</span></div>
             <div class="hq-stat"><span class="up" id="hqStatDelta">▲ 22%</span><span>vs last week</span></div>
           </div>
-          <p class="hq-hint">Meeting mode keeps HQ focused on analytics — flip it off to unlock tabs, fan systems, and the full command center.</p>
+          <p class="hq-hint">Meeting Mode keeps HQ focused on analytics — turn it off to unlock tabs, fan systems, and the full command center.</p>
         </div>
 
-        <div class="hq-panel" id="hqMasterPanel">
-          <div class="hq-tabs">
-            <button type="button" class="hq-tab on">Overview</button>
-            <button type="button" class="hq-tab">Trends</button>
-            <button type="button" class="hq-tab">Revenue</button>
-            <button type="button" class="hq-tab">Ops</button>
-            <button type="button" class="hq-tab">Connect</button>
+        <div class="hq-panel active" id="hqCommandPanel">
+          <div class="hq-tabs" id="hqNavTabs">
+            <button type="button" class="hq-tab on" data-tab="overview">Overview</button>
+            <button type="button" class="hq-tab" data-tab="trends">Trends</button>
+            <button type="button" class="hq-tab" data-tab="revenue">Revenue</button>
+            <button type="button" class="hq-tab locked" data-tab="ops" title="Unlocks at launch">Ops</button>
+            <button type="button" class="hq-tab locked" data-tab="connect" title="Pro subscription">Connect</button>
           </div>
-          <div class="hq-h" style="font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-top:4px">Master Stats</div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Tap a domain — full detail lives in tabs below.</p>
-          <div class="hq-grid">
-            <div class="hq-tile"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+8%</span></div>
-            <div class="hq-tile"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">48.2K</div><span class="del">+22%</span></div>
-            <div class="hq-tile"><span class="em">💬</span><span class="lbl">Engage</span><div class="val">4.7%</div><span class="del">+0.3%</span></div>
-            <div class="hq-tile"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$821</div><span class="del">+31%</span></div>
-            <div class="hq-tile"><span class="em">🛒</span><span class="lbl">Listings</span><div class="val">6</div><span class="del">+2</span></div>
-            <div class="hq-tile"><span class="em">🤝</span><span class="lbl">Open</span><div class="val">3</div><span class="del neu">0</span></div>
-            <div class="hq-tile"><span class="em">🎟</span><span class="lbl">Soon</span><div class="val">4</div><span class="del">+1</span></div>
-            <div class="hq-tile"><span class="em">⚡</span><span class="lbl">HQ</span><div class="val">782</div><span class="del">+24</span></div>
-            <div class="hq-tile"><span class="em">🔗</span><span class="lbl">Links</span><div class="val">0</div><span class="del neu">—</span></div>
+          <div class="hq-h" style="font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-top:2px">Master Stats</div>
+          <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px">Tap a domain — full detail lives in tabs below.</p>
+          <div class="hq-grid" id="hqGrid">
+            <div class="hq-tile" data-domain="fans"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+8%</span></div>
+            <div class="hq-tile" data-domain="plays"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">48.2K</div><span class="del">+22%</span></div>
+            <div class="hq-tile" data-domain="engage"><span class="em">💬</span><span class="lbl">Engage</span><div class="val">4.7%</div><span class="del">+0.3%</span></div>
+            <div class="hq-tile" data-domain="rev"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$821</div><span class="del">+31%</span></div>
+            <div class="hq-tile" data-domain="listings"><span class="em">🛒</span><span class="lbl">Listings</span><div class="val">6</div><span class="del">+2</span></div>
+            <div class="hq-tile" data-domain="open"><span class="em">🤝</span><span class="lbl">Open</span><div class="val">3</div><span class="del neu">0</span></div>
+            <div class="hq-tile" data-domain="soon"><span class="em">🎟</span><span class="lbl">Soon</span><div class="val">4</div><span class="del">+1</span></div>
+            <div class="hq-tile" data-domain="hq"><span class="em">⚡</span><span class="lbl">HQ</span><div class="val">10K</div><span class="del">+124</span></div>
+            <div class="hq-tile locked" data-domain="links"><span class="em">🔗</span><span class="lbl">Links</span><div class="val">—</div><span class="del neu">Launch</span></div>
           </div>
         </div>
       </div>
@@ -1019,36 +1126,55 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ---- STĀGE HQ live demo ---- */
 (function(){
+  const demo = document.getElementById('hqDemo');
   const toggle = document.getElementById('hqMeetingToggle');
   const analytics = document.getElementById('hqAnalyticsPanel');
-  const master = document.getElementById('hqMasterPanel');
-  if(!toggle || !analytics || !master) return;
+  const command = document.getElementById('hqCommandPanel');
+  const brief = document.getElementById('hqBrief');
+  const movesBlock = document.getElementById('hqMovesBlock');
+  const toast = document.getElementById('hqToast');
+  if(!demo || !toggle) return;
+
+  let toastTimer;
+  function showHqToast(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=> toast.classList.remove('show'), 2400);
+  }
+
+  const spark = document.getElementById('hqSpark');
+  if(spark){
+    [3,5,8,6,9,7,10].forEach((h,i)=>{
+      const bar = document.createElement('i');
+      bar.style.height = (h*2.2)+'px';
+      bar.style.opacity = h < 6 ? '.55' : '1';
+      spark.appendChild(bar);
+    });
+  }
+
+  const player = document.getElementById('hqPlayer');
+  const playBtn = document.getElementById('hqPlayBtn');
+  let hqPlaying = false;
+  function setHqPlay(on){
+    hqPlaying = on;
+    player?.classList.toggle('playing', on);
+  }
+  playBtn?.addEventListener('click', e=>{ e.stopPropagation(); setHqPlay(!hqPlaying); });
+  player?.addEventListener('click', ()=> setHqPlay(!hqPlaying));
+  player?.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setHqPlay(!hqPlaying); }});
+
+  document.getElementById('hqBell')?.addEventListener('click', ()=> showHqToast('5 notifications · unlocks at launch'));
+  document.getElementById('hqPlus')?.addEventListener('click', ()=> showHqToast('Create menu · coming with early access'));
+  document.getElementById('hqScoreBtn')?.addEventListener('click', ()=> showHqToast('💎 Diamond · 2000+ HQ · verified + exclusive marketplace'));
+  document.getElementById('hqMovesAll')?.addEventListener('click', e=>{ e.preventDefault(); showHqToast('Full next moves · in the app at launch'); });
 
   const series = {
-    plays: {
-      '7d': [4200,5100,4800,6200,7100,8400,7600],
-      '30d': [3200,3800,4100,4500,5200,5800,6400,6800,7200,7600],
-      '90d': [2100,2400,2800,3100,3500,3900,4200,4600,5000,5400,5800,6200],
-      all: [800,1200,1600,2100,2800,3400,4100,4800,5600,6400,7200,8000]
-    },
-    revenue: {
-      '7d': [42,55,48,62,71,88,82],
-      '30d': [28,32,38,44,52,58,64,70,76,82],
-      '90d': [12,18,22,28,34,40,48,55,62,70,76,82],
-      all: [4,8,12,18,24,32,42,52,62,72,78,82]
-    },
-    followers: {
-      '7d': [11800,11950,12020,12100,12200,12350,12400],
-      '30d': [10200,10600,10900,11200,11500,11800,12000,12150,12300,12400],
-      '90d': [8200,8800,9400,9800,10200,10600,11000,11400,11800,12100,12300,12400],
-      all: [2400,3200,4100,5200,6400,7800,9200,10400,11200,11800,12200,12400]
-    },
-    engage: {
-      '7d': [4.1,4.2,4.3,4.4,4.5,4.6,4.7],
-      '30d': [3.8,3.9,4.0,4.1,4.2,4.3,4.4,4.5,4.6,4.7],
-      '90d': [3.2,3.4,3.5,3.6,3.8,3.9,4.0,4.1,4.2,4.3,4.5,4.7],
-      all: [2.1,2.4,2.8,3.1,3.4,3.7,4.0,4.2,4.4,4.5,4.6,4.7]
-    }
+    plays: { '7d': [4200,5100,4800,6200,7100,8400,7600], '30d': [3200,4500,5200,6400,7200,7600] },
+    revenue: { '7d': [42,55,48,62,71,88,82], '30d': [28,38,52,64,76,82] },
+    followers: { '7d': [11800,11950,12020,12100,12200,12350,12400], '30d': [10200,10900,11500,12000,12400] },
+    engage: { '7d': [4.1,4.2,4.3,4.4,4.5,4.6,4.7], '30d': [3.8,4.0,4.2,4.4,4.6,4.7] }
   };
   const meta = {
     plays: { fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v), delta: '▲ 22%', peakLabel: 'Sat' },
@@ -1056,7 +1182,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     followers: { fmt: v => v >= 1000 ? (v/1000).toFixed(1).replace(/\.0$/,'')+'K' : String(v), delta: '▲ 8%', peakLabel: 'Sun' },
     engage: { fmt: v => v.toFixed(1)+'%', delta: '▲ 0.3%', peakLabel: 'Sun' }
   };
-
   let metric = 'plays', period = '7d';
 
   function drawChart(values){
@@ -1071,16 +1196,15 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       return `${x},${y}`;
     }).join(' ');
     const area = `M${pad},${h-pad} L${pts.split(' ').join(' L')} L${w-pad},${h-pad} Z`;
-    svg.innerHTML = `<defs><linearGradient id="hqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".45"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#hqG)"/><polyline points="${pts}" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    svg.innerHTML = `<defs><linearGradient id="hqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".5"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#hqG)"/><polyline points="${pts}" fill="none" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
   }
 
   function refreshAnalytics(){
     const vals = series[metric][period];
+    if(!vals) return;
     const m = meta[metric];
-    const total = vals[vals.length-1];
-    const peak = Math.max(...vals);
-    document.getElementById('hqStatTotal').textContent = m.fmt(total);
-    document.getElementById('hqStatPeak').textContent = m.fmt(peak) + (period === '7d' ? ' ('+m.peakLabel+')' : '');
+    document.getElementById('hqStatTotal').textContent = m.fmt(vals[vals.length-1]);
+    document.getElementById('hqStatPeak').textContent = m.fmt(Math.max(...vals)) + (period === '7d' ? ' ('+m.peakLabel+')' : '');
     document.getElementById('hqStatDelta').textContent = m.delta;
     drawChart(vals);
   }
@@ -1089,7 +1213,9 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     toggle.classList.toggle('on', on);
     toggle.setAttribute('aria-checked', on);
     analytics.classList.toggle('active', on);
-    master.classList.toggle('active', !on);
+    command.classList.toggle('active', !on);
+    if(movesBlock) movesBlock.style.display = on ? 'none' : '';
+    if(on) refreshAnalytics();
   }
   toggle.addEventListener('click', ()=> setMeeting(!toggle.classList.contains('on')));
 
@@ -1103,9 +1229,48 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   document.getElementById('hqPeriodPills')?.addEventListener('click', e=>{
     const btn = e.target.closest('[data-period]');
     if(!btn) return;
+    if(btn.classList.contains('locked')){ showHqToast(btn.title || 'Unlocks with early access'); return; }
     period = btn.dataset.period;
     document.querySelectorAll('#hqPeriodPills .hq-pill').forEach(t=> t.classList.toggle('on', t === btn));
     refreshAnalytics();
+  });
+
+  document.querySelectorAll('.hq-kpi[data-metric]').forEach(kpi=>{
+    kpi.addEventListener('click', ()=>{
+      const m = kpi.dataset.metric;
+      if(toggle.classList.contains('on')){
+        metric = m;
+        document.querySelectorAll('#hqMetricTabs .hq-tab').forEach(t=> t.classList.toggle('on', t.dataset.metric === m));
+        refreshAnalytics();
+      } else {
+        setMeeting(true);
+        metric = m;
+        document.querySelectorAll('#hqMetricTabs .hq-tab').forEach(t=> t.classList.toggle('on', t.dataset.metric === m));
+        refreshAnalytics();
+      }
+    });
+  });
+
+  document.getElementById('hqNavTabs')?.addEventListener('click', e=>{
+    const btn = e.target.closest('[data-tab]');
+    if(!btn) return;
+    if(btn.classList.contains('locked')){ showHqToast(btn.title || 'Available at launch'); return; }
+    document.querySelectorAll('#hqNavTabs .hq-tab').forEach(t=> t.classList.toggle('on', t === btn));
+    showHqToast(btn.dataset.tab.charAt(0).toUpperCase() + btn.dataset.tab.slice(1) + ' tab · full view in app');
+  });
+
+  document.querySelectorAll('.hq-tile[data-domain]').forEach(tile=>{
+    tile.addEventListener('click', ()=>{
+      if(tile.classList.contains('locked')){ showHqToast('Links hub · unlocks at launch'); return; }
+      const d = tile.dataset.domain;
+      if(d === 'hq') showHqToast('Hype Qualifications · Diamond tier active');
+      else if(d === 'soon') showHqToast('4 events on deck · ticket system live at launch');
+      else showHqToast(d.charAt(0).toUpperCase() + d.slice(1) + ' · drill-down in STĀGE HQ');
+    });
+  });
+
+  document.querySelectorAll('.hq-move[data-move]').forEach(m=>{
+    m.addEventListener('click', ()=> showHqToast('Next move · complete in app at launch (+HQ)'));
   });
 
   refreshAnalytics();
