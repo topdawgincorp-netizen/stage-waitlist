@@ -123,7 +123,10 @@
     .hero-intro .sub{font-size:13px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
     .hero-cta-block{margin:14px 0;padding:12px 0}
     .ea-letter{font-size:clamp(28px,8vw,42px)}
-    .hero-signup-block{padding-top:0}
+    .hero-signup-block{padding-top:0;max-width:100%}
+    .capture{display:grid;grid-template-columns:1fr;gap:8px;width:100%;max-width:440px;margin-left:auto;margin-right:auto}
+    .capture input{min-width:0;width:100%}
+    .capture-btn{width:100%;text-align:center;padding:12px 16px}
     .countdown .unit{min-width:56px;padding:8px 4px}
     section{padding:16px 0}
     .section-sub{margin-bottom:14px;font-size:13.5px}
@@ -270,15 +273,19 @@
   .post-card .manifesto-punch{font-family:var(--display);font-weight:800;font-size:clamp(16px,2.3vw,19px);line-height:1.4;text-align:left;max-width:none;margin:0 0 14px;background:linear-gradient(90deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hashtags{color:var(--accent);font-weight:600;font-size:14.5px;margin:0 0 16px}
 
-  .music-card{display:grid;grid-template-columns:52px 1fr 46px;align-items:center;gap:11px;background:linear-gradient(135deg,#1c1c2a 0%,#222238 100%);border:1px solid rgba(167,139,250,.16);border-radius:14px;padding:10px 11px;margin-bottom:12px;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
+  .music-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;background:linear-gradient(135deg,#1c1c2a 0%,#222238 100%);border:1px solid rgba(167,139,250,.16);border-radius:14px;padding:12px;margin-bottom:12px;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
   .music-card:hover{border-color:rgba(167,139,250,.38);box-shadow:0 10px 28px -14px rgba(167,139,250,.4)}
-  .albumart{width:52px;height:52px;flex:none;border-radius:10px;background:linear-gradient(145deg,#9f8cff 0%,#ff7eb3 100%);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 16px -8px rgba(167,139,250,.55)}
-  .albumart svg{width:22px;height:22px;opacity:.95}
-  .track-col{min-width:0}
-  .track-title-line{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-bottom:2px}
-  .drop-badge{font-family:var(--display);font-weight:800;font-size:8.5px;letter-spacing:.55px;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#ff5e8a,#c084fc);padding:2px 7px;border-radius:999px;flex-shrink:0;line-height:1.35;box-shadow:0 2px 8px -2px rgba(255,94,138,.45)}
-  .track-title{font-family:var(--display);font-weight:700;font-size:14.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .track-meta{font-size:11.5px;color:var(--muted);margin-bottom:6px}
+  .music-art-wrap{position:relative;width:56px;flex-shrink:0;align-self:center}
+  .albumart{width:56px;height:56px;border-radius:11px;background:linear-gradient(145deg,#a78bfa 0%,#f57fb0 100%);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 18px -8px rgba(167,139,250,.5)}
+  .albumart svg{width:24px;height:24px;opacity:.95}
+  .newdrop{position:absolute;left:-4px;bottom:-5px;font-family:var(--display);font-weight:800;font-size:7px;letter-spacing:.35px;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#ff5e8a,#a78bfa);padding:3px 6px;border-radius:5px;white-space:nowrap;line-height:1.2;box-shadow:0 3px 10px -2px rgba(255,94,138,.5)}
+  .track-col{min-width:0;align-self:center}
+  .track-title{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.25;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track-meta{font-size:11.5px;color:var(--muted);margin-bottom:7px}
+  .ethos.expand-post .music-card{padding:13px 12px 14px;align-items:center}
+  .ethos.expand-post .music-art-wrap{width:58px}
+  .ethos.expand-post .albumart{width:58px;height:58px;border-radius:12px}
+  .ethos.expand-post .track-title{white-space:normal;overflow:visible;text-overflow:unset;font-size:15.5px}
   .wavebar{display:flex;align-items:flex-end;gap:3px;height:18px}
   .wb{width:3px;border-radius:2px;background:var(--accent);opacity:.5;transform-origin:bottom}
   .wavebar.playing .wb{opacity:1;animation:wbplay .85s ease-in-out infinite}
@@ -320,14 +327,20 @@
   .collab-demo::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 0%,rgba(124,111,255,.12),transparent 70%);pointer-events:none}
   .collab-toast{position:absolute;top:10px;left:50%;transform:translateX(-50%) translateY(-6px);background:#202036;border:1px solid var(--line);color:var(--green);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;white-space:nowrap;z-index:4}
   .collab-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  .collab-pipeline{position:relative;z-index:1;margin-bottom:10px}
-  .collab-pipe-cap{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:6px}
-  .collab-pipe-track{height:3px;margin:0 8% 8px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
-  .collab-pipe-fill{height:100%;width:6%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .45s cubic-bezier(.2,.8,.2,1)}
-  .collab-pipe-nodes{display:flex;justify-content:space-between;gap:2px}
-  .collab-pipe-nodes span{flex:1;text-align:center;font-size:8px;font-weight:600;color:var(--muted);transition:color .25s ease}
-  .collab-pipe-nodes span.on{color:var(--green)}
-  .collab-pipe-nodes span.hot{color:var(--accent);font-weight:700}
+  .collab-pipeline{position:relative;z-index:1;margin-bottom:12px;padding:10px 8px 8px;background:rgba(8,8,16,.55);border:1px solid rgba(167,139,250,.14);border-radius:14px}
+  .collab-pipe-cap{display:flex;align-items:center;justify-content:center;gap:6px;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px}
+  .collab-pipe-cap .live-dot{width:6px;height:6px}
+  .collab-pipe-track{position:relative;height:4px;margin:0 6% 10px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+  .collab-pipe-fill{height:100%;width:6%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 12px rgba(77,255,180,.35)}
+  .collab-pipe-nodes{display:flex;justify-content:space-between;gap:2px;padding:0 2px}
+  .collab-node{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .collab-node-ic{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:13px;background:#1a1a28;border:1px solid rgba(255,255,255,.1);color:var(--muted);transition:border-color .25s ease, background .25s ease, box-shadow .25s ease, color .25s ease}
+  .collab-node.on .collab-node-ic{border-color:rgba(77,255,180,.45);background:rgba(77,255,180,.08);color:var(--green)}
+  .collab-node.hot .collab-node-ic{border-color:var(--accent);background:rgba(167,139,250,.15);color:var(--accent);box-shadow:0 0 14px rgba(167,139,250,.35);animation:nodeGlow 2s ease-in-out infinite}
+  @keyframes nodeGlow{0%,100%{box-shadow:0 0 10px rgba(167,139,250,.25)}50%{box-shadow:0 0 18px rgba(77,255,180,.4)}}
+  .collab-node-lbl{font-size:7.5px;font-weight:700;letter-spacing:.2px;color:var(--muted);text-transform:uppercase;transition:color .25s ease}
+  .collab-node.on .collab-node-lbl{color:var(--green)}
+  .collab-node.hot .collab-node-lbl{color:var(--accent)}
   .collab-coach{position:relative;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(8,8,16,.92);border:1px dashed rgba(77,255,180,.35);border-radius:12px;padding:8px 10px;margin-bottom:10px;animation:coachPulse 2.4s ease-in-out infinite}
   @keyframes coachPulse{0%,100%{border-color:rgba(77,255,180,.25)}50%{border-color:rgba(77,255,180,.55)}}
   .collab-coach.hidden{display:none}
@@ -335,7 +348,8 @@
   @keyframes coachSwipe{0%,100%{transform:translateX(0)}35%{transform:translateX(-8px)}65%{transform:translateX(8px)}}
   .collab-coach p{flex:1;font-size:11.5px;line-height:1.35;color:var(--text);margin:0}
   .collab-coach button{flex:none;background:rgba(77,255,180,.12);border:1px solid rgba(77,255,180,.35);color:var(--green);font-family:var(--display);font-weight:700;font-size:10px;padding:6px 10px;border-radius:999px;cursor:pointer}
-  .collab-deck{position:relative;height:248px;margin:0 auto 10px;max-width:340px;touch-action:none;user-select:none}
+  .collab-deck{position:relative;height:248px;margin:0 auto 10px;max-width:340px;touch-action:none;user-select:none;border-radius:18px}
+  .collab-deck::after{content:"";position:absolute;inset:-1px;border-radius:18px;background:linear-gradient(135deg,rgba(167,139,250,.25),rgba(77,255,180,.15));opacity:.45;z-index:-1;pointer-events:none}
   .collab-card{position:absolute;inset:0;background:#1a1a28;border:1px solid rgba(167,139,250,.22);border-radius:16px;overflow:hidden;cursor:grab;will-change:transform;transition:box-shadow .2s ease}
   .collab-card.dragging{cursor:grabbing;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
   .collab-card-back{position:absolute;inset:4px 6px auto;bottom:auto;height:calc(100% - 8px);background:#161622;border-radius:14px;transform:scale(.96) translateY(8px);z-index:0;opacity:.7}
@@ -374,7 +388,7 @@
     .explore-rail a{font-size:10px;padding:7px 4px}
   }
   @media(prefers-reduced-motion:reduce){
-    .collab-coach,.coach-hand{animation:none}
+    .collab-coach,.coach-hand,.collab-node.hot .collab-node-ic{animation:none}
   }
 
   /* ---- Feature showcase ---- */
@@ -638,7 +652,7 @@
 <div class="wrap">
   <nav>
     <span class="logo">STĀGE</span>
-    <a href="#join" class="nav-cta to-form">Claim spot + reward</a>
+    <a href="#join" class="nav-cta to-form">Get on the list</a>
   </nav>
 
   <!-- HERO -->
@@ -728,14 +742,14 @@
       <p class="hashtags">#OwnYourSound #NoMiddleman #STĀGE</p>
 
       <div class="music-card" id="musicCard">
-        <div class="albumart" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.6" fill="#fff"/><circle cx="16.5" cy="16" r="2.6" fill="#fff"/></svg>
+        <div class="music-art-wrap">
+          <div class="albumart" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.6" fill="#fff"/><circle cx="16.5" cy="16" r="2.6" fill="#fff"/></svg>
+          </div>
+          <span class="newdrop">New drop</span>
         </div>
         <div class="track-col">
-          <div class="track-title-line">
-            <span class="drop-badge">New drop</span>
-            <span class="track-title">Own It — The Anthem</span>
-          </div>
+          <div class="track-title">Own It — The Anthem</div>
           <div class="track-meta" id="trackMeta">STĀGE · 8.2K plays · 2:26</div>
           <div class="wavebar" id="wavebar">
             <span class="wb" style="height:7px"></span><span class="wb" style="height:12px"></span><span class="wb" style="height:9px"></span><span class="wb" style="height:15px"></span><span class="wb" style="height:8px"></span><span class="wb" style="height:13px"></span><span class="wb" style="height:6px"></span><span class="wb" style="height:14px"></span><span class="wb" style="height:10px"></span><span class="wb" style="height:16px"></span><span class="wb" style="height:7px"></span><span class="wb" style="height:11px"></span><span class="wb" style="height:9px"></span><span class="wb" style="height:13px"></span><span class="wb" style="height:8px"></span><span class="wb" style="height:12px"></span>
@@ -779,14 +793,14 @@
       <div class="collab-toast" id="collabToast" role="status" aria-live="polite"></div>
 
       <div class="collab-pipeline" id="collabPipeline" aria-label="Collaboration phases">
-        <p class="collab-pipe-cap" id="collabPipeCap">Find · Agree · Build · Rate · Rep</p>
+        <p class="collab-pipe-cap" id="collabPipeCap"><span class="live-dot" aria-hidden="true"></span> Live · your collab path</p>
         <div class="collab-pipe-track"><div class="collab-pipe-fill" id="collabPipeFill"></div></div>
         <div class="collab-pipe-nodes" id="collabPipeNodes">
-          <span data-i="0" class="on hot">Find</span>
-          <span data-i="1">Agree</span>
-          <span data-i="2">Build</span>
-          <span data-i="3">Rate</span>
-          <span data-i="4">Rep</span>
+          <div class="collab-node on hot" data-i="0"><span class="collab-node-ic">⌕</span><span class="collab-node-lbl">Find</span></div>
+          <div class="collab-node" data-i="1"><span class="collab-node-ic">📄</span><span class="collab-node-lbl">Agree</span></div>
+          <div class="collab-node" data-i="2"><span class="collab-node-ic">🔨</span><span class="collab-node-lbl">Build</span></div>
+          <div class="collab-node" data-i="3"><span class="collab-node-ic">★</span><span class="collab-node-lbl">Rate</span></div>
+          <div class="collab-node" data-i="4"><span class="collab-node-ic">⚡</span><span class="collab-node-lbl">Rep</span></div>
         </div>
       </div>
 
@@ -833,7 +847,7 @@
         <button type="button" class="ca-apply" id="collabApplyBtn">Apply →</button>
       </div>
 
-      <div class="collab-contract-flash" id="collabContract" hidden>📄 Agreement phase — sign the contract &amp; open your project room</div>
+      <div class="collab-contract-flash" id="collabContract" hidden>Phase unlocked — terms aligned, room opening…</div>
     </div>
     </div>
   </section>
@@ -1011,12 +1025,12 @@
   <section class="reveal collapse-section" id="inside">
     <button type="button" class="collapse-toggle" id="insideCollapseBtn" aria-expanded="false">
       <b>Built on STĀGE</b>
-      <span>Six core paths — collabs, events, ownership, release, audience &amp; more</span>
+      <span>Six doors opening — collabs, events, ownership &amp; more waiting inside</span>
     </button>
     <div class="collapse-body">
     <div class="kicker">Behind the curtain</div>
-    <h2 class="section-title">Everything STĀGE is building for you</h2>
-    <p class="section-sub">Collabs, events, ownership, release, audience, and career control — six ways STĀGE puts the industry in your hands.</p>
+    <h2 class="section-title">What STĀGE holds for you</h2>
+    <p class="section-sub">Collabs, events, ownership — and a few things we’re not naming yet. Six paths. One stage. All yours.</p>
 
     <div class="features">
 
@@ -1118,14 +1132,14 @@
   <!-- JOIN / FORM -->
   <section id="join" class="form-section reveal">
     <div class="form-wrap">
-      <div class="form-kicker">Be first + get your exclusive reward</div>
+      <div class="form-kicker">Join the waitlist</div>
       <div class="form-title">Get on the list</div>
-      <p class="form-intro">A few quick questions — your answers shape what we build first. Join early access and lock in something exclusive, just for waitlist creators:</p>
+      <p class="form-intro">A few quick questions — then early access and your exclusive founders gift are locked in.</p>
 
       <div class="steps">
-        <div class="step"><span class="step-n">1</span><div class="step-tx"><b>Reserve your spot</b><span>Your email locks in your STĀGE account and your exclusive early-access reward.</span></div></div>
-        <div class="step"><span class="step-n">2</span><div class="step-tx"><b>Get your invite</b><span>At launch we send your private link, download for iOS, Android, or web, and details on your reward.</span></div></div>
-        <div class="step"><span class="step-n">3</span><div class="step-tx"><b>Step on STĀGE</b><span>Finish your profile, go live with early access, and redeem the exclusive gift waiting for you.</span></div></div>
+        <div class="step"><span class="step-n">1</span><div class="step-tx"><b>Reserve your spot</b><span>Your email secures your place — and something exclusive, just for waitlist creators.</span></div></div>
+        <div class="step"><span class="step-n">2</span><div class="step-tx"><b>Get your invite</b><span>When doors open, your private link arrives — plus a hint at what’s waiting for you.</span></div></div>
+        <div class="step"><span class="step-n">3</span><div class="step-tx"><b>Step on STĀGE</b><span>Go live with early access and claim the founders gift reserved for your name.</span></div></div>
       </div>
 
       <div class="field">
@@ -1201,7 +1215,7 @@
       </div>
 
       <button class="submit" id="submitBtn" type="button">Save my spot + reward →</button>
-      <p class="form-note">Early access locked in — plus your exclusive waitlist reward and a real say in what we build.</p>
+      <p class="form-note">Early access locked in — and a founders gift with your name on it.</p>
       <div class="form-msg" id="formMsg" role="status"></div>
     </div>
   </section>
@@ -1519,14 +1533,14 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function setPipeline(phase){
     pipePhase = Math.min(4, Math.max(0, phase));
     if(pipeFill) pipeFill.style.width = `${(pipePhase / 4) * 100}%`;
-    pipeNodes?.querySelectorAll('span').forEach(span=>{
-      const i = +span.dataset.i;
-      span.classList.toggle('on', i <= pipePhase);
-      span.classList.toggle('hot', i === pipePhase);
+    pipeNodes?.querySelectorAll('.collab-node').forEach(node=>{
+      const i = +node.dataset.i;
+      node.classList.toggle('on', i <= pipePhase);
+      node.classList.toggle('hot', i === pipePhase);
     });
-    const caps = ['Find your match','Agreement & contract','Build in project room','Rate the collab','Grow your rep'];
+    const caps = ['Discovering your match…','Aligning terms…','Building together…','Closing the loop…','Leveling your rep…'];
     const capEl = document.getElementById('collabPipeCap');
-    if(capEl) capEl.textContent = `${caps[pipePhase]} · Find · Agree · Build · Rate · Rep`;
+    if(capEl) capEl.innerHTML = `<span class="live-dot" aria-hidden="true"></span> ${caps[pipePhase]}`;
   }
 
   function renderCard(){
@@ -1579,7 +1593,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       card.style.transform = 'translateX(120%) rotate(12deg)';
       setPipeline(Math.max(pipePhase, 1));
       if(contract){ contract.hidden = false; setTimeout(()=>{ contract.hidden = true; }, 3600); }
-      showToast('Applied ✓ — contract phase unlocked');
+      showToast('Applied ✓ — next phase unlocked');
     } else {
       card.style.transform = 'translateY(-130%) scale(1.04)';
       setPipeline(Math.max(pipePhase, 1));
