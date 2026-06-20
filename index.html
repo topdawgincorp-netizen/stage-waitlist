@@ -34,6 +34,7 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:12px}
+  @media(max-width:680px){html{scroll-padding-top:56px}}
   body{
     background:var(--bg);color:var(--text);
     font-family:var(--body);font-size:17px;line-height:1.65;
@@ -48,9 +49,128 @@
       radial-gradient(50% 60% at 50% 110%, rgba(245,200,66,0.10), transparent 60%);
     animation:drift 18s ease-in-out infinite alternate;
   }
+  .scroll-beam{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(180deg,transparent 0%,transparent 42%,rgba(167,139,250,.06) 68%,rgba(77,255,180,.1) 100%);
+    opacity:0;transition:opacity .4s ease;
+  }
+  body.show-scroll-cue .scroll-beam{opacity:1}
   @keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(0,-2%,0) scale(1.08)}}
 
-  .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+
+  /* scroll cue + mobile conversion */
+  .scroll-hint{
+    display:none;text-decoration:none;text-align:center;padding:10px 0 4px;color:var(--muted);
+    font-size:12px;font-weight:600;letter-spacing:.3px;transition:opacity .35s ease, transform .35s ease;
+  }
+  .scroll-hint span{display:block;margin-bottom:4px;color:var(--green)}
+  .scroll-hint svg{width:20px;height:20px;fill:var(--green);animation:nudgeDown 1.8s ease-in-out infinite}
+  @keyframes nudgeDown{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(5px);opacity:1}}
+  .scroll-hint.hidden{opacity:0;transform:translateY(-6px);pointer-events:none}
+
+  .explore-rail{
+    display:none;position:sticky;top:6px;z-index:12;margin:0 -4px 12px;
+    padding:5px;background:rgba(8,8,16,.88);backdrop-filter:blur(12px);
+    border:1px solid rgba(167,139,250,.18);border-radius:999px;gap:4px;
+  }
+  .explore-rail a{
+    flex:1;text-align:center;text-decoration:none;font-family:var(--display);font-weight:700;
+    font-size:11px;letter-spacing:.3px;color:var(--muted);padding:8px 6px;border-radius:999px;transition:background .15s ease, color .15s ease;
+  }
+  .explore-rail a.on{background:rgba(77,255,180,.12);color:var(--green)}
+
+  .collapse-toggle{
+    display:none;width:100%;margin:0 auto 10px;max-width:560px;
+    background:rgba(26,26,40,.9);border:1px solid rgba(167,139,250,.2);border-radius:14px;
+    padding:12px 14px;cursor:pointer;font-family:inherit;color:var(--text);text-align:left;
+  }
+  .collapse-toggle b{display:block;font-family:var(--display);font-weight:800;font-size:14px;margin-bottom:2px}
+  .collapse-toggle span{font-size:12px;color:var(--muted)}
+  .collapse-toggle::after{content:"＋";float:right;font-size:18px;color:var(--accent);line-height:1.2}
+  .collapse-section.open .collapse-toggle::after{content:"−"}
+  .collapse-body{overflow:hidden;max-height:0;opacity:0;transition:max-height .45s ease, opacity .35s ease}
+  .collapse-section.open .collapse-body{max-height:4000px;opacity:1}
+
+  .mobile-cta{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:20;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background:linear-gradient(180deg,transparent,rgba(8,8,16,.92) 28%,rgba(8,8,16,.98));
+    transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1);
+    pointer-events:none;
+  }
+  .mobile-cta.show{transform:translateY(0);pointer-events:auto}
+  .mobile-cta a{
+    display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:800;
+    font-size:15px;color:var(--bg);background:linear-gradient(90deg,var(--accent),var(--green));
+    padding:14px;border-radius:12px;box-shadow:0 8px 32px -8px rgba(77,255,180,.5);
+  }
+
+  .contact-section{display:block}
+  .footer-socials{display:none;gap:10px;justify-content:center;margin-top:12px}
+  .footer-socials .social{width:42px;height:42px}
+
+  @media(max-width:680px){
+    .wrap{padding:0 16px}
+    header{padding:4px 0 8px;order:1}
+    .explore-wrap{order:2}
+    #join{order:3}
+    .contact-section{display:none}
+    footer{order:4}
+    .footer-socials{display:flex}
+
+    .hero-intro{margin-bottom:12px}
+    .hero-intro .sub{font-size:13px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .hero-cta-block{margin:14px 0;padding:12px 0}
+    .ea-letter{font-size:clamp(28px,8vw,42px)}
+    .hero-signup-block{padding-top:0}
+    .countdown .unit{min-width:56px;padding:8px 4px}
+    section{padding:16px 0}
+    .section-sub{margin-bottom:14px;font-size:13.5px}
+    .section-title{font-size:22px;margin-bottom:6px}
+
+    .scroll-hint{display:block}
+    .explore-rail{display:flex}
+    .collapse-toggle{display:block}
+
+    .ethos .post-lead{margin-top:0}
+    .post-card .manifesto,.post-card .manifesto-punch,.hashtags,.music-card{display:none}
+    .ethos.expand-post .post-card .manifesto,
+    .ethos.expand-post .post-card .manifesto-punch,
+    .ethos.expand-post .hashtags,
+    .ethos.expand-post .music-card{display:block}
+    .post-comments{display:none!important}
+    .ethos.expand-post .post-comments.open{display:block!important}
+    .post-expand-btn{
+      display:block;width:100%;margin:8px 0 0;background:none;border:1px dashed rgba(167,139,250,.35);
+      color:var(--accent);font-family:var(--display);font-weight:700;font-size:12px;
+      padding:10px;border-radius:10px;cursor:pointer;
+    }
+
+    .mobile-cta{display:block}
+
+    .features{grid-template-columns:1fr 1fr;gap:8px}
+    .fcard{padding:14px}
+    .fcard h3{font-size:14px}
+    .fcard p{font-size:12px;line-height:1.4}
+    .fmotif{height:36px;margin-bottom:8px}
+    .mid-cta{margin-top:14px}
+    .form-section{padding-top:0}
+    .form-wrap{padding:16px}
+    .steps{margin-bottom:12px}
+    body{padding-bottom:72px}
+  }
+
+  @media(min-width:681px){
+    header{order:1}
+    .explore-wrap{order:2}
+    #join{order:3}
+    .contact-section{order:4}
+    footer{order:5}
+    .post-expand-btn{display:none}
+    .collapse-toggle{display:none}
+    .collapse-section .collapse-body{max-height:none!important;opacity:1!important;overflow:visible}
+  }
 
   nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0 4px;position:relative;z-index:2}
   .logo{font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,24px);letter-spacing:1px;background:linear-gradient(90deg,var(--accent),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
@@ -440,7 +560,7 @@
     .ethos .post-card{opacity:1;transform:none;transition:none}
     .live-dot,.lc-dot::after{animation:none}
     .wavebar.playing .wb,.pa-like.liked{animation:none}
-    .ea-letter,.ea-splash,.hq-player.playing .hq-p-waves i{animation:none}
+    .ea-letter,.ea-splash,.hq-player.playing .hq-p-waves i,.scroll-hint svg{animation:none}
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
   }
@@ -449,6 +569,7 @@
 <body>
 
 <div class="stage-lights"></div>
+<div class="scroll-beam" aria-hidden="true"></div>
 
 <div class="wrap">
   <nav>
@@ -501,10 +622,23 @@
       </div>
       <p class="capture-note">Free on iOS, Android &amp; web — your invite arrives by email at launch.</p>
     </div>
+
+    <a href="#explore" class="scroll-hint" id="scrollHint">
+      <span>There’s more below the curtain</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-6-6h12z"/></svg>
+    </a>
   </header>
 
+  <div class="explore-wrap" id="explore">
+    <nav class="explore-rail" aria-label="Explore STĀGE">
+      <a href="#feed" data-sec="feed">Feed</a>
+      <a href="#hq" data-sec="hq">HQ</a>
+      <a href="#inside" data-sec="inside">Inside</a>
+      <a href="#join" data-sec="join" class="rail-join">Join</a>
+    </nav>
+
   <!-- ETHOS · rendered as a native STĀGE post -->
-  <section class="reveal ethos">
+  <section class="reveal ethos" id="feed">
     <div class="kicker">From the STĀGE feed</div>
     <div class="post-card" id="postCard">
       <div class="post-toast" id="postToast" role="status" aria-live="polite"></div>
@@ -553,6 +687,7 @@
         <button type="button" class="pa pa-tip" id="tipBtn" aria-label="Tip">💸 Tip</button>
         <button type="button" class="pa pa-save" id="saveBtn" aria-label="Save" aria-pressed="false">🔖</button>
       </div>
+      <button type="button" class="post-expand-btn" id="postExpandBtn" aria-expanded="false">Read full post</button>
       <div class="post-comments" id="postComments" aria-hidden="true">
         <div class="pc-row"><b>dj_franklinton</b><span>Tired of juggling five apps just to get paid and stay visible — finally feels like someone's building the room we actually need.</span></div>
         <div class="pc-row"><b>samples_and_cry</b><span>host + payout + opportunities in one app?? the dream tbh. pre-registered immediately</span></div>
@@ -563,7 +698,12 @@
   </section>
 
   <!-- STĀGE HQ LIVE DEMO -->
-  <section class="reveal">
+  <section class="reveal collapse-section" id="hq">
+    <button type="button" class="collapse-toggle" id="hqCollapseBtn" aria-expanded="false">
+      <b>Stage HQ · live demo</b>
+      <span>Tap to explore the command center — meeting mode, analytics &amp; stats</span>
+    </button>
+    <div class="collapse-body">
     <div class="kicker">Stage HQ</div>
     <h2 class="section-title">Your command center, live</h2>
     <p class="section-sub">A real slice of STĀGE HQ — play the track, flip Meeting Mode, explore the board. Some tools unlock at launch or with subscription.</p>
@@ -622,7 +762,7 @@
           </div>
           <div class="hq-kpis">
             <div class="hq-kpi" data-metric="plays"><b>54.6K</b><span>Plays</span><em>+18%</em></div>
-            <div class="hq-kpi" data-metric="revenue"><b>$943</b><span>Rev</span><em>+14%</em></div>
+            <div class="hq-kpi" data-metric="revenue"><b>$888</b><span>Rev</span><em>+14%</em></div>
             <div class="hq-kpi" data-metric="followers"><b>12.4K</b><span>Fans</span><em>+5%</em></div>
             <div class="hq-kpi" data-metric="engage"><b>4.7%</b><span>Engage</span><em class="down">−0.2%</em></div>
           </div>
@@ -711,9 +851,9 @@
           <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px">Tap a domain — full detail lives in tabs below.</p>
           <div class="hq-grid" id="hqGrid">
             <div class="hq-tile" data-domain="fans"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+5%</span></div>
-            <div class="hq-tile" data-domain="plays"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">51.8K</div><span class="del">+18%</span></div>
+            <div class="hq-tile" data-domain="plays"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">54.6K</div><span class="del">+18%</span></div>
             <div class="hq-tile" data-domain="engage"><span class="em">💬</span><span class="lbl">Engage</span><div class="val">4.7%</div><span class="del down">−0.2%</span></div>
-            <div class="hq-tile" data-domain="rev"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$943</div><span class="del">+14%</span></div>
+            <div class="hq-tile" data-domain="rev"><span class="em">💵</span><span class="lbl">Rev</span><div class="val">$888</div><span class="del">+14%</span></div>
             <div class="hq-tile" data-domain="listings"><span class="em">🛒</span><span class="lbl">Listings</span><div class="val">8</div><span class="del">+1</span></div>
             <div class="hq-tile" data-domain="collab"><span class="em">🤝</span><span class="lbl">Collabs</span><div class="val">3</div><span class="del">+1</span></div>
             <div class="hq-tile" data-domain="events"><span class="em">🎪</span><span class="lbl">Events</span><div class="val">4</div><span class="del">+1</span></div>
@@ -723,10 +863,16 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- FEATURE SHOWCASE -->
-  <section class="reveal">
+  <section class="reveal collapse-section" id="inside">
+    <button type="button" class="collapse-toggle" id="insideCollapseBtn" aria-expanded="false">
+      <b>What STĀGE unlocks</b>
+      <span>Six pillars — release, events, collabs, ownership &amp; more</span>
+    </button>
+    <div class="collapse-body">
     <div class="kicker">Behind the curtain</div>
     <h2 class="section-title">A glimpse of the stage</h2>
     <p class="section-sub">Release, audience, ownership — everything you've been building toward, finally in one place on STĀGE.</p>
@@ -823,7 +969,10 @@
     <div class="mid-cta">
       <a href="#join" class="cta-link to-form">Get on the list →</a>
     </div>
+    </div>
   </section>
+
+  </div><!-- /.explore-wrap -->
 
   <!-- JOIN / FORM -->
   <section id="join" class="form-section reveal">
@@ -917,7 +1066,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="reveal">
+  <section class="reveal contact-section">
     <h2 class="section-title">Get in touch</h2>
     <p class="section-sub">Questions, press, partnerships — reach out directly.</p>
     <div class="contact-row">
@@ -941,8 +1090,20 @@
 
   <footer>
     <span class="logo" style="font-size:18px">STĀGE</span>
+    <div class="footer-socials">
+      <a class="social" href="https://www.instagram.com/stage_nc?utm_source=qr" aria-label="Instagram @stage_nc" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-.97.04-1.5.21-1.85.34-.46.18-.8.4-1.15.74-.34.35-.56.69-.74 1.15-.13.35-.3.88-.34 1.85-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.97.21 1.5.34 1.85.18.46.4.8.74 1.15.35.34.69.56 1.15.74.35.13.88.3 1.85.34 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.97-.04 1.5-.21 1.85-.34.46-.18.8-.4 1.15-.74.34-.35.56-.69.74-1.15.13-.35.3-.88.34-1.85.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.97-.21-1.5-.34-1.85a3.1 3.1 0 00-.74-1.15 3.1 3.1 0 00-1.15-.74c-.35-.13-.88-.3-1.85-.34-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.3 5.3 0 110 10.6 5.3 5.3 0 010-10.6zm0 8.74a3.44 3.44 0 100-6.88 3.44 3.44 0 000 6.88zm5.5-8.95a1.24 1.24 0 11-2.48 0 1.24 1.24 0 012.48 0z"/></svg>
+      </a>
+      <a class="social" href="mailto:hello@stage-app.com" aria-label="Email hello@stage-app.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.5L12 13 4 6.5V6h16zM4 18V8.2l7.4 6.4a1 1 0 001.2 0L20 8.2V18H4z"/></svg>
+      </a>
+    </div>
     <p style="margin-top:10px">© <span id="year"></span> STĀGE. The stage is being built.</p>
   </footer>
+</div>
+
+<div class="mobile-cta" id="mobileCta" aria-hidden="true">
+  <a href="#join" class="to-form">Join the waitlist →</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1102,6 +1263,78 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---- Mobile scroll cues, sticky CTA, collapsible explore ---- */
+(function mobileUx(){
+  const hint = document.getElementById('scrollHint');
+  const mobileCta = document.getElementById('mobileCta');
+  const join = document.getElementById('join');
+  const header = document.querySelector('header');
+  const mq = window.matchMedia('(max-width:680px)');
+
+  function isMobile(){ return mq.matches; }
+  if(isMobile()) document.body.classList.add('show-scroll-cue');
+
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 48){
+      hint?.classList.add('hidden');
+      document.body.classList.remove('show-scroll-cue');
+    } else if(isMobile()){
+      document.body.classList.add('show-scroll-cue');
+    }
+    if(!mobileCta || !join || !header || !isMobile()) return;
+    const joinTop = join.getBoundingClientRect().top;
+    const pastHero = window.scrollY > header.offsetHeight * 0.85;
+    const formVisible = joinTop < window.innerHeight * 0.72;
+    mobileCta.classList.toggle('show', pastHero && !formVisible);
+    mobileCta.setAttribute('aria-hidden', !(pastHero && !formVisible));
+  }, {passive:true});
+
+  function bindCollapse(btnId, sectionId){
+    const btn = document.getElementById(btnId);
+    const sec = document.getElementById(sectionId);
+    if(!btn || !sec) return;
+    btn.addEventListener('click', ()=>{
+      if(!isMobile()) return;
+      const open = sec.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      if(open) setTimeout(()=> sec.scrollIntoView({behavior:'smooth', block:'start'}), 120);
+    });
+  }
+  bindCollapse('hqCollapseBtn','hq');
+  bindCollapse('insideCollapseBtn','inside');
+
+  const postExpand = document.getElementById('postExpandBtn');
+  const ethosSec = document.querySelector('.ethos');
+  postExpand?.addEventListener('click', ()=>{
+    const open = ethosSec?.classList.toggle('expand-post');
+    postExpand.setAttribute('aria-expanded', !!open);
+    postExpand.textContent = open ? 'Show less' : 'Read full post';
+  });
+
+  const railLinks = document.querySelectorAll('.explore-rail a[data-sec]');
+  const watchIds = ['feed','hq','inside','join'];
+  if('IntersectionObserver' in window && railLinks.length){
+    const railObs = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(!en.isIntersecting) return;
+        const id = en.target.id;
+        railLinks.forEach(a=> a.classList.toggle('on', a.dataset.sec === id));
+      });
+    }, {rootMargin:'-42% 0px -48% 0px', threshold:0});
+    watchIds.forEach(id=>{ const el = document.getElementById(id); if(el) railObs.observe(el); });
+  }
+
+  mq.addEventListener('change', e=>{
+    if(!e.matches){
+      document.body.classList.remove('show-scroll-cue');
+      mobileCta?.classList.remove('show');
+      document.querySelectorAll('.collapse-section').forEach(s=> s.classList.remove('open'));
+    } else {
+      document.body.classList.add('show-scroll-cue');
+    }
+  });
+})();
 
 /* ---- STĀGE feed post demo (interactive like the app) ---- */
 (function(){
