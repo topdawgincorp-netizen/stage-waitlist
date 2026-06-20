@@ -276,8 +276,8 @@
   .music-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;background:linear-gradient(135deg,#1c1c2a 0%,#222238 100%);border:1px solid rgba(167,139,250,.16);border-radius:14px;padding:12px;margin-bottom:12px;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
   .music-card:hover{border-color:rgba(167,139,250,.38);box-shadow:0 10px 28px -14px rgba(167,139,250,.4)}
   .music-art-wrap{position:relative;width:56px;flex-shrink:0;align-self:center}
-  .albumart{width:56px;height:56px;border-radius:11px;background:linear-gradient(145deg,#a78bfa 0%,#f57fb0 100%);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 18px -8px rgba(167,139,250,.5)}
-  .albumart svg{width:24px;height:24px;opacity:.95}
+  .albumart{width:56px;height:56px;border-radius:11px;overflow:hidden;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 18px -8px rgba(77,255,180,.35)}
+  .albumart svg,.hq-p-art svg{width:100%;height:100%;display:block}
   .newdrop{position:absolute;left:-4px;bottom:-5px;font-family:var(--display);font-weight:800;font-size:7px;letter-spacing:.35px;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#ff5e8a,#a78bfa);padding:3px 6px;border-radius:5px;white-space:nowrap;line-height:1.2;box-shadow:0 3px 10px -2px rgba(255,94,138,.5)}
   .track-col{min-width:0;align-self:center}
   .track-title{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.25;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -451,7 +451,7 @@
   .hq-player{flex:1;display:flex;align-items:center;gap:8px;background:rgba(26,26,40,.95);border:1px solid rgba(167,139,250,.18);border-radius:999px;padding:4px 10px 4px 4px;max-width:220px;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
   .hq-player:hover{border-color:rgba(77,255,180,.4);box-shadow:0 0 20px -6px rgba(77,255,180,.35)}
   .hq-player.playing{border-color:rgba(77,255,180,.5)}
-  .hq-p-art{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#a78bfa,#f57fb0);flex:none;display:grid;place-items:center;font-size:14px}
+  .hq-p-art{width:32px;height:32px;border-radius:9px;overflow:hidden;flex:none;box-shadow:0 2px 10px -4px rgba(77,255,180,.4)}
   .hq-p-txt{min-width:0;flex:1}
   .hq-p-txt b{display:block;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .hq-p-txt span{font-size:10px;color:var(--muted)}
@@ -567,6 +567,16 @@
   .hq-hint{font-size:11.5px;color:var(--muted);line-height:1.5;padding:10px 12px;background:rgba(26,26,40,.8);border-radius:10px;border:1px solid rgba(167,139,250,.1);margin-top:10px}
   .hq-toast{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(12px);background:rgba(20,20,32,.96);border:1px solid rgba(77,255,180,.35);color:var(--text);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:5;white-space:nowrap}
   .hq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .hq-guide{position:relative;z-index:2;margin-bottom:12px;padding:10px 12px;border-radius:14px;background:rgba(8,8,16,.92);border:1px dashed rgba(77,255,180,.35)}
+  .hq-guide.hidden{display:none}
+  .hq-guide-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .hq-guide-step{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
+  .hq-guide-skip{background:none;border:none;color:var(--muted);font-size:10px;font-weight:600;cursor:pointer;padding:2px 0}
+  .hq-guide-skip:hover{color:var(--text)}
+  .hq-guide-txt{font-size:12px;line-height:1.45;color:var(--text);margin:0 0 8px}
+  .hq-guide-next{width:100%;border:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:12px;color:#04121a;background:linear-gradient(90deg,var(--accent),var(--green));padding:9px;border-radius:10px}
+  .hq-spotlight{outline:2px solid rgba(77,255,180,.55)!important;outline-offset:2px;box-shadow:0 0 0 4px rgba(77,255,180,.12)!important;border-radius:12px;transition:outline .25s ease, box-shadow .25s ease}
+  .collab-opp-proof{font-size:10px;color:var(--green);font-weight:600;margin:-2px 0 8px;opacity:.9}
   .hq-demo{position:relative}
   @media(max-width:520px){
     .hq-player{max-width:160px}
@@ -744,7 +754,7 @@
       <div class="music-card" id="musicCard">
         <div class="music-art-wrap">
           <div class="albumart" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.6" fill="#fff"/><circle cx="16.5" cy="16" r="2.6" fill="#fff"/></svg>
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ownitBgF" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#12081f"/><stop offset="45%" stop-color="#2a1450"/><stop offset="100%" stop-color="#0a2820"/></linearGradient><linearGradient id="ownitNeonF" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#4dffb4"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#f5c842"/></linearGradient><radialGradient id="ownitGlowF" cx=".5" cy=".35" r=".6"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".35"/><stop offset="100%" stop-color="#12081f" stop-opacity="0"/></radialGradient></defs><rect width="64" height="64" fill="url(#ownitBgF)"/><rect width="64" height="64" fill="url(#ownitGlowF)"/><path d="M32 10 50 32 32 54 14 32Z" fill="none" stroke="url(#ownitNeonF)" stroke-width="2.2"/><path d="M32 20 42 32 32 44 22 32Z" fill="url(#ownitNeonF)" opacity=".22"/><path d="M16 46 Q32 36 48 46" fill="none" stroke="#4dffb4" stroke-width="1.1" opacity=".4"/><text x="32" y="35" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="8.5" font-weight="900" fill="#fff" letter-spacing="1.1">OWN IT</text></svg>
           </div>
           <span class="newdrop">New drop</span>
         </div>
@@ -817,25 +827,26 @@
         <div class="collab-stamp collab-stamp-super" id="collabStampSuper">SUPER</div>
         <div class="collab-card" id="collabCard">
           <div class="collab-banner" id="collabBanner">
-            <div class="collab-match" id="collabMatch">92%</div>
-            <div class="collab-banner-emoji" id="collabEmoji">🎹</div>
+            <div class="collab-match" id="collabMatch">88%</div>
+            <div class="collab-banner-emoji" id="collabEmoji">🎛</div>
             <div class="collab-tags" id="collabTags"></div>
           </div>
           <div class="collab-body">
             <div class="collab-poster">
-              <div class="collab-av" id="collabAv">YA</div>
+              <div class="collab-av" id="collabAv">KV</div>
               <div class="collab-poster-meta">
-                <b id="collabName">Yari</b>
-                <span id="collabHandle">@yari · verified</span>
+                <b id="collabName">Kilo Vee</b>
+                <span id="collabHandle">@kilovee · Atlanta</span>
               </div>
-              <div class="collab-hq"><span id="collabHq">880</span><small>HQ</small></div>
+              <div class="collab-hq"><span id="collabHq">742</span><small>HQ</small></div>
             </div>
-            <div class="collab-opp-title" id="collabTitle">Beat Producer — Yari's EP</div>
-            <p class="collab-opp-desc" id="collabDesc">Looking for a producer to shape 6 tracks for a spring EP release.</p>
+            <div class="collab-opp-title" id="collabTitle">Mix + master — trap single ("Slide")</div>
+            <p class="collab-opp-desc" id="collabDesc">808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. Under 5-day turnaround.</p>
+            <p class="collab-opp-proof" id="collabProof">Posted 4h ago · stems attached · Atlanta</p>
             <div class="collab-pills">
-              <span class="collab-pill" id="collabBudget">$2,400</span>
-              <span class="collab-pill deadline" id="collabDeadline">May 12</span>
-              <span class="collab-applied" id="collabApplied">14 applied</span>
+              <span class="collab-pill" id="collabBudget">$275 flat</span>
+              <span class="collab-pill deadline" id="collabDeadline">Apr 22</span>
+              <span class="collab-applied" id="collabApplied">11 applied</span>
             </div>
           </div>
         </div>
@@ -865,10 +876,20 @@
 
     <div class="hq-demo" id="hqDemo">
       <div class="hq-toast" id="hqToast" role="status" aria-live="polite"></div>
+      <div class="hq-guide" id="hqGuide">
+        <div class="hq-guide-head">
+          <span class="hq-guide-step" id="hqGuideStep">Tip 1 / 6</span>
+          <button type="button" class="hq-guide-skip" id="hqGuideSkip">Skip tour</button>
+        </div>
+        <p class="hq-guide-txt" id="hqGuideTxt">Your HQ score ring — one pulse number for your whole career on STĀGE. Tap it anytime.</p>
+        <button type="button" class="hq-guide-next" id="hqGuideNext">Next tip →</button>
+      </div>
       <div class="hq-bar">
         <span class="hq-logo">STĀGE</span>
         <div class="hq-player" id="hqPlayer" role="button" tabindex="0" aria-label="Play Own It — The Anthem">
-          <div class="hq-p-art">🎵</div>
+          <div class="hq-p-art" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ownitBgH" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#12081f"/><stop offset="45%" stop-color="#2a1450"/><stop offset="100%" stop-color="#0a2820"/></linearGradient><linearGradient id="ownitNeonH" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#4dffb4"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#f5c842"/></linearGradient><radialGradient id="ownitGlowH" cx=".5" cy=".35" r=".6"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".35"/><stop offset="100%" stop-color="#12081f" stop-opacity="0"/></radialGradient></defs><rect width="64" height="64" fill="url(#ownitBgH)"/><rect width="64" height="64" fill="url(#ownitGlowH)"/><path d="M32 10 50 32 32 54 14 32Z" fill="none" stroke="url(#ownitNeonH)" stroke-width="2.2"/><path d="M32 20 42 32 32 44 22 32Z" fill="url(#ownitNeonH)" opacity=".22"/><text x="32" y="35" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="8.5" font-weight="900" fill="#fff" letter-spacing="1.1">OWN IT</text></svg>
+          </div>
           <div class="hq-p-txt"><b>Own It — The Anthem</b><span>STĀGE</span></div>
           <div class="hq-p-waves" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           <button type="button" class="hq-p-play" id="hqPlayBtn" aria-label="Play">
@@ -1025,12 +1046,12 @@
   <section class="reveal collapse-section" id="inside">
     <button type="button" class="collapse-toggle" id="insideCollapseBtn" aria-expanded="false">
       <b>Built on STĀGE</b>
-      <span>Six doors opening — collabs, events, ownership &amp; more waiting inside</span>
+      <span>Peek inside — what's waiting on the other side of the curtain</span>
     </button>
     <div class="collapse-body">
     <div class="kicker">Behind the curtain</div>
     <h2 class="section-title">What STĀGE holds for you</h2>
-    <p class="section-sub">Collabs, events, ownership — and a few things we’re not naming yet. Six paths. One stage. All yours.</p>
+    <p class="section-sub">One room with your name on the door — built for people who move first and refuse to wait on the industry. The full picture stays under wraps… for now.</p>
 
     <div class="features">
 
@@ -1132,14 +1153,14 @@
   <!-- JOIN / FORM -->
   <section id="join" class="form-section reveal">
     <div class="form-wrap">
-      <div class="form-kicker">Join the waitlist</div>
+      <div class="form-kicker">Be first when the doors open</div>
       <div class="form-title">Get on the list</div>
-      <p class="form-intro">A few quick questions — then early access and your exclusive founders gift are locked in.</p>
+      <p class="form-intro">A few quick questions — your answers shape what we build first. Here's how early access works. Waitlist creators also lock in an exclusive founders gift from the STĀGE team.</p>
 
       <div class="steps">
-        <div class="step"><span class="step-n">1</span><div class="step-tx"><b>Reserve your spot</b><span>Your email secures your place — and something exclusive, just for waitlist creators.</span></div></div>
-        <div class="step"><span class="step-n">2</span><div class="step-tx"><b>Get your invite</b><span>When doors open, your private link arrives — plus a hint at what’s waiting for you.</span></div></div>
-        <div class="step"><span class="step-n">3</span><div class="step-tx"><b>Step on STĀGE</b><span>Go live with early access and claim the founders gift reserved for your name.</span></div></div>
+        <div class="step"><span class="step-n">1</span><div class="step-tx"><b>Reserve your spot</b><span>Your email locks in your STĀGE account and reserves your exclusive founders gift.</span></div></div>
+        <div class="step"><span class="step-n">2</span><div class="step-tx"><b>Get your invite</b><span>At launch we send your private link and download for iOS, Android, or web.</span></div></div>
+        <div class="step"><span class="step-n">3</span><div class="step-tx"><b>Step on STĀGE</b><span>Tap the link, finish your profile, and your early access goes live — including your founders gift.</span></div></div>
       </div>
 
       <div class="field">
@@ -1214,8 +1235,8 @@
         <input type="email" id="email" placeholder="you@example.com" required autocomplete="email" />
       </div>
 
-      <button class="submit" id="submitBtn" type="button">Save my spot + reward →</button>
-      <p class="form-note">Early access locked in — and a founders gift with your name on it.</p>
+      <button class="submit" id="submitBtn" type="button">Save my spot →</button>
+      <p class="form-note">Early access, locked in — plus your exclusive founders gift.</p>
       <div class="form-msg" id="formMsg" role="status"></div>
     </div>
   </section>
@@ -1498,9 +1519,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   if(!card) return;
 
   const CARDS = [
-    { emoji:'🎹', match:92, tags:['#Producer','#Tour','#Remote'], av:'YA', name:'Yari', handle:'@yari · verified', hq:880, title:"Beat Producer — Yari's EP", desc:'Looking for a producer to shape 6 tracks for a spring EP release.', budget:'$2,400', deadline:'May 12', applied:'14 applied', banner:'linear-gradient(135deg,#7c6fff,#4de8c2)' },
-    { emoji:'🎤', match:78, tags:['#Vocalist','#R&B','#Remote'], av:'LS', name:'Lena Shore', handle:'@lenashore', hq:620, title:'Session vocalist for hook', desc:'Soulful top-line for a single dropping next month.', budget:'$800', deadline:'Apr 28', applied:'9 applied', banner:'linear-gradient(135deg,#ff6b8a,#4de8c2)' },
-    { emoji:'🥁', match:85, tags:['#Drummer','#Live','#DJ'], av:'MC', name:'Marcus Cole', handle:'@marcuscole · verified', hq:782, title:'Festival rehearsal drummer', desc:'Two rehearsals + show day in Charlotte.', budget:'$1,200', deadline:'May 01', applied:'6 applied', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' }
+    { emoji:'🎛', match:88, tags:['#Mixing','#Mastering','#Trap','#Paid'], av:'KV', name:'Kilo Vee', handle:'@kilovee · Atlanta', hq:742, title:'Mix + master — trap single ("Slide")', desc:'808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. Under 5-day turnaround.', proof:'Posted 4h ago · stems attached · Atlanta', budget:'$275 flat', deadline:'Apr 22', applied:'11 applied', banner:'linear-gradient(135deg,#1a1030,#4de8c2)' },
+    { emoji:'🎥', match:81, tags:['#Video','#Content','#Indie','#R&B'], av:'NR', name:'Nyelle Rae', handle:'@nyellerae · verified', hq:615, title:'Videographer — 2 live performance clips', desc:'Stripped-down set shoot for TikTok/Reels. Need strong indie/R&B visual energy. 3-hour session — you keep portfolio rights.', proof:'Posted yesterday · reel examples linked', budget:'$450 + credit', deadline:'May 03', applied:'7 applied', banner:'linear-gradient(135deg,#ff6b8a,#7c6fff)' },
+    { emoji:'🎹', match:94, tags:['#Producer','#Trap','#SplitDeal','#EP'], av:'TB', name:'Twan Beats', handle:'@twanbeats · verified', hq:910, title:'Co-producer for 4-track trap EP', desc:'Dark trap project — need melody & arrangement help. Split pub 50/50, small upfront. Must know modern trap song structure.', proof:'2 mutual connections · 4 completed collabs', budget:'$600 + split', deadline:'May 18', applied:'16 applied', banner:'linear-gradient(135deg,#7c6fff,#4de8c2)' },
+    { emoji:'🎸', match:76, tags:['#Guitar','#Remote','#Indie','#Paid'], av:'SL', name:'Slo Lane', handle:'@slolane', hq:528, title:'Remote session guitar — 2 songs', desc:'Clean + overdriven layers for indie rollout. Logic project shared — deliver DI + amped takes. Reference tracks in brief.', proof:'Posted 6h ago · remote OK worldwide', budget:'$180/song', deadline:'Apr 30', applied:'5 applied', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
+    { emoji:'🎙', match:72, tags:['#Creator','#Podcast','#Licensing','#FlatFee'], av:'DC', name:'The Daily Crate', handle:'@dailycrate · 12K listeners', hq:690, title:'15-sec podcast intro sting', desc:'Music/culture podcast needs a trap-influenced intro — not cliché. Full buyout; credited every episode.', proof:'Brand-safe · full buyout required', budget:'$350 buyout', deadline:'Apr 25', applied:'9 applied', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
+    { emoji:'🎤', match:83, tags:['#Live','#Trap','#Rap','#PaidSlot'], av:'NS', name:'NIGHTSHIFT CLT', handle:'@nightshiftclt · venue', hq:840, title:'Opening slot — trap/rap club night', desc:'20-min set before headliner. Paid slot + merch table. Must have 3+ min performance reel on your STĀGE profile.', proof:'Charlotte · May 10 · 21+', budget:'$150 + door %', deadline:'May 01', applied:'22 applied', banner:'linear-gradient(135deg,#ff5e8a,#f5c842)' }
   ];
 
   let idx = 0;
@@ -1558,6 +1582,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     set('collabHq', c.hq);
     set('collabTitle', c.title);
     set('collabDesc', c.desc);
+    set('collabProof', c.proof || '');
     set('collabBudget', c.budget);
     set('collabDeadline', c.deadline);
     set('collabApplied', c.applied);
@@ -1644,8 +1669,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   const coachTxts = [
     'Swipe the card — pass left · apply right · super up',
-    'Hashtag tags show role, vibe & format — your lane, filtered',
-    'Apply to enter Agree — contract signing & project room next'
+    'Real opps for artists, engineers, creators & the people who serve them',
+    'Apply to move into the next phase — terms & project room follow'
   ];
   let coach_i = 0;
   const coachTimer = setInterval(()=>{
@@ -1963,6 +1988,48 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       else showHqToast('Launch Night · notify 82 RSVPs before doors');
     });
   });
+
+  const HQ_TIPS = [
+    { sel: '#hqScoreBtn', text: 'Your HQ score ring — one pulse number for momentum across everything you do on STĀGE. Tap it anytime.' },
+    { sel: '.hq-kpis', text: 'Live KPIs: plays, revenue, fans, engagement — the vitals of your career, updated in real time.' },
+    { sel: '#hqMovesBlock', text: 'Next Moves — a prioritized queue of what to do today. Collabs, tracks, events, all in one feed.' },
+    { sel: '#hqGrid', text: 'Master Stats — nine domains on one board. Tap any tile to see where your career is winning.' },
+    { sel: '#hqMeetingToggle', text: 'Meeting Mode — flip this when labels, partners, or investors are watching. Clean numbers, zero noise.' },
+    { sel: '#hqAnalyticsPanel', text: 'Analytics dashboard — switch metrics, scan trends, read the room. Deeper ranges unlock as you grow.' }
+  ];
+  let hqTip = 0;
+  const hqGuide = document.getElementById('hqGuide');
+  const hqGuideTxt = document.getElementById('hqGuideTxt');
+  const hqGuideStep = document.getElementById('hqGuideStep');
+  const hqGuideNext = document.getElementById('hqGuideNext');
+  const hqGuideSkip = document.getElementById('hqGuideSkip');
+  let hqSpot = null;
+
+  function clearHqSpot(){
+    if(hqSpot){ hqSpot.classList.remove('hq-spotlight'); hqSpot = null; }
+  }
+  function showHqTip(i){
+    hqTip = i;
+    const tip = HQ_TIPS[i];
+    if(!tip){ hqGuide?.classList.add('hidden'); clearHqSpot(); return; }
+    if(i === 5) setMeeting(true);
+    clearHqSpot();
+    if(hqGuideTxt) hqGuideTxt.textContent = tip.text;
+    if(hqGuideStep) hqGuideStep.textContent = `Tip ${i + 1} / ${HQ_TIPS.length}`;
+    if(hqGuideNext) hqGuideNext.textContent = i >= HQ_TIPS.length - 1 ? 'Start exploring →' : 'Next tip →';
+    const el = demo.querySelector(tip.sel);
+    if(el){
+      hqSpot = el;
+      el.classList.add('hq-spotlight');
+      setTimeout(()=> el.scrollIntoView({ behavior:'smooth', block:'nearest' }), 80);
+    }
+  }
+  hqGuideNext?.addEventListener('click', ()=>{
+    if(hqTip >= HQ_TIPS.length - 1){ hqGuide?.classList.add('hidden'); clearHqSpot(); }
+    else showHqTip(hqTip + 1);
+  });
+  hqGuideSkip?.addEventListener('click', ()=>{ hqGuide?.classList.add('hidden'); clearHqSpot(); });
+  showHqTip(0);
 
   refreshAnalytics();
 })();
