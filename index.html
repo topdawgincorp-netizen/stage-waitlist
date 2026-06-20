@@ -34,7 +34,9 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:12px}
+  html:not(.page-ready){overflow:hidden;height:100%}
   @media(max-width:680px){html{scroll-padding-top:56px}}
+  body{overflow-anchor:none}
   body{
     background:var(--bg);color:var(--text);
     font-family:var(--body);font-size:17px;line-height:1.65;
@@ -61,8 +63,8 @@
 
   /* scroll cue + mobile conversion */
   .scroll-hint{
-    display:none;text-decoration:none;text-align:center;padding:10px 0 4px;color:var(--muted);
-    font-size:12px;font-weight:600;letter-spacing:.3px;transition:opacity .35s ease, transform .35s ease;
+    display:none;width:100%;border:none;background:none;text-decoration:none;text-align:center;padding:10px 0 4px;color:var(--muted);
+    font-size:12px;font-weight:600;letter-spacing:.3px;cursor:pointer;font-family:inherit;transition:opacity .35s ease, transform .35s ease;
   }
   .scroll-hint span{display:block;margin-bottom:4px;color:var(--green)}
   .scroll-hint svg{width:20px;height:20px;fill:var(--green);animation:nudgeDown 1.8s ease-in-out infinite}
@@ -236,6 +238,21 @@
 
   /* ---------------- SECTIONS ---------------- */
   section{padding:28px 0}
+  .demo-lab{text-align:center;margin:0 auto 16px;max-width:480px;padding:14px 14px 12px;border-radius:16px;background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(77,255,180,.06));border:1px solid rgba(167,139,250,.22);position:relative;overflow:hidden}
+  .demo-lab::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 80% at 50% 0%,rgba(77,255,180,.1),transparent 70%);pointer-events:none}
+  .demo-lab-live{display:inline-flex;align-items:center;gap:6px;margin-bottom:8px;border:none;cursor:pointer;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--green);background:rgba(77,255,180,.1);border:1px solid rgba(77,255,180,.35);padding:6px 12px;border-radius:999px;transition:transform .12s ease, box-shadow .15s ease}
+  .demo-lab-live .live-dot{width:6px;height:6px}
+  .demo-lab-live:active{transform:scale(.97)}
+  .demo-lab-live:hover{box-shadow:0 0 16px -4px rgba(77,255,180,.45)}
+  .demo-lab-title{font-family:var(--display);font-weight:800;font-size:clamp(18px,4.5vw,22px);margin:0 0 6px;line-height:1.15}
+  .demo-lab-tagline{font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 10px}
+  .demo-lab-go{display:inline-block;border:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:12px;color:#04121a;background:linear-gradient(90deg,var(--accent),var(--green));padding:9px 16px;border-radius:999px;text-decoration:none;transition:transform .12s ease}
+  .demo-lab-go:active{transform:scale(.97)}
+  .demo-lab.demo-lab-pulse{animation:demoPulse .55s ease}
+  @keyframes demoPulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 3px rgba(77,255,180,.35), inset 0 0 24px rgba(77,255,180,.08)}}
+  .build-room-tease{font-size:12.5px;color:var(--muted);line-height:1.45;margin:10px 0 12px;text-align:left}
+  .demo-lab-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+  .demo-lab-chips span{font-size:10px;font-weight:600;color:var(--accent);background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.25);padding:4px 9px;border-radius:999px}
   .kicker{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);text-align:center;margin-bottom:8px}
   .section-title{font-family:var(--display);font-weight:800;font-size:clamp(24px,4vw,34px);letter-spacing:-.5px;margin-bottom:10px;text-align:center}
   .section-sub{color:var(--muted);text-align:center;max-width:520px;margin:0 auto 24px;font-size:15px;line-height:1.55}
@@ -398,6 +415,25 @@
   .mock-doc-row span{color:var(--muted)}
   .mock-doc-row b{color:var(--text);font-weight:600}
   .mock-doc-row.blur b{filter:blur(4px);opacity:.65;user-select:none}
+  .mock-doc-rules{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.12);text-align:left}
+  .mock-doc-rules b{display:block;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+  .mock-doc-rules ul{margin:0;padding-left:16px;font-size:10.5px;color:var(--muted);line-height:1.45}
+  .mock-doc-rules li{margin-bottom:3px}
+  .mock-doc-done{font-size:10.5px;color:var(--green);font-weight:600;text-align:left;margin:8px 0;padding:7px 9px;border-radius:8px;background:rgba(77,255,180,.08);border:1px solid rgba(77,255,180,.22)}
+  .build-intro{font-size:11px;color:var(--muted);text-align:left;margin:0 0 10px;line-height:1.4}
+  .build-list{list-style:none;margin:0 0 10px;padding:0;text-align:left}
+  .build-list li{display:flex;align-items:flex-start;gap:8px;font-size:11px;padding:8px 9px;margin-bottom:5px;border-radius:10px;background:#12121c;border:1px solid rgba(167,139,250,.1);color:var(--text);line-height:1.35}
+  .build-list li.done{opacity:.75;color:var(--muted)}
+  .build-list li.done .build-ic{color:var(--green)}
+  .build-list li.active{border-color:rgba(77,255,180,.35);background:rgba(77,255,180,.06)}
+  .build-list li.locked{opacity:.45}
+  .build-ic{flex:none;width:18px;text-align:center;font-size:12px}
+  .build-list button{flex:1;text-align:left;background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0}
+  .build-list button:hover{color:var(--green)}
+  .build-prog{height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-bottom:10px}
+  .build-prog-fill{height:100%;width:40%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .4s ease}
+  .hq-score-tip{font-size:10px;color:var(--muted);text-align:center;margin:-4px 0 10px;line-height:1.4;padding:0 8px}
+  .hq-score-tip b{color:var(--green);font-weight:700}
   .mock-mile{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}
   .mock-mile:last-of-type{border-bottom:none;margin-bottom:8px}
   .mock-mile.locked{color:var(--muted);opacity:.55}
@@ -679,13 +715,23 @@
     html{scroll-behavior:auto}
   }
 </style>
+<script>
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if(location.hash) history.replaceState(null,'',location.pathname + location.search);
+  function top(){ window.scrollTo(0,0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
+  top();
+  requestAnimationFrame(top);
+  requestAnimationFrame(function(){ requestAnimationFrame(top); });
+})();
+</script>
 </head>
 <body>
 
 <div class="stage-lights"></div>
 <div class="scroll-beam" aria-hidden="true"></div>
 
-<div class="wrap">
+<div class="wrap" id="top">
   <nav>
     <span class="logo">STĀGE</span>
     <a href="#join" class="nav-cta to-form">Get on the list</a>
@@ -737,10 +783,10 @@
       <p class="capture-note">Free on iOS, Android &amp; web — plus your exclusive early-access reward when you join.</p>
     </div>
 
-    <a href="#explore" class="scroll-hint" id="scrollHint">
-      <span>Swipe Collab, HQ &amp; more — plus your exclusive reward inside</span>
+    <button type="button" class="scroll-hint" id="scrollHint">
+      <span>Live demos below — tap, swipe &amp; test STĀGE</span>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-6-6h12z"/></svg>
-    </a>
+    </button>
   </header>
 
   <div class="explore-wrap" id="explore">
@@ -754,7 +800,12 @@
 
   <!-- ETHOS · rendered as a native STĀGE post -->
   <section class="reveal ethos" id="feed">
-    <div class="kicker">From the STĀGE feed</div>
+    <div class="demo-lab" id="demoFeed">
+      <button type="button" class="demo-lab-live" id="demoFeedGo"><span class="live-dot" aria-hidden="true"></span> Live demo · test me</button>
+      <h2 class="demo-lab-title">The STĀGE feed</h2>
+      <p class="demo-lab-tagline">Like the post, hit play, open comments — this is the real in-app experience.</p>
+      <button type="button" class="demo-lab-go" id="demoFeedPlay">Try the post ↓</button>
+    </div>
     <div class="post-card" id="postCard">
       <div class="post-toast" id="postToast" role="status" aria-live="polite"></div>
       <div class="post-head">
@@ -817,13 +868,16 @@
   <!-- STĀGE COLLAB · swipe mini demo -->
   <section class="reveal collapse-section" id="collab">
     <button type="button" class="collapse-toggle" id="collabCollapseBtn" aria-expanded="false">
-      <b>Collab · live swipe demo</b>
-      <span>Swipe real opps — hire talent or find paid work, all in one deck</span>
+      <b>Collab swipe deck · live</b>
+      <span>Swipe to hire or get hired — any genre, any role — then test what happens next</span>
     </button>
     <div class="collapse-body">
-    <div class="kicker">STĀGE Collab</div>
-    <h2 class="section-title">Where work finds you</h2>
-    <p class="section-sub">Post what you need or apply to what others need — performers, producers, engineers, visuals, promo, clubs, events &amp; more. Swipe the deck, then peek what happens after you match.</p>
+    <div class="demo-lab" id="demoCollab">
+      <button type="button" class="demo-lab-live" id="demoCollabGo"><span class="live-dot" aria-hidden="true"></span> Live demo · swipe me</button>
+      <h2 class="demo-lab-title">Where work finds you</h2>
+      <p class="demo-lab-tagline">Post an opp or apply to one — musicians, engineers, creators, venues &amp; more. Swipe right to peek the next steps.</p>
+      <button type="button" class="demo-lab-go" id="demoCollabStart">Start swiping ↓</button>
+    </div>
 
     <div class="collab-demo" id="collabDemo">
       <div class="collab-toast" id="collabToast" role="status" aria-live="polite"></div>
@@ -853,27 +907,27 @@
         <div class="collab-stamp collab-stamp-super" id="collabStampSuper">SUPER</div>
         <div class="collab-card" id="collabCard">
           <div class="collab-banner" id="collabBanner">
-            <div class="collab-match" id="collabMatch">88%</div>
-            <div class="collab-banner-emoji" id="collabEmoji">🎛</div>
+            <div class="collab-match" id="collabMatch">86%</div>
+            <div class="collab-banner-emoji" id="collabEmoji">🎻</div>
             <div class="collab-tags" id="collabTags"></div>
           </div>
           <div class="collab-body">
             <div class="collab-poster">
-              <div class="collab-av" id="collabAv">KV</div>
+              <div class="collab-av" id="collabAv">MR</div>
               <div class="collab-poster-meta">
-                <b id="collabName">Kilo Vee</b>
-                <span id="collabHandle">@kilovee · Atlanta</span>
+                <b id="collabName">Mira Rose</b>
+                <span id="collabHandle">@mirarose · Nashville</span>
               </div>
-              <div class="collab-hq"><span id="collabHq">742</span><small>HQ</small></div>
+              <div class="collab-hq"><span id="collabHq">698</span><small>HQ</small></div>
             </div>
             <span class="collab-opp-type hire" id="collabType">HIRING</span>
-            <div class="collab-opp-title" id="collabTitle">Mix + master — trap single ("Slide")</div>
-            <p class="collab-opp-desc" id="collabDesc">808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. Under 5-day turnaround.</p>
-            <p class="collab-opp-proof" id="collabProof">Posted 4h ago · stems attached · Atlanta</p>
+            <div class="collab-opp-title" id="collabTitle">Session violin — 3 folk singles</div>
+            <p class="collab-opp-desc" id="collabDesc">Warm acoustic layers for a folk EP. Sheet music + reference tracks provided. Remote OK — deliver stems synced to click.</p>
+            <p class="collab-opp-proof" id="collabProof">Posted 3h ago · remote welcome</p>
             <div class="collab-pills">
-              <span class="collab-pill" id="collabBudget">$275 flat</span>
-              <span class="collab-pill deadline" id="collabDeadline">Apr 22</span>
-              <span class="collab-applied" id="collabApplied">11 applied</span>
+              <span class="collab-pill" id="collabBudget">$200/track</span>
+              <span class="collab-pill deadline" id="collabDeadline">May 06</span>
+              <span class="collab-applied" id="collabApplied">8 applied</span>
             </div>
           </div>
         </div>
@@ -894,25 +948,35 @@
         </div>
         <div class="collab-next-pane active" id="collabPaneAgree">
           <div class="collab-mock-doc">
-            <div class="mock-doc-head">Terms aligned · preview only</div>
+            <div class="mock-doc-head">Agree · terms preview</div>
             <div class="mock-doc-row"><span>Project</span><b id="collabTeaseTitle">Mix + master</b></div>
             <div class="mock-doc-row"><span>Your role</span><b id="collabTeaseRole">Mix engineer</b></div>
-            <div class="mock-doc-row blur"><span>Comp</span><b>$███ flat</b></div>
-            <div class="mock-doc-row blur"><span>Timeline</span><b>█ days</b></div>
+            <div class="mock-doc-rules">
+              <b>What they need from you</b>
+              <ul id="collabTeaseRules"></ul>
+            </div>
+            <div class="mock-doc-done" id="collabTeaseMet">✓ Terms met when: both sides approve final delivery &amp; payment clears.</div>
+            <div class="mock-doc-row blur"><span>Comp</span><b>$███</b></div>
             <button type="button" class="collab-tease-btn" id="collabSignTease">Review &amp; sign terms →</button>
           </div>
         </div>
         <div class="collab-next-pane" id="collabPaneBuild">
           <div class="collab-mock-room">
-            <div class="mock-room-head">Project room · preview only</div>
-            <div class="mock-room-msg">You + collaborator · files, feedback &amp; milestones stay in one thread on STĀGE.</div>
-            <label class="mock-mile"><input type="checkbox" checked disabled> Brief sent ✓</label>
-            <label class="mock-mile"><input type="checkbox" id="collabMileDemo"> First draft delivered</label>
-            <label class="mock-mile locked"><input type="checkbox" disabled> Final files &amp; payout 🔒</label>
-            <button type="button" class="collab-tease-btn" id="collabRoomTease">Step into the full room →</button>
+            <div class="mock-room-head">Build · your checklist</div>
+            <p class="build-intro">Your milestone checklist — tick each step to finish the collab, meet the terms, and unlock payout.</p>
+            <div class="build-prog"><div class="build-prog-fill" id="buildProgFill"></div></div>
+            <ul class="build-list" id="collabMileList">
+              <li class="done"><span class="build-ic">✓</span><span>Terms signed</span></li>
+              <li class="done"><span class="build-ic">✓</span><span>Kickoff brief shared</span></li>
+              <li class="active" id="collabMileDraft"><span class="build-ic">○</span><button type="button" id="collabMileDraftBtn">Mark your deliverable complete</button></li>
+              <li class="locked"><span class="build-ic">🔒</span><span>Client approval &amp; revisions</span></li>
+              <li class="locked"><span class="build-ic">🔒</span><span>Final handoff &amp; payout</span></li>
+            </ul>
+            <p class="build-room-tease"><b>Project room</b> — you + your collaborator in one place. Files, feedback &amp; milestones stay on the same thread — no hunting through DMs.</p>
+            <button type="button" class="collab-tease-btn" id="collabRoomTease">Open the project room →</button>
           </div>
         </div>
-        <p class="collab-next-hint">A taste of what happens after you swipe right — the full pipeline unlocks inside STĀGE.</p>
+        <p class="collab-next-hint">You just tested the pipeline — the full version unlocks inside STĀGE.</p>
       </div>
     </div>
     </div>
@@ -922,12 +986,15 @@
   <section class="reveal collapse-section" id="hq">
     <button type="button" class="collapse-toggle" id="hqCollapseBtn" aria-expanded="false">
       <b>Stage HQ · live demo</b>
-      <span>Tap to explore HQ — your ops command center · meeting mode, analytics &amp; stats</span>
+      <span>Tap to test your command center — score, stats, meeting mode &amp; more</span>
     </button>
     <div class="collapse-body">
-    <div class="kicker">Stage HQ</div>
-    <h2 class="section-title">Your command center, live</h2>
-    <p class="section-sub">A real slice of STĀGE HQ — play the track, flip Meeting Mode, explore the board. Some tools unlock at launch or with subscription.</p>
+    <div class="demo-lab" id="demoHq">
+      <button type="button" class="demo-lab-live" id="demoHqGo"><span class="live-dot" aria-hidden="true"></span> Live demo · poke around</button>
+      <h2 class="demo-lab-title">Your HQ command center</h2>
+      <p class="demo-lab-tagline">Play the track, flip Meeting Mode, tap the board — see how STĀGE runs your career in one place.</p>
+      <button type="button" class="demo-lab-go" id="demoHqStart">Open HQ ↓</button>
+    </div>
 
     <div class="hq-demo" id="hqDemo">
       <div class="hq-toast" id="hqToast" role="status" aria-live="polite"></div>
@@ -936,7 +1003,7 @@
           <span class="hq-guide-step" id="hqGuideStep">Tip 1 / 6</span>
           <button type="button" class="hq-guide-skip" id="hqGuideSkip">Skip tour</button>
         </div>
-        <p class="hq-guide-txt" id="hqGuideTxt">Your HQ score ring — one pulse number for your whole career on STĀGE. Tap it anytime.</p>
+        <p class="hq-guide-txt" id="hqGuideTxt"><b>HQ</b> = Hype Qualifications — your momentum score. Show up, ship work, finish collabs → it rises.</p>
         <button type="button" class="hq-guide-next" id="hqGuideNext">Next tip →</button>
       </div>
       <div class="hq-bar">
@@ -968,6 +1035,7 @@
         </div>
 
         <div class="hq-brief" id="hqBrief">
+          <p class="hq-score-tip"><b>HQ</b> = Hype Qualifications — one score for your momentum. Create, collab, perform, grow → it moves with you.</p>
           <div class="hq-brief-top">
             <div class="hq-score-block" id="hqScoreBtn" role="button" tabindex="0" aria-label="HQ score 10K">
               <svg class="hq-score-ring" viewBox="0 0 78 78" aria-hidden="true">
@@ -1101,12 +1169,18 @@
   <section class="reveal collapse-section" id="inside">
     <button type="button" class="collapse-toggle" id="insideCollapseBtn" aria-expanded="false">
       <b>Built on STĀGE</b>
-      <span>Six paths on one stage — peek what's inside</span>
+      <span>Six paths on one stage — tap to peek inside</span>
     </button>
     <div class="collapse-body">
-    <div class="kicker">Behind the curtain</div>
-    <h2 class="section-title">What STĀGE holds for you</h2>
-    <p class="section-sub">Your collabs, your events, your audience, your ownership, your money — and the tools to run it all without handing the keys to the industry. Whether you're building or getting hired, STĀGE is where the work lives.</p>
+    <div class="demo-lab" id="demoInside">
+      <button type="button" class="demo-lab-live" id="demoInsideGo"><span class="live-dot" aria-hidden="true"></span> What's inside</button>
+      <h2 class="demo-lab-title">What STĀGE holds for you</h2>
+      <p class="demo-lab-tagline">Your collabs, events, audience, ownership, money &amp; tools — one room, your name on the door.</p>
+      <div class="demo-lab-chips" aria-hidden="true">
+        <span>Collabs</span><span>Events</span><span>Audience</span><span>Ownership</span><span>Revenue</span><span>HQ</span>
+      </div>
+      <button type="button" class="demo-lab-go" id="demoInsideScroll">Explore cards ↓</button>
+    </div>
 
     <div class="features">
 
@@ -1148,8 +1222,8 @@
             <circle class="stroke ring" cx="30" cy="28" r="22" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="60" transform="rotate(-90 30 28)"/>
           </svg>
         </div>
-        <h3>Earn your number</h3>
-        <p>Your score is proof you're the real thing — reputation you can actually measure. Show up, deliver, and watch it climb, opening doors hype alone never could.</p>
+        <h3>Earn your HQ</h3>
+        <p><b>HQ</b> = Hype Qualifications — one momentum score for your whole career. Create, collab, perform → it moves with you.</p>
       </div>
 
       <!-- Fan clubs -->
@@ -1349,8 +1423,31 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
-window.addEventListener('pageshow', e=>{ if(!location.hash) window.scrollTo(0, 0); });
+function forceScrollTop(){
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+function stripHash(){
+  if(location.hash) history.replaceState(null, '', location.pathname + location.search);
+}
+function unlockPageScroll(){
+  document.documentElement.classList.add('page-ready');
+  document.documentElement.style.overflow = '';
+  document.documentElement.style.height = '';
+}
+stripHash();
+forceScrollTop();
+window.addEventListener('pageshow', ()=>{ stripHash(); forceScrollTop(); });
+window.addEventListener('hashchange', ()=>{ stripHash(); forceScrollTop(); });
+document.addEventListener('DOMContentLoaded', ()=>{ stripHash(); forceScrollTop(); });
+window.addEventListener('load', ()=>{
+  stripHash();
+  forceScrollTop();
+  [50, 150, 400].forEach(ms=> setTimeout(forceScrollTop, ms));
+  unlockPageScroll();
+});
+setTimeout(unlockPageScroll, 800);
 document.getElementById('year').textContent = new Date().getFullYear();
 
 function tickCountdown(){
@@ -1532,7 +1629,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       if(!isMobile()) return;
       const open = sec.classList.toggle('open');
       btn.setAttribute('aria-expanded', open);
-      if(open) setTimeout(()=> sec.scrollIntoView({behavior:'smooth', block:'start'}), 120);
     });
   }
   bindCollapse('hqCollapseBtn','hq');
@@ -1547,7 +1643,76 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     postExpand.textContent = open ? 'Show less' : 'Read full post';
   });
 
+  document.getElementById('scrollHint')?.addEventListener('click', ()=>{
+    document.getElementById('explore')?.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  function openMobileSection(secId){
+    if(!isMobile()) return;
+    const sec = document.getElementById(secId);
+    const btn = sec?.querySelector('.collapse-toggle');
+    if(sec && !sec.classList.contains('open')){
+      sec.classList.add('open');
+      btn?.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  function pulseDemoLab(btn){
+    const lab = btn?.closest('.demo-lab');
+    if(!lab) return;
+    lab.classList.remove('demo-lab-pulse');
+    void lab.offsetWidth;
+    lab.classList.add('demo-lab-pulse');
+    setTimeout(()=> lab.classList.remove('demo-lab-pulse'), 650);
+  }
+
+  function scrollToDemo(targetId, secId){
+    if(secId) openMobileSection(secId);
+    const el = document.getElementById(targetId);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  document.getElementById('demoFeedPlay')?.addEventListener('click', ()=>{
+    scrollToDemo('postCard');
+  });
+  document.getElementById('demoFeedGo')?.addEventListener('click', (e)=>{
+    pulseDemoLab(e.currentTarget);
+    document.getElementById('demoFeedPlay')?.click();
+  });
+  document.getElementById('demoCollabStart')?.addEventListener('click', ()=>{
+    scrollToDemo('collabDeck', 'collab');
+  });
+  document.getElementById('demoCollabGo')?.addEventListener('click', (e)=>{
+    pulseDemoLab(e.currentTarget);
+    document.getElementById('demoCollabStart')?.click();
+  });
+  document.getElementById('demoHqStart')?.addEventListener('click', ()=>{
+    scrollToDemo('hqDemo', 'hq');
+  });
+  document.getElementById('demoHqGo')?.addEventListener('click', (e)=>{
+    pulseDemoLab(e.currentTarget);
+    document.getElementById('demoHqStart')?.click();
+  });
+  document.getElementById('demoInsideScroll')?.addEventListener('click', ()=>{
+    openMobileSection('inside');
+    document.querySelector('#inside .features')?.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  document.getElementById('demoInsideGo')?.addEventListener('click', (e)=>{
+    pulseDemoLab(e.currentTarget);
+    document.getElementById('demoInsideScroll')?.click();
+  });
+
   const railLinks = document.querySelectorAll('.explore-rail a[data-sec]');
+  railLinks.forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.dataset.sec;
+      if(id === 'join'){ scrollToForm(); return; }
+      if(['collab','hq','inside'].includes(id)) openMobileSection(id);
+      const sec = document.getElementById(id);
+      if(sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
   const watchIds = ['feed','collab','hq','inside','join'];
   if('IntersectionObserver' in window && railLinks.length){
     const railObs = new IntersectionObserver(entries=>{
@@ -1577,18 +1742,18 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   if(!card) return;
 
   const CARDS = [
-    { emoji:'🎛', match:88, kind:'hire', tags:['#Mixing','#Trap','#Paid','#Engineer'], av:'KV', name:'Kilo Vee', handle:'@kilovee · Atlanta', hq:742, title:'Mix + master — trap single ("Slide")', desc:'808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. 5-day turnaround.', proof:'Posted 4h ago · stems attached', budget:'$275 flat', deadline:'Apr 22', applied:'11 applied', role:'Mix engineer', banner:'linear-gradient(135deg,#1a1030,#4de8c2)' },
-    { emoji:'🎨', match:79, kind:'hire', tags:['#CoverArt','#Trap','#Visual','#Paid'], av:'JX', name:'Jex Atlas', handle:'@jexatlas · verified', hq:801, title:'Custom album cover — 3000×3000', desc:'Dark trap aesthetic for upcoming EP. Need original art — no stock. Reference: neon grit + luxury street. Full commercial rights.', proof:'3 mood boards attached · 48h draft', budget:'$320 flat', deadline:'May 02', applied:'8 applied', role:'Cover artist', banner:'linear-gradient(135deg,#2a1450,#ff5e8a)' },
-    { emoji:'🎥', match:81, kind:'hire', tags:['#MusicVideo','#Shoot','#Indie','#Paid'], av:'NR', name:'Nyelle Rae', handle:'@nyellerae · verified', hq:615, title:'Videographer — performance + B-roll day', desc:'One-day shoot for single rollout. 2 performance setups + slow-mo B-roll. You keep portfolio rights; we keep edit.', proof:'Shot list ready · Charlotte area', budget:'$650 + credit', deadline:'May 08', applied:'7 applied', role:'Videographer', banner:'linear-gradient(135deg,#ff6b8a,#7c6fff)' },
-    { emoji:'📣', match:74, kind:'hire', tags:['#Promo','#TikTok','#Marketing','#Paid'], av:'PM', name:'Pulse Media Co.', handle:'@pulsemedia · agency', hq:920, title:'2-week promo push — single launch', desc:'Need someone to run TikTok/Reels clip strategy for a trap single drop. Content supplied — you schedule, engage, report.', proof:'Budget approved · indie artist client', budget:'$500 / 2 wks', deadline:'Apr 29', applied:'13 applied', role:'Promo manager', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
-    { emoji:'🎤', match:86, kind:'seek', tags:['#Performer','#Live','#HipHop','#OpenCall'], av:'RZ', name:'Rico Zayn', handle:'@ricozayn · artist', hq:688, title:'Looking for hype performer — tour dates', desc:'Independent rapper booking summer dates. Need high-energy stage presence for 6 shows — rehearse remotely, travel covered regionally.', proof:'Reel on profile · 6 dates listed', budget:'$200/show + %', deadline:'May 15', applied:'19 applied', role:'Hype performer', banner:'linear-gradient(135deg,#7c6fff,#ff5e8a)' },
-    { emoji:'🎹', match:94, kind:'seek', tags:['#Producer','#Trap','#SplitDeal','#EP'], av:'TB', name:'Twan Beats', handle:'@twanbeats · verified', hq:910, title:'Co-producer wanted — 4-track trap EP', desc:'Melody & arrangement help on dark trap project. Split pub 50/50, small upfront. Must know modern song structure & tag culture.', proof:'2 mutuals · 4 completed collabs', budget:'$600 + split', deadline:'May 18', applied:'16 applied', role:'Co-producer', banner:'linear-gradient(135deg,#7c6fff,#4de8c2)' },
-    { emoji:'🎪', match:83, kind:'hire', tags:['#Event','#Club','#Trap','#PaidSlot'], av:'NS', name:'NIGHTSHIFT CLT', handle:'@nightshiftclt · venue', hq:840, title:'Opening slot — trap/rap club night', desc:'20-min set before headliner. Paid slot + merch table. Must have 3+ min performance reel on STĀGE profile.', proof:'Charlotte · May 10 · 21+', budget:'$150 + door %', deadline:'May 01', applied:'22 applied', role:'Opening artist', banner:'linear-gradient(135deg,#ff5e8a,#f5c842)' },
-    { emoji:'🎧', match:77, kind:'seek', tags:['#DJ','#PrivateEvent','#Paid','#Local'], av:'LM', name:'Luxe Manor Events', handle:'@luxemanor · planner', hq:560, title:'DJ needed — private album listening party', desc:'150-guest listening party for indie R&B artist. Blend vibes, read the room, own the transitions. Gear provided on-site.', proof:'Downtown Raleigh · May 22', budget:'$400 flat', deadline:'May 05', applied:'6 applied', role:'Event DJ', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
-    { emoji:'🎸', match:76, kind:'hire', tags:['#Session','#Remote','#Indie','#Paid'], av:'SL', name:'Slo Lane', handle:'@slolane', hq:528, title:'Remote session guitar — 2 songs', desc:'Clean + overdriven layers for indie rollout. Logic project shared — deliver DI + amped takes. Reference tracks in brief.', proof:'Remote OK · stems due May 1', budget:'$180/song', deadline:'Apr 30', applied:'5 applied', role:'Session guitarist', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
-    { emoji:'💿', match:71, kind:'seek', tags:['#Monetize','#BeatLease','#Producer','#Licensing'], av:'DK', name:'Dekay Beats', handle:'@dekaybeats', hq:640, title:'Sell beat leases through STĀGE marketplace', desc:'Looking for producers to co-list trap kits on shared storefront. Split sales 70/30 — you upload, we promote to buyer feed.', proof:'Pilot program · 12 producers in', budget:'Rev share', deadline:'Rolling', applied:'31 applied', role:'Beat partner', banner:'linear-gradient(135deg,#1a1030,#a78bfa)' },
-    { emoji:'🎙', match:72, kind:'hire', tags:['#Creator','#Podcast','#Audio','#Buyout'], av:'DC', name:'The Daily Crate', handle:'@dailycrate · 12K listeners', hq:690, title:'15-sec podcast intro sting', desc:'Music/culture podcast needs trap-influenced intro — not cliché. Full buyout; credited every episode.', proof:'Brand-safe · full buyout', budget:'$350 buyout', deadline:'Apr 25', applied:'9 applied', role:'Composer', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
-    { emoji:'📸', match:80, kind:'hire', tags:['#Photographer','#Press','#Promo','#Paid'], av:'IV', name:'Ivy Visions', handle:'@ivyvisions · verified', hq:755, title:'Press photo shoot — 20 edited selects', desc:'Need promo stills for EPK + streaming platforms. Urban rooftop vibe, golden hour preferred. Raw + retouched delivery.', proof:'Mood board attached · NYC area', budget:'$425 flat', deadline:'May 12', applied:'10 applied', role:'Photographer', banner:'linear-gradient(135deg,#ff6b8a,#4de8c2)' }
+    { emoji:'🎻', match:86, kind:'hire', tags:['#Folk','#Session','#Remote','#Paid'], av:'MR', name:'Mira Rose', handle:'@mirarose · Nashville', hq:698, title:'Session violin — 3 folk singles', desc:'Warm acoustic layers for a folk EP. Sheet music + refs provided. Remote OK — stems synced to click.', proof:'Posted 3h ago · remote welcome', budget:'$200/track', deadline:'May 06', applied:'8 applied', role:'Session violinist', rules:['Deliver synced WAV stems per song','Match reference tone & dynamics','2 revision notes max per track'], termsMet:'all stems approved and uploaded to the project room', banner:'linear-gradient(135deg,#8b6914,#4de8c2)' },
+    { emoji:'🎛', match:88, kind:'hire', tags:['#Mixing','#Pop','#Indie','#Paid'], av:'AL', name:'Aloe Lane', handle:'@aloelane · LA', hq:742, title:'Mix engineer — indie pop single', desc:'Radio-ready mix for upcoming single. Stems in Pro Tools — clarity without losing warmth.', proof:'Stems attached · refs linked', budget:'$350 flat', deadline:'Apr 28', applied:'11 applied', role:'Mix engineer', rules:['Final mix in WAV + instrumental','Up to 2 revision rounds','Delivery within agreed timeline'], termsMet:'final mix approved by both parties', banner:'linear-gradient(135deg,#1a1030,#a78bfa)' },
+    { emoji:'🎨', match:79, kind:'hire', tags:['#CoverArt','#Rock','#Visual','#Paid'], av:'JX', name:'Jex Atlas', handle:'@jexatlas · verified', hq:801, title:'Album cover — rock EP', desc:'Bold cover for 5-track rock EP. Original art only — full commercial rights. Moody, high-contrast look.', proof:'Mood boards attached', budget:'$320 flat', deadline:'May 02', applied:'8 applied', role:'Cover artist', rules:['3000×3000 PNG + layered source','2 concept drafts before final','Full buyout — no stock assets'], termsMet:'final artwork approved & files delivered', banner:'linear-gradient(135deg,#2a1450,#ff5e8a)' },
+    { emoji:'🎥', match:81, kind:'hire', tags:['#MusicVideo','#R&B','#Shoot','#Paid'], av:'NR', name:'Nyelle Rae', handle:'@nyellerae · verified', hq:615, title:'Videographer — performance video', desc:'One-day shoot for R&B single. 2 performance setups + B-roll. Portfolio rights for you; we keep edit.', proof:'Shot list ready · Atlanta', budget:'$650 + credit', deadline:'May 08', applied:'7 applied', role:'Videographer', rules:['Deliver 4K raw + synced audio','Follow shot list & schedule','Turnaround on selects within 5 days'], termsMet:'footage approved and handoff complete', banner:'linear-gradient(135deg,#ff6b8a,#7c6fff)' },
+    { emoji:'📣', match:74, kind:'hire', tags:['#Promo','#Social','#Marketing','#Paid'], av:'PM', name:'Pulse Media Co.', handle:'@pulsemedia · agency', hq:920, title:'2-week promo run — single launch', desc:'TikTok/Reels strategy for an indie artist drop. Content supplied — you schedule, engage, report weekly.', proof:'Client brief attached', budget:'$500 / 2 wks', deadline:'Apr 29', applied:'13 applied', role:'Promo manager', rules:['Post on agreed schedule','Weekly analytics snapshot','Respond to comments in brand voice'], termsMet:'campaign dates completed & report submitted', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
+    { emoji:'🎤', match:86, kind:'seek', tags:['#Performer','#Live','#Tour','#OpenCall'], av:'RZ', name:'Rico Zayn', handle:'@ricozayn · artist', hq:688, title:'Backup vocalist — summer tour', desc:'8 regional dates. Need reliable harmonies & stage energy. Rehearsals remote, travel stipend included.', proof:'6 dates listed · reel required', budget:'$175/show', deadline:'May 15', applied:'19 applied', role:'Backup vocalist', rules:['Learn setlist before each show','Professional punctuality required','Own in-ears preferred'], termsMet:'all shows performed & travel settled', banner:'linear-gradient(135deg,#7c6fff,#ff5e8a)' },
+    { emoji:'🎹', match:91, kind:'seek', tags:['#Producer','#Electronic','#SplitDeal','#EP'], av:'LV', name:'Luna Vex', handle:'@lunavex · verified', hq:875, title:'Co-producer — electronic EP', desc:'Arrangement & sound-design on 5 tracks. Split pub 50/50, modest upfront. DAW-agnostic workflow.', proof:'2 mutual connections', budget:'$550 + split', deadline:'May 20', applied:'14 applied', role:'Co-producer', rules:['Collaborate on arrangement & mix notes','Share files via STĀGE project room','Credit split as agreed in terms'], termsMet:'all tracks delivered & splits documented', banner:'linear-gradient(135deg,#7c6fff,#4de8c2)' },
+    { emoji:'🎪', match:83, kind:'hire', tags:['#Event','#Venue','#Live','#PaidSlot'], av:'BR', name:'Blue Room ATX', handle:'@blueroom · venue', hq:820, title:'Opening slot — multi-genre night', desc:'25-min set before headliner. All genres welcome — bring your crowd. Merch table included.', proof:'Austin · May 14 · 18+', budget:'$175 + door %', deadline:'May 01', applied:'18 applied', role:'Opening artist', rules:['Submit 3-min performance reel','Load-in at scheduled call time','Original or licensed material only'], termsMet:'set completed & venue confirms', banner:'linear-gradient(135deg,#ff5e8a,#f5c842)' },
+    { emoji:'🎧', match:77, kind:'seek', tags:['#DJ','#Wedding','#Paid','#Local'], av:'LM', name:'Luxe Manor Events', handle:'@luxemanor · planner', hq:560, title:'DJ — wedding reception set', desc:'4-hour reception for 200 guests. Blend genres, take requests tastefully. Gear on-site.', proof:'Charlotte · June 8', budget:'$450 flat', deadline:'May 10', applied:'6 applied', role:'Wedding DJ', rules:['Playlist preview 1 week prior','Professional dress code','Backup plan for gear issues'], termsMet:'event completed & client sign-off', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
+    { emoji:'🎸', match:76, kind:'hire', tags:['#Session','#Country','#Remote','#Paid'], av:'SL', name:'Slo Lane', handle:'@slolane', hq:528, title:'Pedal steel — 2 country tracks', desc:'Traditional pedal steel for country singles. Nashville-style tone. Logic project shared remotely.', proof:'Remote OK · refs attached', budget:'$195/song', deadline:'Apr 30', applied:'5 applied', role:'Pedal steel', rules:['DI + amped takes per song','Follow reference performances','One revision pass included'], termsMet:'stems approved by producer', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
+    { emoji:'🥁', match:84, kind:'seek', tags:['#Drummer','#Jazz','#Live','#Gig'], av:'JT', name:'Jazz Trio NYC', handle:'@jazztrionyc', hq:710, title:'Drummer — weekly jazz residency', desc:'Club residency, 3 sets/night. Read charts, comfortable with standards & originals. Kit provided.', proof:'Greenwich Village · ongoing', budget:'$200/night', deadline:'Apr 26', applied:'9 applied', role:'Drummer', rules:['Arrive 45 min early for soundcheck','Bring own sticks & snare if preferred','Sub only with 2-week notice'], termsMet:'residency dates fulfilled per contract', banner:'linear-gradient(135deg,#1a1030,#4de8c2)' },
+    { emoji:'📸', match:80, kind:'hire', tags:['#Photographer','#Press','#Promo','#Paid'], av:'IV', name:'Ivy Visions', handle:'@ivyvisions · verified', hq:755, title:'Press photos — 25 edited selects', desc:'Promo stills for EPK & streaming. Natural light preferred. Raw + retouched delivery.', proof:'NYC · mood board attached', budget:'$425 flat', deadline:'May 12', applied:'10 applied', role:'Photographer', rules:['25 edited high-res selects','2-hour shoot window','Release forms for all subjects'], termsMet:'gallery delivered & artist approves selects', banner:'linear-gradient(135deg,#ff6b8a,#4de8c2)' }
   ];
 
   let idx = 0;
@@ -1652,8 +1817,14 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     collabNext.hidden = false;
     const titleEl = document.getElementById('collabTeaseTitle');
     const roleEl = document.getElementById('collabTeaseRole');
-    if(titleEl && cardData) titleEl.textContent = cardData.title.split('—')[0].trim().slice(0, 28);
+    const rulesEl = document.getElementById('collabTeaseRules');
+    const metEl = document.getElementById('collabTeaseMet');
+    if(titleEl && cardData) titleEl.textContent = cardData.title.split('—')[0].trim().slice(0, 32);
     if(roleEl && cardData) roleEl.textContent = cardData.role || 'Collaborator';
+    if(rulesEl && cardData?.rules) rulesEl.innerHTML = cardData.rules.map(r=> `<li>${r}</li>`).join('');
+    if(metEl && cardData?.termsMet) metEl.textContent = '✓ Terms met when: ' + cardData.termsMet + '.';
+    const prog = document.getElementById('buildProgFill');
+    if(prog) prog.style.width = phase >= 2 ? '40%' : '20%';
     if(phase >= 2){ showTeasePane('build'); tabBuild && (tabBuild.disabled = false); }
     else showTeasePane('agree');
   }
@@ -1724,6 +1895,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     } else {
       card.style.transform = 'translateY(-130%) scale(1.04)';
       applyCount += 1;
+      lastApplied = current;
       setPipeline(Math.max(pipePhase, 1));
       openPhaseTease(1, current);
       showToast('Super match sent ⚡ — terms preview ready');
@@ -1775,15 +1947,23 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   tabBuild?.addEventListener('click', ()=>{ if(pipePhase >= 2) showTeasePane('build'); else showToast('Apply again to unlock Build preview'); });
   document.getElementById('collabSignTease')?.addEventListener('click', ()=>{
     showToast('Full agreement & e-sign — inside STĀGE at launch');
-    if(pipePhase >= 1 && applyCount >= 1){
+    if(pipePhase >= 1){
       setPipeline(2);
+      applyCount = Math.max(applyCount, 2);
       tabBuild && (tabBuild.disabled = false);
-      openPhaseTease(2, CARDS[(idx - 1 + CARDS.length) % CARDS.length]);
+      openPhaseTease(2, lastApplied || CARDS[idx % CARDS.length]);
     }
   });
-  document.getElementById('collabRoomTease')?.addEventListener('click', ()=> showToast('Project room, chat & milestones — waiting inside STĀGE'));
-  document.getElementById('collabMileDemo')?.addEventListener('change', e=>{
-    if(e.target.checked) showToast('Milestone logged ✓ — payout step unlocks in app');
+  document.getElementById('collabRoomTease')?.addEventListener('click', ()=> showToast('Project room unlocks at launch — one thread for files, feedback & milestones'));
+  document.getElementById('collabMileDraftBtn')?.addEventListener('click', ()=>{
+    const li = document.getElementById('collabMileDraft');
+    if(!li || li.classList.contains('done')) return;
+    li.classList.remove('active');
+    li.classList.add('done');
+    li.innerHTML = '<span class="build-ic">✓</span><span>Your deliverable complete</span>';
+    const prog = document.getElementById('buildProgFill');
+    if(prog) prog.style.width = '60%';
+    showToast('Checklist updated ✓ — approval & payout unlock in app');
   });
   pipeNodes?.querySelectorAll('.collab-node').forEach(node=>{
     node.addEventListener('click', ()=>{
@@ -2035,7 +2215,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   document.getElementById('hqBell')?.addEventListener('click', ()=> showHqToast('5 notifications · unlocks at launch'));
   document.getElementById('hqPlus')?.addEventListener('click', ()=> showHqToast('Create menu · coming with early access'));
-  document.getElementById('hqScoreBtn')?.addEventListener('click', ()=> showHqToast('💎 Diamond · 2000+ HQ · verified + exclusive marketplace'));
+  document.getElementById('hqScoreBtn')?.addEventListener('click', ()=> showHqToast('HQ = Hype Qualifications — your career momentum in one number'));
   document.getElementById('hqProPill')?.addEventListener('click', ()=> showHqToast('Insights Manager · Pro subscription unlocks full AI-style nudges'));
   document.getElementById('hqProPill')?.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); showHqToast('Insights Manager · Pro subscription unlocks full AI-style nudges'); }});
 
@@ -2118,7 +2298,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   });
 
   const HQ_TIPS = [
-    { sel: '#hqScoreBtn', text: 'Your HQ score ring — one pulse number for momentum across everything you do on STĀGE. Tap it anytime.' },
+    { sel: '#hqScoreBtn', text: 'HQ = Hype Qualifications — your momentum score. Show up, ship work, finish collabs → it rises. Tap the ring.' },
     { sel: '.hq-kpis', text: 'Live KPIs: plays, revenue, fans, engagement — the vitals of your career, updated in real time.' },
     { sel: '#hqMovesBlock', text: 'Next Moves — a prioritized queue of what to do today. Collabs, tracks, events, all in one feed.' },
     { sel: '#hqGrid', text: 'Master Stats — nine domains on one board. Tap any tile to see where your career is winning.' },
