@@ -383,6 +383,32 @@
   .collab-actions .ca-super{color:var(--gold);border-color:rgba(245,200,66,.4)}
   .collab-contract-flash{margin-top:10px;padding:9px 12px;border-radius:10px;background:rgba(77,255,180,.08);border:1px solid rgba(77,255,180,.28);font-size:11.5px;font-weight:600;color:var(--green);text-align:center;animation:fadeSlide .35s ease}
   .collab-contract-flash[hidden]{display:none}
+  .collab-next{margin-top:12px;padding:12px;border-radius:14px;background:rgba(14,14,22,.9);border:1px solid rgba(167,139,250,.2)}
+  .collab-next[hidden]{display:none}
+  .collab-next-tabs{display:flex;gap:6px;margin-bottom:10px}
+  .collab-next-tabs button{flex:1;border:1px solid rgba(167,139,250,.22);background:#1a1a28;color:var(--muted);font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.3px;text-transform:uppercase;padding:8px 6px;border-radius:999px;cursor:pointer;transition:background .15s ease, color .15s ease, border-color .15s ease}
+  .collab-next-tabs button.on{background:rgba(77,255,180,.12);border-color:rgba(77,255,180,.4);color:var(--green)}
+  .collab-next-tabs button:disabled{opacity:.35;cursor:not-allowed}
+  .collab-next-pane{display:none}
+  .collab-next-pane.active{display:block;animation:fadeSlide .3s ease}
+  .collab-mock-doc,.collab-mock-room{border-radius:12px;background:#12121c;border:1px solid rgba(167,139,250,.12);padding:10px 11px}
+  .mock-doc-head,.mock-room-head{font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .mock-doc-row{display:flex;justify-content:space-between;gap:8px;font-size:11px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .mock-doc-row:last-of-type{border-bottom:none;margin-bottom:8px}
+  .mock-doc-row span{color:var(--muted)}
+  .mock-doc-row b{color:var(--text);font-weight:600}
+  .mock-doc-row.blur b{filter:blur(4px);opacity:.65;user-select:none}
+  .mock-mile{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .mock-mile:last-of-type{border-bottom:none;margin-bottom:8px}
+  .mock-mile.locked{color:var(--muted);opacity:.55}
+  .mock-room-msg{font-size:10.5px;color:var(--muted);line-height:1.45;padding:8px 9px;margin-bottom:8px;border-radius:10px;background:rgba(167,139,250,.08);border:1px dashed rgba(167,139,250,.2)}
+  .collab-tease-btn{width:100%;border:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:11px;padding:10px;border-radius:10px;background:linear-gradient(90deg,rgba(167,139,250,.25),rgba(77,255,180,.2));color:var(--green);border:1px solid rgba(77,255,180,.3)}
+  .collab-tease-btn:active{transform:scale(.98)}
+  .collab-next-hint{font-size:10px;color:var(--muted);text-align:center;margin:10px 0 0;line-height:1.4}
+  .collab-node{cursor:pointer}
+  .collab-opp-type{display:inline-block;font-size:8px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:999px;margin-bottom:4px}
+  .collab-opp-type.hire{background:rgba(245,200,66,.15);color:var(--gold);border:1px solid rgba(245,200,66,.35)}
+  .collab-opp-type.seek{background:rgba(77,255,180,.12);color:var(--green);border:1px solid rgba(77,255,180,.3)}
   @media(max-width:680px){
     .collab-deck{height:230px}
     .explore-rail a{font-size:10px;padding:7px 4px}
@@ -792,12 +818,12 @@
   <section class="reveal collapse-section" id="collab">
     <button type="button" class="collapse-toggle" id="collabCollapseBtn" aria-expanded="false">
       <b>Collab · live swipe demo</b>
-      <span>Swipe opps, filter by tags &amp; walk the contract phases — like you're inside STĀGE</span>
+      <span>Swipe real opps — hire talent or find paid work, all in one deck</span>
     </button>
     <div class="collapse-body">
     <div class="kicker">STĀGE Collab</div>
-    <h2 class="section-title">Swipe your next collab</h2>
-    <p class="section-sub">Pass left · apply right · super up — then move from match to signed agreement in one pipeline.</p>
+    <h2 class="section-title">Where work finds you</h2>
+    <p class="section-sub">Post what you need or apply to what others need — performers, producers, engineers, visuals, promo, clubs, events &amp; more. Swipe the deck, then peek what happens after you match.</p>
 
     <div class="collab-demo" id="collabDemo">
       <div class="collab-toast" id="collabToast" role="status" aria-live="polite"></div>
@@ -840,6 +866,7 @@
               </div>
               <div class="collab-hq"><span id="collabHq">742</span><small>HQ</small></div>
             </div>
+            <span class="collab-opp-type hire" id="collabType">HIRING</span>
             <div class="collab-opp-title" id="collabTitle">Mix + master — trap single ("Slide")</div>
             <p class="collab-opp-desc" id="collabDesc">808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. Under 5-day turnaround.</p>
             <p class="collab-opp-proof" id="collabProof">Posted 4h ago · stems attached · Atlanta</p>
@@ -858,7 +885,35 @@
         <button type="button" class="ca-apply" id="collabApplyBtn">Apply →</button>
       </div>
 
-      <div class="collab-contract-flash" id="collabContract" hidden>Phase unlocked — terms aligned, room opening…</div>
+      <div class="collab-contract-flash" id="collabContract" hidden>Matched — next step unlocking…</div>
+
+      <div class="collab-next" id="collabNext" hidden>
+        <div class="collab-next-tabs">
+          <button type="button" class="on" data-pane="agree" id="collabTabAgree">Agree · preview</button>
+          <button type="button" data-pane="build" id="collabTabBuild" disabled>Build · preview</button>
+        </div>
+        <div class="collab-next-pane active" id="collabPaneAgree">
+          <div class="collab-mock-doc">
+            <div class="mock-doc-head">Terms aligned · preview only</div>
+            <div class="mock-doc-row"><span>Project</span><b id="collabTeaseTitle">Mix + master</b></div>
+            <div class="mock-doc-row"><span>Your role</span><b id="collabTeaseRole">Mix engineer</b></div>
+            <div class="mock-doc-row blur"><span>Comp</span><b>$███ flat</b></div>
+            <div class="mock-doc-row blur"><span>Timeline</span><b>█ days</b></div>
+            <button type="button" class="collab-tease-btn" id="collabSignTease">Review &amp; sign terms →</button>
+          </div>
+        </div>
+        <div class="collab-next-pane" id="collabPaneBuild">
+          <div class="collab-mock-room">
+            <div class="mock-room-head">Project room · preview only</div>
+            <div class="mock-room-msg">You + collaborator · files, feedback &amp; milestones stay in one thread on STĀGE.</div>
+            <label class="mock-mile"><input type="checkbox" checked disabled> Brief sent ✓</label>
+            <label class="mock-mile"><input type="checkbox" id="collabMileDemo"> First draft delivered</label>
+            <label class="mock-mile locked"><input type="checkbox" disabled> Final files &amp; payout 🔒</label>
+            <button type="button" class="collab-tease-btn" id="collabRoomTease">Step into the full room →</button>
+          </div>
+        </div>
+        <p class="collab-next-hint">A taste of what happens after you swipe right — the full pipeline unlocks inside STĀGE.</p>
+      </div>
     </div>
     </div>
   </section>
@@ -1046,12 +1101,12 @@
   <section class="reveal collapse-section" id="inside">
     <button type="button" class="collapse-toggle" id="insideCollapseBtn" aria-expanded="false">
       <b>Built on STĀGE</b>
-      <span>Peek inside — what's waiting on the other side of the curtain</span>
+      <span>Six paths on one stage — peek what's inside</span>
     </button>
     <div class="collapse-body">
     <div class="kicker">Behind the curtain</div>
     <h2 class="section-title">What STĀGE holds for you</h2>
-    <p class="section-sub">One room with your name on the door — built for people who move first and refuse to wait on the industry. The full picture stays under wraps… for now.</p>
+    <p class="section-sub">Your collabs, your events, your audience, your ownership, your money — and the tools to run it all without handing the keys to the industry. Whether you're building or getting hired, STĀGE is where the work lives.</p>
 
     <div class="features">
 
@@ -1155,7 +1210,7 @@
     <div class="form-wrap">
       <div class="form-kicker">Be first when the doors open</div>
       <div class="form-title">Get on the list</div>
-      <p class="form-intro">A few quick questions — your answers shape what we build first. Here's how early access works. Waitlist creators also lock in an exclusive founders gift from the STĀGE team.</p>
+      <p class="form-intro">A few quick questions — your answers shape what we build first. Here's how early access and the founders gift work:</p>
 
       <div class="steps">
         <div class="step"><span class="step-n">1</span><div class="step-tx"><b>Reserve your spot</b><span>Your email locks in your STĀGE account and reserves your exclusive founders gift.</span></div></div>
@@ -1293,6 +1348,9 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 /* ========================================================= */
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+window.addEventListener('pageshow', e=>{ if(!location.hash) window.scrollTo(0, 0); });
 document.getElementById('year').textContent = new Date().getFullYear();
 
 function tickCountdown(){
@@ -1519,16 +1577,24 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   if(!card) return;
 
   const CARDS = [
-    { emoji:'🎛', match:88, tags:['#Mixing','#Mastering','#Trap','#Paid'], av:'KV', name:'Kilo Vee', handle:'@kilovee · Atlanta', hq:742, title:'Mix + master — trap single ("Slide")', desc:'808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. Under 5-day turnaround.', proof:'Posted 4h ago · stems attached · Atlanta', budget:'$275 flat', deadline:'Apr 22', applied:'11 applied', banner:'linear-gradient(135deg,#1a1030,#4de8c2)' },
-    { emoji:'🎥', match:81, tags:['#Video','#Content','#Indie','#R&B'], av:'NR', name:'Nyelle Rae', handle:'@nyellerae · verified', hq:615, title:'Videographer — 2 live performance clips', desc:'Stripped-down set shoot for TikTok/Reels. Need strong indie/R&B visual energy. 3-hour session — you keep portfolio rights.', proof:'Posted yesterday · reel examples linked', budget:'$450 + credit', deadline:'May 03', applied:'7 applied', banner:'linear-gradient(135deg,#ff6b8a,#7c6fff)' },
-    { emoji:'🎹', match:94, tags:['#Producer','#Trap','#SplitDeal','#EP'], av:'TB', name:'Twan Beats', handle:'@twanbeats · verified', hq:910, title:'Co-producer for 4-track trap EP', desc:'Dark trap project — need melody & arrangement help. Split pub 50/50, small upfront. Must know modern trap song structure.', proof:'2 mutual connections · 4 completed collabs', budget:'$600 + split', deadline:'May 18', applied:'16 applied', banner:'linear-gradient(135deg,#7c6fff,#4de8c2)' },
-    { emoji:'🎸', match:76, tags:['#Guitar','#Remote','#Indie','#Paid'], av:'SL', name:'Slo Lane', handle:'@slolane', hq:528, title:'Remote session guitar — 2 songs', desc:'Clean + overdriven layers for indie rollout. Logic project shared — deliver DI + amped takes. Reference tracks in brief.', proof:'Posted 6h ago · remote OK worldwide', budget:'$180/song', deadline:'Apr 30', applied:'5 applied', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
-    { emoji:'🎙', match:72, tags:['#Creator','#Podcast','#Licensing','#FlatFee'], av:'DC', name:'The Daily Crate', handle:'@dailycrate · 12K listeners', hq:690, title:'15-sec podcast intro sting', desc:'Music/culture podcast needs a trap-influenced intro — not cliché. Full buyout; credited every episode.', proof:'Brand-safe · full buyout required', budget:'$350 buyout', deadline:'Apr 25', applied:'9 applied', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
-    { emoji:'🎤', match:83, tags:['#Live','#Trap','#Rap','#PaidSlot'], av:'NS', name:'NIGHTSHIFT CLT', handle:'@nightshiftclt · venue', hq:840, title:'Opening slot — trap/rap club night', desc:'20-min set before headliner. Paid slot + merch table. Must have 3+ min performance reel on your STĀGE profile.', proof:'Charlotte · May 10 · 21+', budget:'$150 + door %', deadline:'May 01', applied:'22 applied', banner:'linear-gradient(135deg,#ff5e8a,#f5c842)' }
+    { emoji:'🎛', match:88, kind:'hire', tags:['#Mixing','#Trap','#Paid','#Engineer'], av:'KV', name:'Kilo Vee', handle:'@kilovee · Atlanta', hq:742, title:'Mix + master — trap single ("Slide")', desc:'808-heavy mix needed. WAV stems ready — Metro-ish low end, clean vocal chain. 5-day turnaround.', proof:'Posted 4h ago · stems attached', budget:'$275 flat', deadline:'Apr 22', applied:'11 applied', role:'Mix engineer', banner:'linear-gradient(135deg,#1a1030,#4de8c2)' },
+    { emoji:'🎨', match:79, kind:'hire', tags:['#CoverArt','#Trap','#Visual','#Paid'], av:'JX', name:'Jex Atlas', handle:'@jexatlas · verified', hq:801, title:'Custom album cover — 3000×3000', desc:'Dark trap aesthetic for upcoming EP. Need original art — no stock. Reference: neon grit + luxury street. Full commercial rights.', proof:'3 mood boards attached · 48h draft', budget:'$320 flat', deadline:'May 02', applied:'8 applied', role:'Cover artist', banner:'linear-gradient(135deg,#2a1450,#ff5e8a)' },
+    { emoji:'🎥', match:81, kind:'hire', tags:['#MusicVideo','#Shoot','#Indie','#Paid'], av:'NR', name:'Nyelle Rae', handle:'@nyellerae · verified', hq:615, title:'Videographer — performance + B-roll day', desc:'One-day shoot for single rollout. 2 performance setups + slow-mo B-roll. You keep portfolio rights; we keep edit.', proof:'Shot list ready · Charlotte area', budget:'$650 + credit', deadline:'May 08', applied:'7 applied', role:'Videographer', banner:'linear-gradient(135deg,#ff6b8a,#7c6fff)' },
+    { emoji:'📣', match:74, kind:'hire', tags:['#Promo','#TikTok','#Marketing','#Paid'], av:'PM', name:'Pulse Media Co.', handle:'@pulsemedia · agency', hq:920, title:'2-week promo push — single launch', desc:'Need someone to run TikTok/Reels clip strategy for a trap single drop. Content supplied — you schedule, engage, report.', proof:'Budget approved · indie artist client', budget:'$500 / 2 wks', deadline:'Apr 29', applied:'13 applied', role:'Promo manager', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
+    { emoji:'🎤', match:86, kind:'seek', tags:['#Performer','#Live','#HipHop','#OpenCall'], av:'RZ', name:'Rico Zayn', handle:'@ricozayn · artist', hq:688, title:'Looking for hype performer — tour dates', desc:'Independent rapper booking summer dates. Need high-energy stage presence for 6 shows — rehearse remotely, travel covered regionally.', proof:'Reel on profile · 6 dates listed', budget:'$200/show + %', deadline:'May 15', applied:'19 applied', role:'Hype performer', banner:'linear-gradient(135deg,#7c6fff,#ff5e8a)' },
+    { emoji:'🎹', match:94, kind:'seek', tags:['#Producer','#Trap','#SplitDeal','#EP'], av:'TB', name:'Twan Beats', handle:'@twanbeats · verified', hq:910, title:'Co-producer wanted — 4-track trap EP', desc:'Melody & arrangement help on dark trap project. Split pub 50/50, small upfront. Must know modern song structure & tag culture.', proof:'2 mutuals · 4 completed collabs', budget:'$600 + split', deadline:'May 18', applied:'16 applied', role:'Co-producer', banner:'linear-gradient(135deg,#7c6fff,#4de8c2)' },
+    { emoji:'🎪', match:83, kind:'hire', tags:['#Event','#Club','#Trap','#PaidSlot'], av:'NS', name:'NIGHTSHIFT CLT', handle:'@nightshiftclt · venue', hq:840, title:'Opening slot — trap/rap club night', desc:'20-min set before headliner. Paid slot + merch table. Must have 3+ min performance reel on STĀGE profile.', proof:'Charlotte · May 10 · 21+', budget:'$150 + door %', deadline:'May 01', applied:'22 applied', role:'Opening artist', banner:'linear-gradient(135deg,#ff5e8a,#f5c842)' },
+    { emoji:'🎧', match:77, kind:'seek', tags:['#DJ','#PrivateEvent','#Paid','#Local'], av:'LM', name:'Luxe Manor Events', handle:'@luxemanor · planner', hq:560, title:'DJ needed — private album listening party', desc:'150-guest listening party for indie R&B artist. Blend vibes, read the room, own the transitions. Gear provided on-site.', proof:'Downtown Raleigh · May 22', budget:'$400 flat', deadline:'May 05', applied:'6 applied', role:'Event DJ', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
+    { emoji:'🎸', match:76, kind:'hire', tags:['#Session','#Remote','#Indie','#Paid'], av:'SL', name:'Slo Lane', handle:'@slolane', hq:528, title:'Remote session guitar — 2 songs', desc:'Clean + overdriven layers for indie rollout. Logic project shared — deliver DI + amped takes. Reference tracks in brief.', proof:'Remote OK · stems due May 1', budget:'$180/song', deadline:'Apr 30', applied:'5 applied', role:'Session guitarist', banner:'linear-gradient(135deg,#f5c842,#4de8c2)' },
+    { emoji:'💿', match:71, kind:'seek', tags:['#Monetize','#BeatLease','#Producer','#Licensing'], av:'DK', name:'Dekay Beats', handle:'@dekaybeats', hq:640, title:'Sell beat leases through STĀGE marketplace', desc:'Looking for producers to co-list trap kits on shared storefront. Split sales 70/30 — you upload, we promote to buyer feed.', proof:'Pilot program · 12 producers in', budget:'Rev share', deadline:'Rolling', applied:'31 applied', role:'Beat partner', banner:'linear-gradient(135deg,#1a1030,#a78bfa)' },
+    { emoji:'🎙', match:72, kind:'hire', tags:['#Creator','#Podcast','#Audio','#Buyout'], av:'DC', name:'The Daily Crate', handle:'@dailycrate · 12K listeners', hq:690, title:'15-sec podcast intro sting', desc:'Music/culture podcast needs trap-influenced intro — not cliché. Full buyout; credited every episode.', proof:'Brand-safe · full buyout', budget:'$350 buyout', deadline:'Apr 25', applied:'9 applied', role:'Composer', banner:'linear-gradient(135deg,#4de8c2,#a78bfa)' },
+    { emoji:'📸', match:80, kind:'hire', tags:['#Photographer','#Press','#Promo','#Paid'], av:'IV', name:'Ivy Visions', handle:'@ivyvisions · verified', hq:755, title:'Press photo shoot — 20 edited selects', desc:'Need promo stills for EPK + streaming platforms. Urban rooftop vibe, golden hour preferred. Raw + retouched delivery.', proof:'Mood board attached · NYC area', budget:'$425 flat', deadline:'May 12', applied:'10 applied', role:'Photographer', banner:'linear-gradient(135deg,#ff6b8a,#4de8c2)' }
   ];
 
   let idx = 0;
   let pipePhase = 0;
+  let applyCount = 0;
+  let lastApplied = null;
   let dragging = false;
   let startX = 0;
   let startY = 0;
@@ -1540,6 +1606,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const pipeFill = document.getElementById('collabPipeFill');
   const pipeNodes = document.getElementById('collabPipeNodes');
   const contract = document.getElementById('collabContract');
+  const collabNext = document.getElementById('collabNext');
+  const tabAgree = document.getElementById('collabTabAgree');
+  const tabBuild = document.getElementById('collabTabBuild');
+  const paneAgree = document.getElementById('collabPaneAgree');
+  const paneBuild = document.getElementById('collabPaneBuild');
   const stamps = {
     pass: document.getElementById('collabStampPass'),
     apply: document.getElementById('collabStampApply'),
@@ -1565,6 +1636,26 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const caps = ['Discovering your match…','Aligning terms…','Building together…','Closing the loop…','Leveling your rep…'];
     const capEl = document.getElementById('collabPipeCap');
     if(capEl) capEl.innerHTML = `<span class="live-dot" aria-hidden="true"></span> ${caps[pipePhase]}`;
+    tabBuild && (tabBuild.disabled = pipePhase < 2);
+  }
+
+  function showTeasePane(which){
+    const agree = which === 'agree';
+    tabAgree?.classList.toggle('on', agree);
+    tabBuild?.classList.toggle('on', !agree);
+    paneAgree?.classList.toggle('active', agree);
+    paneBuild?.classList.toggle('active', !agree);
+  }
+
+  function openPhaseTease(phase, cardData){
+    if(!collabNext) return;
+    collabNext.hidden = false;
+    const titleEl = document.getElementById('collabTeaseTitle');
+    const roleEl = document.getElementById('collabTeaseRole');
+    if(titleEl && cardData) titleEl.textContent = cardData.title.split('—')[0].trim().slice(0, 28);
+    if(roleEl && cardData) roleEl.textContent = cardData.role || 'Collaborator';
+    if(phase >= 2){ showTeasePane('build'); tabBuild && (tabBuild.disabled = false); }
+    else showTeasePane('agree');
   }
 
   function renderCard(){
@@ -1572,6 +1663,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const banner = document.getElementById('collabBanner');
     if(banner) banner.style.background = c.banner;
     const set = (id, val)=>{ const el = document.getElementById(id); if(el) el.textContent = val; };
+    const typeEl = document.getElementById('collabType');
+    if(typeEl){
+      typeEl.textContent = c.kind === 'seek' ? 'OPEN CALL' : 'HIRING';
+      typeEl.className = 'collab-opp-type ' + (c.kind === 'seek' ? 'seek' : 'hire');
+    }
     set('collabMatch', c.match + '%');
     set('collabEmoji', c.emoji);
     const tagsEl = document.getElementById('collabTags');
@@ -1587,6 +1683,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     set('collabDeadline', c.deadline);
     set('collabApplied', c.applied);
     resetCardTransform();
+    return c;
   }
 
   function resetCardTransform(){
@@ -1610,19 +1707,26 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   function commitSwipe(dir){
     dismissCoach();
+    const current = CARDS[idx % CARDS.length];
     card.style.transition = 'transform .35s ease, opacity .35s ease';
     if(dir === -1){
       card.style.transform = 'translateX(-120%) rotate(-12deg)';
       showToast('Passed — next opportunity');
     } else if(dir === 1){
       card.style.transform = 'translateX(120%) rotate(12deg)';
-      setPipeline(Math.max(pipePhase, 1));
-      if(contract){ contract.hidden = false; setTimeout(()=>{ contract.hidden = true; }, 3600); }
-      showToast('Applied ✓ — next phase unlocked');
+      applyCount += 1;
+      lastApplied = current;
+      const nextPhase = applyCount >= 2 ? 2 : 1;
+      setPipeline(Math.max(pipePhase, nextPhase));
+      openPhaseTease(nextPhase, current);
+      if(contract){ contract.hidden = false; setTimeout(()=>{ contract.hidden = true; }, 2800); }
+      showToast(nextPhase >= 2 ? 'Build phase preview unlocked' : 'Agree phase preview unlocked');
     } else {
       card.style.transform = 'translateY(-130%) scale(1.04)';
+      applyCount += 1;
       setPipeline(Math.max(pipePhase, 1));
-      showToast('Super match sent ⚡');
+      openPhaseTease(1, current);
+      showToast('Super match sent ⚡ — terms preview ready');
     }
     card.style.opacity = '0';
     setTimeout(()=>{
@@ -1667,10 +1771,34 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   document.getElementById('collabSuperBtn')?.addEventListener('click', ()=> commitSwipe(2));
   document.getElementById('collabCoachDismiss')?.addEventListener('click', dismissCoach);
 
+  tabAgree?.addEventListener('click', ()=>{ if(pipePhase >= 1) showTeasePane('agree'); });
+  tabBuild?.addEventListener('click', ()=>{ if(pipePhase >= 2) showTeasePane('build'); else showToast('Apply again to unlock Build preview'); });
+  document.getElementById('collabSignTease')?.addEventListener('click', ()=>{
+    showToast('Full agreement & e-sign — inside STĀGE at launch');
+    if(pipePhase >= 1 && applyCount >= 1){
+      setPipeline(2);
+      tabBuild && (tabBuild.disabled = false);
+      openPhaseTease(2, CARDS[(idx - 1 + CARDS.length) % CARDS.length]);
+    }
+  });
+  document.getElementById('collabRoomTease')?.addEventListener('click', ()=> showToast('Project room, chat & milestones — waiting inside STĀGE'));
+  document.getElementById('collabMileDemo')?.addEventListener('change', e=>{
+    if(e.target.checked) showToast('Milestone logged ✓ — payout step unlocks in app');
+  });
+  pipeNodes?.querySelectorAll('.collab-node').forEach(node=>{
+    node.addEventListener('click', ()=>{
+      const i = +node.dataset.i;
+      if(i === 0 || i > pipePhase) return;
+      if(i === 1){ showTeasePane('agree'); collabNext && (collabNext.hidden = false); }
+      else if(i === 2 && pipePhase >= 2){ showTeasePane('build'); collabNext && (collabNext.hidden = false); }
+      else if(i >= 3) showToast('Rate & Rep — your collab reputation unlocks inside STĀGE');
+    });
+  });
+
   const coachTxts = [
     'Swipe the card — pass left · apply right · super up',
-    'Real opps for artists, engineers, creators & the people who serve them',
-    'Apply to move into the next phase — terms & project room follow'
+    'Hiring or looking for work — real opps for every corner of the industry',
+    'Apply to peek Agree & Build — the rest of the pipeline lives in the app'
   ];
   let coach_i = 0;
   const coachTimer = setInterval(()=>{
@@ -2008,7 +2136,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function clearHqSpot(){
     if(hqSpot){ hqSpot.classList.remove('hq-spotlight'); hqSpot = null; }
   }
-  function showHqTip(i){
+  function showHqTip(i, opts){
     hqTip = i;
     const tip = HQ_TIPS[i];
     if(!tip){ hqGuide?.classList.add('hidden'); clearHqSpot(); return; }
@@ -2018,7 +2146,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     if(hqGuideStep) hqGuideStep.textContent = `Tip ${i + 1} / ${HQ_TIPS.length}`;
     if(hqGuideNext) hqGuideNext.textContent = i >= HQ_TIPS.length - 1 ? 'Start exploring →' : 'Next tip →';
     const el = demo.querySelector(tip.sel);
-    if(el){
+    if(el && opts?.scroll){
       hqSpot = el;
       el.classList.add('hq-spotlight');
       setTimeout(()=> el.scrollIntoView({ behavior:'smooth', block:'nearest' }), 80);
@@ -2026,10 +2154,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
   hqGuideNext?.addEventListener('click', ()=>{
     if(hqTip >= HQ_TIPS.length - 1){ hqGuide?.classList.add('hidden'); clearHqSpot(); }
-    else showHqTip(hqTip + 1);
+    else showHqTip(hqTip + 1, { scroll: true });
   });
   hqGuideSkip?.addEventListener('click', ()=>{ hqGuide?.classList.add('hidden'); clearHqSpot(); });
-  showHqTip(0);
+  showHqTip(0, { scroll: false });
 
   refreshAnalytics();
 })();
