@@ -1,0 +1,19 @@
+name: Waitlist reminder emails
+
+on:
+  schedule:
+    # 15:00 UTC daily (~10:00 AM US Eastern)
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke waitlist-email-cron
+        env:
+          WAITLIST_CRON_SECRET: ${{ secrets.WAITLIST_CRON_SECRET }}
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${WAITLIST_CRON_SECRET}" \
+            "https://ktpyltvdxhnfquorrdsi.supabase.co/functions/v1/waitlist-email-cron"

@@ -1,0 +1,7 @@
+project_id = "stage-waitlist"
+
+[functions.waitlist-signup]
+verify_jwt = false
+
+[functions.waitlist-email-cron]
+verify_jwt = false

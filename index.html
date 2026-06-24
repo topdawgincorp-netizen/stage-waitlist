@@ -2401,26 +2401,40 @@ btn.addEventListener('click', async ()=>{
 
   btn.disabled = true; const original = btn.textContent; btn.textContent = 'Saving…';
 
-  const { error } = await sb.from('waitlist').insert({
-    email,
-    phone: document.getElementById('phone').value.trim() || null,
-    artist_name: document.getElementById('name').value.trim() || null,
-    role: document.getElementById('role').value || null,
-    goals: selectedGoals.size ? Array.from(selectedGoals) : null,
-    feature_suggestion: document.getElementById('feature').value.trim() || null,
-    heard_from: document.getElementById('heard').value || null,
-    location: document.getElementById('location').value.trim() || null,
-    referral_source: ref
+  const { data, error } = await sb.functions.invoke('waitlist-signup', {
+    body: {
+      email,
+      phone: document.getElementById('phone').value.trim() || null,
+      artist_name: document.getElementById('name').value.trim() || null,
+      role: document.getElementById('role').value || null,
+      goals: selectedGoals.size ? Array.from(selectedGoals) : null,
+      feature_suggestion: document.getElementById('feature').value.trim() || null,
+      heard_from: document.getElementById('heard').value || null,
+      location: document.getElementById('location').value.trim() || null,
+      referral_source: ref
+    }
   });
 
   btn.disabled = false; btn.textContent = original;
 
   if(error){
-    if(error.code === '23505'){ showMsg("You're already on the list — your exclusive reward is waiting at launch. 🎶", 'ok'); }
-    else { showMsg("Something went wrong saving your spot. Try again in a sec?", 'err'); console.error(error); }
+    showMsg("Something went wrong saving your spot. Try again in a sec?", 'err');
+    console.error(error);
     return;
   }
-  showMsg("You're in. 🎉 Early access locked — plus your exclusive reward when doors open.", 'ok');
+  if(data && data.ok === false){
+    showMsg("Something went wrong saving your spot. Try again in a sec?", 'err');
+    return;
+  }
+  const duplicate = data && data.duplicate;
+  const emailed = data && data.email_sent;
+  if(duplicate){
+    showMsg("You're already on the list — your exclusive reward is waiting at launch. 🎶", 'ok');
+  } else if(emailed){
+    showMsg("You're in. 🎉 Check your email for release details, access info & your founders gift.", 'ok');
+  } else {
+    showMsg("You're in. 🎉 Early access locked — plus your exclusive reward when doors open.", 'ok');
+  }
   ['email','name','location','feature','phone','heroEmail'].forEach(id=>{ const n=document.getElementById(id); if(n) n.value=''; });
   document.getElementById('role').selectedIndex = 0;
   document.getElementById('heard').selectedIndex = 0;
