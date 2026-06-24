@@ -33,9 +33,8 @@
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:12px}
+  html{scroll-behavior:smooth;scroll-padding-top:56px}
   html:not(.page-ready){overflow:hidden;height:100%}
-  @media(max-width:680px){html{scroll-padding-top:56px}}
   body{overflow-anchor:none}
   body{
     background:var(--bg);color:var(--text);
@@ -72,15 +71,17 @@
   .scroll-hint.hidden{opacity:0;transform:translateY(-6px);pointer-events:none}
 
   .explore-rail{
-    display:none;position:sticky;top:6px;z-index:12;margin:0 -4px 12px;
-    padding:5px;background:rgba(8,8,16,.88);backdrop-filter:blur(12px);
+    display:flex;position:sticky;top:8px;z-index:12;margin:0 -4px 14px;
+    padding:5px;background:rgba(8,8,16,.92);backdrop-filter:blur(12px);
     border:1px solid rgba(167,139,250,.18);border-radius:999px;gap:4px;
   }
   .explore-rail a{
     flex:1;text-align:center;text-decoration:none;font-family:var(--display);font-weight:700;
-    font-size:11px;letter-spacing:.3px;color:var(--muted);padding:8px 6px;border-radius:999px;transition:background .15s ease, color .15s ease;
+    font-size:12px;letter-spacing:.3px;color:var(--muted);padding:9px 8px;border-radius:999px;transition:background .15s ease, color .15s ease;
   }
   .explore-rail a.on{background:rgba(77,255,180,.12);color:var(--green)}
+  .explore-rail a.rail-join{color:var(--accent)}
+  .explore-rail a.rail-join.on{background:rgba(167,139,250,.15);color:var(--green)}
 
   .collapse-toggle{
     display:none;width:100%;margin:0 auto 10px;max-width:560px;
@@ -135,7 +136,6 @@
     .section-title{font-size:22px;margin-bottom:6px}
 
     .scroll-hint{display:block}
-    .explore-rail{display:flex}
     .collapse-toggle{display:block}
 
     .ethos .post-lead{margin-top:0}
@@ -175,6 +175,8 @@
     .post-expand-btn{display:none}
     .collapse-toggle{display:none}
     .collapse-section .collapse-body{max-height:none!important;opacity:1!important;overflow:visible}
+    .explore-rail{top:10px;margin-bottom:18px}
+    .explore-rail a{font-size:12px;padding:9px 10px}
   }
 
   nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0 4px;position:relative;z-index:2}
@@ -432,8 +434,6 @@
   .build-list button:hover{color:var(--green)}
   .build-prog{height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-bottom:10px}
   .build-prog-fill{height:100%;width:40%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .4s ease}
-  .hq-score-tip{font-size:10px;color:var(--muted);text-align:center;margin:-4px 0 10px;line-height:1.4;padding:0 8px}
-  .hq-score-tip b{color:var(--green);font-weight:700}
   .mock-mile{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}
   .mock-mile:last-of-type{border-bottom:none;margin-bottom:8px}
   .mock-mile.locked{color:var(--muted);opacity:.55}
@@ -534,9 +534,11 @@
   .hq-bell i{position:absolute;top:0;right:-4px;background:#ff4d6d;color:#fff;font-size:8px;font-weight:700;font-style:normal;border-radius:999px;min-width:13px;height:13px;display:grid;place-items:center;padding:0 3px}
   .hq-plus{width:30px;height:30px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),var(--accent));display:grid;place-items:center;font-size:17px;font-weight:700;color:#04121a;cursor:pointer;box-shadow:0 4px 16px -4px rgba(77,255,180,.5)}
   .hq-body{padding:14px 14px 16px}
-  .hq-mm-intro{margin-bottom:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(77,255,180,.08));border:1px solid rgba(167,139,250,.2)}
-  .hq-mm-intro b{display:block;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.5px;margin-bottom:4px;background:linear-gradient(90deg,#fff,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hq-mm-intro p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+  .hq-mm-intro{margin-bottom:10px;padding:10px 12px;border-radius:12px;background:rgba(26,26,40,.75);border:1px solid rgba(167,139,250,.14)}
+  .hq-mm-intro b{display:block;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .hq-mm-intro p{font-size:11.5px;color:var(--muted);line-height:1.4;margin:0}
+  .hq-score-tip{font-size:10.5px;color:var(--muted);line-height:1.4;margin:0 0 10px;padding:6px 8px;border-radius:8px;background:rgba(77,255,180,.06);border:1px solid rgba(77,255,180,.12)}
+  .hq-score-tip b{color:var(--green);font-weight:700}
   .hq-meeting-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:9px 12px;background:rgba(26,26,40,.8);border-radius:12px;border:1px solid rgba(167,139,250,.12)}
   .hq-meeting-row span{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted)}
   .hq-switch{position:relative;width:46px;height:26px;border:none;border-radius:999px;background:#2a2a3a;cursor:pointer;transition:background .2s ease;flex:none}
@@ -629,14 +631,25 @@
   .hq-hint{font-size:11.5px;color:var(--muted);line-height:1.5;padding:10px 12px;background:rgba(26,26,40,.8);border-radius:10px;border:1px solid rgba(167,139,250,.1);margin-top:10px}
   .hq-toast{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(12px);background:rgba(20,20,32,.96);border:1px solid rgba(77,255,180,.35);color:var(--text);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:5;white-space:nowrap}
   .hq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  .hq-guide{position:relative;z-index:2;margin-bottom:12px;padding:10px 12px;border-radius:14px;background:rgba(8,8,16,.92);border:1px dashed rgba(77,255,180,.35)}
+  .hq-guide{position:relative;z-index:3;margin:10px 12px 0;padding:0;border:none;background:transparent}
   .hq-guide.hidden{display:none}
-  .hq-guide-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-  .hq-guide-step{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
-  .hq-guide-skip{background:none;border:none;color:var(--muted);font-size:10px;font-weight:600;cursor:pointer;padding:2px 0}
-  .hq-guide-skip:hover{color:var(--text)}
-  .hq-guide-txt{font-size:12px;line-height:1.45;color:var(--text);margin:0 0 8px}
-  .hq-guide-next{width:100%;border:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:12px;color:#04121a;background:linear-gradient(90deg,var(--accent),var(--green));padding:9px;border-radius:10px}
+  .hq-guide-inner{
+    display:flex;align-items:center;gap:8px;padding:7px 10px 7px 8px;
+    border-radius:999px;background:rgba(8,8,16,.95);
+    border:1px solid rgba(77,255,180,.28);
+    box-shadow:0 6px 24px -10px rgba(0,0,0,.65);
+  }
+  .hq-guide-ic{flex:none;font-size:13px;line-height:1;opacity:.9}
+  .hq-guide-mid{flex:1;min-width:0}
+  .hq-guide-step{display:block;font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--green);margin-bottom:1px}
+  .hq-guide-txt{font-size:11px;line-height:1.35;color:var(--text);margin:0}
+  .hq-guide-acts{display:flex;gap:4px;flex:none;align-items:center}
+  .hq-guide-next{border:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:10px;color:#04121a;background:var(--green);padding:6px 11px;border-radius:999px;white-space:nowrap}
+  .hq-guide-next:hover{filter:brightness(1.06)}
+  .hq-guide-skip{background:none;border:none;color:var(--muted);font-size:14px;line-height:1;cursor:pointer;padding:4px 6px;border-radius:8px}
+  .hq-guide-skip:hover{color:var(--text);background:rgba(167,139,250,.12)}
+  .hq-demo-cap{font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);text-align:center;padding:10px 14px 0;margin:0}
+  .hq-zone-label{display:block;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--green);margin-bottom:8px;opacity:.85}
   .hq-spotlight{outline:2px solid rgba(77,255,180,.55)!important;outline-offset:2px;box-shadow:0 0 0 4px rgba(77,255,180,.12)!important;border-radius:12px;transition:outline .25s ease, box-shadow .25s ease}
   .collab-opp-proof{font-size:10px;color:var(--green);font-weight:600;margin:-2px 0 8px;opacity:.9}
   .hq-demo{position:relative}
@@ -998,13 +1011,19 @@
 
     <div class="hq-demo" id="hqDemo">
       <div class="hq-toast" id="hqToast" role="status" aria-live="polite"></div>
+      <p class="hq-demo-cap">Interactive HQ preview · highlights show what to tap</p>
       <div class="hq-guide" id="hqGuide">
-        <div class="hq-guide-head">
-          <span class="hq-guide-step" id="hqGuideStep">Tip 1 / 6</span>
-          <button type="button" class="hq-guide-skip" id="hqGuideSkip">Skip tour</button>
+        <div class="hq-guide-inner">
+          <span class="hq-guide-ic" aria-hidden="true">💡</span>
+          <div class="hq-guide-mid">
+            <span class="hq-guide-step" id="hqGuideStep">1/6 · HQ score</span>
+            <p class="hq-guide-txt" id="hqGuideTxt">Your momentum number — collabs, drops &amp; shows move it up. Tap the ring.</p>
+          </div>
+          <div class="hq-guide-acts">
+            <button type="button" class="hq-guide-next" id="hqGuideNext">Next</button>
+            <button type="button" class="hq-guide-skip" id="hqGuideSkip" aria-label="Skip tour">✕</button>
+          </div>
         </div>
-        <p class="hq-guide-txt" id="hqGuideTxt"><b>HQ</b> = Hype Qualifications — your momentum score. Show up, ship work, finish collabs → it rises.</p>
-        <button type="button" class="hq-guide-next" id="hqGuideNext">Next tip →</button>
       </div>
       <div class="hq-bar">
         <span class="hq-logo">STĀGE</span>
@@ -1026,8 +1045,8 @@
       </div>
       <div class="hq-body">
         <div class="hq-mm-intro">
-          <b>Meeting Mode</b>
-          <p>STĀGE's presentation layer — strip the noise and lead with your numbers when labels, partners, or investors are in the room. Flip it off to run the full command center.</p>
+          <b>Meeting mode</b>
+          <p>Flip on for investor-ready numbers only. Off = full command center.</p>
         </div>
         <div class="hq-meeting-row">
           <span>Meeting mode</span>
@@ -1035,7 +1054,8 @@
         </div>
 
         <div class="hq-brief" id="hqBrief">
-          <p class="hq-score-tip"><b>HQ</b> = Hype Qualifications — one score for your momentum. Create, collab, perform, grow → it moves with you.</p>
+          <span class="hq-zone-label">Career snapshot</span>
+          <p class="hq-score-tip"><b>HQ</b> = Hype Qualifications — your career momentum in one number.</p>
           <div class="hq-brief-top">
             <div class="hq-score-block" id="hqScoreBtn" role="button" tabindex="0" aria-label="HQ score 10K">
               <svg class="hq-score-ring" viewBox="0 0 78 78" aria-hidden="true">
@@ -1071,7 +1091,7 @@
           </div>
           <div class="hq-action-row" id="hqActionRow">
             <div class="hq-moves" id="hqMovesBlock">
-              <div class="hq-moves-h">⚡ Next moves <span class="tagline">Quick updates</span></div>
+              <div class="hq-moves-h">⚡ Next moves <span class="tagline">Your to-do queue</span></div>
               <div class="hq-move" data-move="collab">
                 <div class="hq-move-ic">🤝</div>
                 <div class="hq-move-txt"><b>2 collab proposals in your queue</b><span>Accept Yari's request — each completed collab earns +30 HQ</span></div>
@@ -1146,8 +1166,8 @@
             <button type="button" class="hq-tab locked" data-tab="ops" title="Unlocks at launch">Ops</button>
             <button type="button" class="hq-tab locked" data-tab="connect" title="Pro subscription">Connect</button>
           </div>
-          <div class="hq-h" style="font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-top:2px">Master Stats</div>
-          <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px">Tap a domain — full detail lives in tabs below.</p>
+          <div class="hq-h" style="font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-top:2px">Master stats</div>
+          <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px">Nine career domains — tap any tile to explore.</p>
           <div class="hq-grid" id="hqGrid">
             <div class="hq-tile" data-domain="fans"><span class="em">🎯</span><span class="lbl">Fans</span><div class="val">12.4K</div><span class="del">+5%</span></div>
             <div class="hq-tile" data-domain="plays"><span class="em">🎵</span><span class="lbl">Plays</span><div class="val">54.6K</div><span class="del">+18%</span></div>
@@ -2304,12 +2324,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   });
 
   const HQ_TIPS = [
-    { sel: '#hqScoreBtn', text: 'HQ = Hype Qualifications — your momentum score. Show up, ship work, finish collabs → it rises. Tap the ring.' },
-    { sel: '.hq-kpis', text: 'Live KPIs: plays, revenue, fans, engagement — the vitals of your career, updated in real time.' },
-    { sel: '#hqMovesBlock', text: 'Next Moves — a prioritized queue of what to do today. Collabs, tracks, events, all in one feed.' },
-    { sel: '#hqGrid', text: 'Master Stats — nine domains on one board. Tap any tile to see where your career is winning.' },
-    { sel: '#hqMeetingToggle', text: 'Meeting Mode — flip this when labels, partners, or investors are watching. Clean numbers, zero noise.' },
-    { sel: '#hqAnalyticsPanel', text: 'Analytics dashboard — switch metrics, scan trends, read the room. Deeper ranges unlock as you grow.' }
+    { sel: '#hqScoreBtn', label: 'HQ score', text: 'Your momentum number — collabs, drops & shows move it up. Tap the ring.' },
+    { sel: '.hq-kpis', label: 'Live KPIs', text: 'Plays, revenue, fans & engagement — your vitals at a glance.' },
+    { sel: '#hqMovesBlock', label: 'Next moves', text: 'What to do today — collabs, tracks & events in one queue.' },
+    { sel: '#hqGrid', label: 'Master stats', text: 'Nine domains on one board — tap a tile to drill in.' },
+    { sel: '#hqMeetingToggle', label: 'Meeting mode', text: 'Flip on when someone important is watching — clean numbers only.' },
+    { sel: '#hqAnalyticsPanel', label: 'Analytics', text: 'Charts & trends — switch metrics and time ranges here.' }
   ];
   let hqTip = 0;
   const hqGuide = document.getElementById('hqGuide');
@@ -2329,8 +2349,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     if(i === 5) setMeeting(true);
     clearHqSpot();
     if(hqGuideTxt) hqGuideTxt.textContent = tip.text;
-    if(hqGuideStep) hqGuideStep.textContent = `Tip ${i + 1} / ${HQ_TIPS.length}`;
-    if(hqGuideNext) hqGuideNext.textContent = i >= HQ_TIPS.length - 1 ? 'Start exploring →' : 'Next tip →';
+    if(hqGuideStep) hqGuideStep.textContent = `${i + 1}/${HQ_TIPS.length} · ${tip.label}`;
+    if(hqGuideNext) hqGuideNext.textContent = i >= HQ_TIPS.length - 1 ? 'Done' : 'Next';
     const el = demo.querySelector(tip.sel);
     if(el && opts?.scroll){
       hqSpot = el;
@@ -2339,10 +2359,19 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     }
   }
   hqGuideNext?.addEventListener('click', ()=>{
-    if(hqTip >= HQ_TIPS.length - 1){ hqGuide?.classList.add('hidden'); clearHqSpot(); }
+    if(hqTip >= HQ_TIPS.length - 1){
+      hqGuide?.classList.add('hidden');
+      clearHqSpot();
+      demo.querySelector('.hq-score-tip')?.style.removeProperty('display');
+    }
     else showHqTip(hqTip + 1, { scroll: true });
   });
-  hqGuideSkip?.addEventListener('click', ()=>{ hqGuide?.classList.add('hidden'); clearHqSpot(); });
+  hqGuideSkip?.addEventListener('click', ()=>{
+    hqGuide?.classList.add('hidden');
+    clearHqSpot();
+    demo.querySelector('.hq-score-tip')?.style.removeProperty('display');
+  });
+  demo.querySelector('.hq-score-tip')?.style.setProperty('display', 'none');
   showHqTip(0, { scroll: false });
 
   refreshAnalytics();
